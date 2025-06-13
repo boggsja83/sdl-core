@@ -81,6 +81,11 @@ rt Core::update(float& accumulator){
 
 rt Core::render(SDL_Renderer* rend, float& alpha){
     SDL_RenderClear(rend);
+
+    /**************************************************************************/
+    //	RENDER GAME STATE (WITH ALPHA)
+    /**************************************************************************/
+
     SDL_RenderPresent(rend);
 
     return OKAY;
