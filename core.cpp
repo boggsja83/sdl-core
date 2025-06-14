@@ -84,6 +84,7 @@ rt Core::render(SDL_Renderer* rend, float& alpha){
 
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
+
     /**************************************************************************/
 
     SDL_RenderPresent(rend);
