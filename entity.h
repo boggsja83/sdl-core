@@ -21,8 +21,8 @@ struct Entity {
 
 };
 
-struct Scene : Entity {
-    Scene(){
+struct eScene : Entity {
+    eScene(){
 	type = ENTITY_SCENE;
 
 	components.push_back(COMPONENT_POSITION);

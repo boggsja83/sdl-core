@@ -26,7 +26,7 @@ release: $(OBJECTS)
 	$(CXX) $(OBJECTS) $(LDFLAGS) -o $(TARGET)
 
 # Compile source files to object files
-%.o: %.cpp keyboard.h sdl_w.h core.h types.h settings.h entity.h component.h
+%.o: %.cpp keyboard.h sdl_w.h core.h types.h settings.h entity.h component.h entity_manager.h
 	$(CXX) $(CFLAGS) -c $< -o $@
 
 # Clean up
