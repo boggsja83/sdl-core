@@ -6,7 +6,7 @@ BASE_CFLAGS = $(shell sdl2-config --cflags) $(shell pkg-config --cflags SDL2_mix
 BASE_LDFLAGS = $(shell sdl2-config --libs) $(shell pkg-config --libs SDL2_mixer) $(shell pkg-config --libs SDL2_image)
 
 # Source files and target executable
-SOURCES = main.cpp sdl_w.cpp core.cpp
+SOURCES = main.cpp sdl_w.cpp core.cpp entity_manager.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 TARGET = sdl_core
 
@@ -26,7 +26,7 @@ release: $(OBJECTS)
 	$(CXX) $(OBJECTS) $(LDFLAGS) -o $(TARGET)
 
 # Compile source files to object files
-%.o: %.cpp keyboard.h sdl_w.h core.h types.h settings.h entity.h component.h entity_manager.h
+%.o: %.cpp keyboard.h sdl_w.h core.h types.h settings.h component.h entity_manager.h
 	$(CXX) $(CFLAGS) -c $< -o $@
 
 # Clean up

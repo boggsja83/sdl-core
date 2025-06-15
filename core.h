@@ -7,6 +7,7 @@
 #include "settings.h"
 #include "sdl_w.h"
 #include "keyboard.h"
+#include "entity_manager.h"
 
 // highest-level component of GAME 
 class Core{
@@ -23,6 +24,7 @@ class Core{
     public:
 	SDL_Wrap sdlw;
 	Keyboard kb; 
+	EntityManager em;
 
     public:
 	int64_t STATUS_INT64;

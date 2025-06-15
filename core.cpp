@@ -72,10 +72,11 @@ rt Core::update(float& accumulator){
 	/**********************************************************************/
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
 
+
 	/**********************************************************************/
 	accumulator -= FIXED_LOGIC_TS;
+	// std::cout << "updated - " << SDL_GetTicks64() << std::endl;
     }
-
     return OKAY;
 }
 

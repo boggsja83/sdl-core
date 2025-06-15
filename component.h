@@ -2,30 +2,29 @@
 #define COMPONENT_H
 
 #include "types.h"
+#include <iostream>
 
 struct Component {
-    Component(COMPONENT_TYPE t=COMPONENT_DEFAULT){
-	type = t;
-	owner_id = -1; 
+    Component(int16_t comp_id = -1){
+	owner_id = comp_id; 
     }
 
-    COMPONENT_TYPE type;
     int16_t owner_id;
 };
 
-struct cPosition : Component{
-    cPosition(){
-	type = COMPONENT_POSITION;
-	x = -1;
-	y = -1;
-	w = -1;
-	h = -1;
-    }
+struct cPos : Component{
+    int16_t x;
+    int16_t y;
+    int16_t w;
+    int16_t h;
 
-    uint16_t x;
-    uint16_t y;
-    uint16_t w;
-    uint16_t h;
+    cPos(int16_t own_id = -1, int16_t cx=-1, int16_t cy=-1, int16_t cw=-1, int16_t ch=-1){
+	owner_id = own_id;
+	x = cx;
+	y = cy;
+	w = cw;
+	h = ch;
+    }
 };
 
 #endif

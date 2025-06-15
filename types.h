@@ -1,7 +1,6 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include <SDL2/SDL_pixels.h>
 #include <cstdint>
 
 typedef int16_t rt;
@@ -31,19 +30,17 @@ typedef enum {
 } SDL_WRAP_CODES;
 
 typedef enum {
-    ENTITY_DEFAULT = 0,
-    ENTITY_SCENE = 1,
-    ENTITY_PLAYER = 2,
-    ENTITY_ENEMY = 3
-} ENTITY_TYPE;
+    INVALID_COMPONENT = -300
+} EM_CODES;
 
 typedef enum {
-    COMPONENT_DEFAULT = 0,
-    COMPONENT_POSITION = 1,
-    COMPONENT_INPUT = 2,
-    COMPONENT_MOVE = 3,
-    COMPONENT_RENDER = 4
-} COMPONENT_TYPE;
+    CM_POS =	0b0001,
+    CM_MOVE =	0b0010,
+    CM_BS =	0b0100
+} COMPONENT_MASKS;
+
+
+
 
 #endif
 
