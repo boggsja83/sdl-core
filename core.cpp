@@ -22,7 +22,7 @@ rt Core::loop(){
     SDL_Window* temp_win = sdlw.windows[WINDOW_MAIN];
     SDL_Renderer* temp_rend = sdlw.renderers[RENDERER_MAIN];
 
-    r = SDL_SetRenderDrawColor(temp_rend, 80, 190, 231, SDL_ALPHA_OPAQUE);
+    r = SDL_SetRenderDrawColor(temp_rend, DEF_R, DEF_G, DEF_B, DEF_A);
 
     while(running){
 	cft = SDL_GetTicks64();

@@ -35,8 +35,7 @@ typedef enum {
 
 typedef enum {
     CM_POS =	0b0001,
-    CM_MOVE =	0b0010,
-    CM_BS =	0b0100
+    CM_VEL =	0b0010
 } COMPONENT_MASKS;
 
 

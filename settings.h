@@ -1,6 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#include <SDL2/SDL_pixels.h>
 #include <cstdint>
 
 // sdl_wrap settings
@@ -20,6 +21,10 @@ constexpr float FIXED_RENDER_TS = 1.0f / 60.0f;
 // default window settings
 constexpr int16_t DEF_WIN_W = 800;
 constexpr int16_t DEF_WIN_H = 600;
+constexpr uint8_t DEF_R = 80;
+constexpr uint8_t DEF_G = 90;
+constexpr uint8_t DEF_B = 231;
+constexpr uint8_t DEF_A = SDL_ALPHA_OPAQUE;
 
 #endif
 

@@ -1,5 +1,17 @@
 #include "core.h"
 
+// dropped make build system
+// now using CMake to build 6-15-25
+
+// mkdir build && cd build
+// cmake .. -DCMAKE_BUILD_TYPE=Debug
+// cmake --build .
+
+// build compile_commands.json for LSP to index definitions and declarations
+// that is, basically tell clang which header files match which cpp files
+// cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+
 int main(int argc, char** argv){
     Core core;
     if( core.STATUS_INT64 ) return core.STATUS_INT64;
@@ -13,9 +25,9 @@ int main(int argc, char** argv){
     r = core.sdlw.create_renderer(core.sdlw.windows[WINDOW_MAIN], -1, SDL_RENDERER_ACCELERATED);
     if(r) return r;
 
-    core.em.add_entity(CM_MOVE|CM_POS|CM_BS);
-    core.em.add_entity(CM_MOVE|CM_BS);
-    core.em.add_entity(CM_BS|CM_POS);
+    core.em.add_entity(CM_POS|CM_VEL);
+    core.em.add_entity(CM_VEL);
+    core.em.add_entity(CM_POS);
 
     r = core.loop();
     //if(r) return r;

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/sdl_core.dir/main.cpp.o CMakeFiles/sdl_core.dir/sdl_w.cpp.o CMakeFiles/sdl_core.dir/core.cpp.o CMakeFiles/sdl_core.dir/entity_manager.cpp.o -o sdl_core  /usr/lib/x86_64-linux-gnu/libSDL2.so /usr/lib/x86_64-linux-gnu/libSDL2_image.so /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so 
