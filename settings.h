@@ -17,6 +17,9 @@ constexpr float DFT_CAP = 0.1f; // 100ms. maybe change this in terms of FIXED_TS
 				// i.e. max number of steps to fall behind
 constexpr float FIXED_RENDER_TS = 1.0f / 60.0f;
 
+// default window settings
+constexpr int16_t DEF_WIN_W = 800;
+constexpr int16_t DEF_WIN_H = 600;
 
 #endif
 

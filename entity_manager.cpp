@@ -6,7 +6,7 @@ rt EntityManager::add_entity(uint64_t comp_mask){
 
     entities.push_back(comp_mask);
 
-    if((comp_mask & CM_POS)==CM_POS){
+    if( (comp_mask & CM_POS) == CM_POS ){
 	comp_pos.push_back( cPos(temp_id) );
 	// comp_pos.emplace_back( cPos(temp_id, 69, 69, 420, 420) );
     }
