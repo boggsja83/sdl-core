@@ -4,7 +4,6 @@
 #include <cstdint>
 
 #include "types.h"
-#include "settings.h"
 #include "sdl_w.h"
 #include "keyboard.h"
 #include "entity_manager.h"

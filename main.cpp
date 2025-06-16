@@ -1,14 +1,17 @@
 #include "core.h"
+#include "settings.h"
 
 // dropped make build system
 // now using CMake to build 6-15-25
 
 // mkdir build && cd build
-// cmake .. -DCMAKE_BUILD_TYPE=Debug
+// cmake -S .. -B . -DCMAKE_BUILD_TYPE=Debug
 // cmake --build .
 
 // build compile_commands.json for LSP to index definitions and declarations
-// that is, basically tell clang which header files match which cpp files
+// that is, basically tell clang which header files match which cpp files. 
+// run in proj root. run when adding/deleting files to project.
+// add additions/deletions to CMakeLists.txt also
 // cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 
@@ -30,7 +33,6 @@ int main(int argc, char** argv){
     core.em.add_entity(CM_POS);
 
     r = core.loop();
-    //if(r) return r;
 
     return r;
 }

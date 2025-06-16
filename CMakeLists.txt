@@ -28,8 +28,9 @@ set(HEADERS
     core.h
     types.h
     settings.h
-    component.h
+    entity_component.h
     entity_manager.h
+    entity_system.h
 )
 
 # Create the executable
