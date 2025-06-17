@@ -3,7 +3,9 @@
 
 #include <cstdint>
 
-typedef int16_t rt;
+typedef int16_t i16;
+typedef uint16_t ui16;
+typedef i16 rt;
 
 typedef enum {
     OKAY = 0,
@@ -11,13 +13,10 @@ typedef enum {
 } CORE_CODES;
 
 typedef enum {
-    //KB_OKAY = 0,
-    //KB_QUIT = -1
     KB_MEMSET_FAIL = -100
 } KB_CODES;
 
 typedef enum {
-    //SDLW_OKAY = 0,
     SDL_INIT_FAIL = -200,
     IMG_INIT_FAIL = -201,
     MIX_INIT_FAIL = -202,
@@ -30,16 +29,16 @@ typedef enum {
 } SDL_WRAP_CODES;
 
 typedef enum {
-    INVALID_COMPONENT = -300
+    COMPONENT_INVALID = -300,
+    ENTITY_LACKS_COMPONENT = -301,
+    ENTITY_INVALID_ID = -302
 } EM_CODES;
 
 typedef enum {
     CM_POS =	0b0001,
-    CM_VEL =	0b0010
+    CM_VEL =	0b0010,
+    CM_RENDPOS= 0b0100
 } COMPONENT_MASKS;
-
-
-
 
 #endif
 

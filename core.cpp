@@ -22,7 +22,7 @@ rt Core::loop(){
     SDL_Window* temp_win = sdlw.windows[WINDOW_MAIN];
     SDL_Renderer* temp_rend = sdlw.renderers[RENDERER_MAIN];
 
-    r = SDL_SetRenderDrawColor(temp_rend, DEF_R, DEF_G, DEF_B, DEF_A);
+    // r = SDL_SetRenderDrawColor(temp_rend, DEF_R, DEF_G, DEF_B, DEF_A);
 
     while(running){
 	cft = SDL_GetTicks64();
@@ -63,6 +63,8 @@ rt Core::input(){
 }
 
 rt Core::update(float& accumulator){
+    rt r = OKAY;
+
     while(accumulator >= FIXED_LOGIC_TS){
 	/**********************************************************************/
 	// eventually handle exits through contexts
@@ -71,20 +73,24 @@ rt Core::update(float& accumulator){
 	if(kb.keystate[SDL_SCANCODE_Q]) return QUIT;
 	/**********************************************************************/
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
-
+	r = ecs_lt.update(em, FIXED_LOGIC_TS);
+	if(r) return r;
 
 	/**********************************************************************/
 	accumulator -= FIXED_LOGIC_TS;
-	// std::cout << "updated - " << SDL_GetTicks64() << std::endl;
     }
     return OKAY;
 }
 
 rt Core::render(SDL_Renderer* rend, float& alpha){
+    rt r = OKAY;
+
     SDL_RenderClear(rend);
 
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
+	r = ecs_rt.update(em, alpha);
+	if(r) return r;
 
     /**************************************************************************/
 

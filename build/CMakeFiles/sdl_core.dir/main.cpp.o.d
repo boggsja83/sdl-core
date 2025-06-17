@@ -313,5 +313,7 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_scancode.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
+ /home/sl1m/programming/source/sdl_core/entity_system.h \
  /home/sl1m/programming/source/sdl_core/settings.h \
- /usr/include/SDL2/SDL_pixels.h
+ /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_error.h \
+ /usr/include/SDL2/SDL_video.h
