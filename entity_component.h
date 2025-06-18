@@ -16,7 +16,7 @@ struct cPos : EntityComponent{
     float w;
     float h;
 
-    cPos(i16 own_id=-1, float px=-1.0f, float py=-1.0f, float pw=-1.0f, float ph=-1.0f){
+    cPos(i16 own_id=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
 	owner_id = own_id;
 	x = px;
 	y = py;
@@ -31,7 +31,7 @@ struct cRendPos : EntityComponent{
     float w;
     float h;
 
-    cRendPos(i16 own_id=-1, float px=-1.0f, float py=-1.0f, float pw=-1.0f, float ph=-1.0f){
+    cRendPos(i16 own_id=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
 	owner_id = own_id;
 	x = px;
 	y = py;
@@ -44,7 +44,7 @@ struct cVel : EntityComponent{
     float x;
     float y;
 
-    cVel(i16 own_id=-1, float px=-1.0f, float py=-1.0f){
+    cVel(i16 own_id=-1, float px=0.f, float py=0.f){
 	owner_id = own_id;
 	x = px;
 	y = py;

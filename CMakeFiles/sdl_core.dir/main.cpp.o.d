@@ -23,8 +23,8 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
  /home/sl1m/programming/source/sdl_core/types.h \
- /home/sl1m/programming/source/sdl_core/settings.h \
- /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_stdinc.h \
+ /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
+ /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
  /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
@@ -111,11 +111,9 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/c++/13/tr1/poly_laguerre.tcc \
  /usr/include/c++/13/tr1/riemann_zeta.tcc \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
- /usr/include/SDL2/SDL_endian.h \
- /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_assert.h \
- /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
- /usr/include/SDL2/SDL_audio.h /usr/include/SDL2/SDL_error.h \
+ /usr/include/SDL2/SDL_assert.h /usr/include/SDL2/SDL_atomic.h \
+ /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/SDL_audio.h \
+ /usr/include/SDL2/SDL_error.h /usr/include/SDL2/SDL_endian.h \
  /usr/include/SDL2/SDL_mutex.h /usr/include/SDL2/SDL_thread.h \
  /usr/include/SDL2/SDL_rwops.h /usr/include/SDL2/SDL_clipboard.h \
  /usr/include/SDL2/SDL_cpuinfo.h \
@@ -314,4 +312,8 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /home/sl1m/programming/source/sdl_core/keyboard.h \
  /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_scancode.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
- /home/sl1m/programming/source/sdl_core/component.h
+ /home/sl1m/programming/source/sdl_core/entity_component.h \
+ /home/sl1m/programming/source/sdl_core/entity_system.h \
+ /home/sl1m/programming/source/sdl_core/settings.h \
+ /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_error.h \
+ /usr/include/SDL2/SDL_video.h

@@ -2,7 +2,8 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /home/sl1m/programming/source/sdl_core/entity_manager.cpp \
  /usr/include/stdc-predef.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
- /home/sl1m/programming/source/sdl_core/component.h \
+ /home/sl1m/programming/source/sdl_core/entity_component.h \
+ /home/sl1m/programming/source/sdl_core/types.h \
  /usr/include/c++/13/cstdint \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -159,5 +160,4 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
- /usr/include/c++/13/bits/vector.tcc \
- /home/sl1m/programming/source/sdl_core/types.h
+ /usr/include/c++/13/bits/vector.tcc

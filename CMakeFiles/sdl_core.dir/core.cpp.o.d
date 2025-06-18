@@ -118,7 +118,6 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /home/sl1m/programming/source/sdl_core/core.h \
  /usr/include/c++/13/cstdint \
  /home/sl1m/programming/source/sdl_core/types.h \
- /home/sl1m/programming/source/sdl_core/settings.h \
  /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_assert.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
@@ -317,4 +316,6 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /home/sl1m/programming/source/sdl_core/keyboard.h \
  /usr/include/SDL2/SDL_events.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
- /home/sl1m/programming/source/sdl_core/component.h
+ /home/sl1m/programming/source/sdl_core/entity_component.h \
+ /home/sl1m/programming/source/sdl_core/entity_system.h \
+ /home/sl1m/programming/source/sdl_core/settings.h

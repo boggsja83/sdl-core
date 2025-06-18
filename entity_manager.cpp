@@ -8,13 +8,13 @@ rt EntityManager::add_entity(uint64_t comp_mask){
     entities.push_back(comp_mask);
 
     if(comp_mask & CM_POS){
-	if(comps_pos.size() <= temp_id) { comps_pos.resize(comps_pos.size()*2+1); } // add 1 in case size is 0
-	comps_pos[temp_id] = cPos(temp_id);
+	if(pos.size() <= temp_id) { pos.resize(pos.size()*2+1); } // add 1 in case size is 0
+	pos[temp_id] = cPos(temp_id);
     }
 
     if(comp_mask & CM_VEL){
-	if(comps_vel.size() <= temp_id) { comps_vel.resize(comps_vel.size()*2+1); } // add 1 in case size is 0
-	comps_vel[temp_id] = cVel(temp_id);
+	if(vel.size() <= temp_id) { vel.resize(vel.size()*2+1); } // add 1 in case size is 0
+	vel[temp_id] = cVel(temp_id);
     }
 
     return OKAY;
@@ -23,10 +23,10 @@ rt EntityManager::add_entity(uint64_t comp_mask){
 rt EntityManager::set_pos(i16 own_id, float px, float py, float pw, float ph){
     if(own_id>=0 && own_id<entities.size()){
 	if(entities[own_id] & CM_POS){
-	   comps_pos[own_id].x = px; 
-	   comps_pos[own_id].y = py; 
-	   comps_pos[own_id].w = pw; 
-	   comps_pos[own_id].h = ph; 
+	   pos[own_id].x = px; 
+	   pos[own_id].y = py; 
+	   pos[own_id].w = pw; 
+	   pos[own_id].h = ph; 
 	}
 	else { return ENTITY_LACKS_COMPONENT; }
     }
@@ -38,10 +38,10 @@ rt EntityManager::set_pos(i16 own_id, float px, float py, float pw, float ph){
 rt EntityManager::set_rendpos(i16 own_id, float px, float py, float pw, float ph){
     if(own_id>=0 && own_id<entities.size()){
 	if(entities[own_id] & CM_RENDPOS){
-	   comps_rendpos[own_id].x = px; 
-	   comps_rendpos[own_id].y = py; 
-	   comps_rendpos[own_id].w = pw; 
-	   comps_rendpos[own_id].h = ph; 
+	   rendpos[own_id].x = px; 
+	   rendpos[own_id].y = py; 
+	   rendpos[own_id].w = pw; 
+	   rendpos[own_id].h = ph; 
 	}
 	else { return ENTITY_LACKS_COMPONENT; }
     }
@@ -53,8 +53,8 @@ rt EntityManager::set_rendpos(i16 own_id, float px, float py, float pw, float ph
 rt EntityManager::set_vel(i16 own_id, float px, float py){
     if(own_id>=0 && own_id<entities.size()){
 	if(entities[own_id] & CM_VEL){
-	    comps_vel[own_id].x = px;
-	    comps_vel[own_id].y = py;
+	    vel[own_id].x = px;
+	    vel[own_id].y = py;
 	}
 	else { return ENTITY_LACKS_COMPONENT; }
     }

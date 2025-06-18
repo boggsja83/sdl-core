@@ -39,16 +39,15 @@ int main(int argc, char** argv){
     r = core.em.add_entity(CM_POS|CM_RENDPOS);
     r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_VEL);
 
-    // core.em.comps_pos[0].x= 4.0f;
-    // core.em.comps_pos[0].y= 5.0f;
-    // core.em.comps_vel[0].x= 10.0f;
-    // core.em.comps_vel[0].y= 3.0f;
+    r = core.em.set_vel(0, 2.3f, 1.f);
+    r = core.em.set_pos(0, 0.f, 100.f, 10.f, 10.f);
 
-    core.em.set_vel(0, 2.3f, 1.f);
-    core.em.set_pos(0, 0.f, 100.f, 10.f, 10.f);
+    r = core.em.set_pos(3,1,3,4,2);
+    if(!r) r = core.em.set_vel(3,3,4);
 
-    r = core.loop();
+    if(!r) r = core.loop();
 
+    std::cerr << "Exit Code: " << r << std::endl;
     return r;
 }
 

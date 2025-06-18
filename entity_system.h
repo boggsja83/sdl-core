@@ -8,11 +8,11 @@
 struct ECS{ virtual rt update(EntityManager&, float) = 0; };
 
 struct ECSLogicTransform : ECS {
-    rt update(EntityManager& em, float dt) override {
+    rt update(EntityManager& em, float dft) override {
 	for(i16 i=0; i<em.entities.size(); ++i){
 	    if((em.entities[i] & (CM_POS|CM_VEL))==(CM_POS|CM_VEL)){
-		em.comps_pos[i].x = em.comps_pos[i].x + em.comps_vel[i].x * dt;
-		em.comps_pos[i].y = em.comps_pos[i].y + em.comps_vel[i].y * dt;
+		em.pos[i].x = em.pos[i].x + em.vel[i].x * dft;
+		em.pos[i].y = em.pos[i].y + em.vel[i].y * dft;
 	    }
 	}
 	return OKAY;
@@ -23,19 +23,16 @@ struct ECSRendTransform : ECS {
     rt update(EntityManager& em, float alpha) override {
 	for(i16 i=0; i<em.entities.size(); ++i){
 	    if((em.entities[i] & (CM_RENDPOS|CM_POS))==(CM_RENDPOS|CM_POS)){
-	    std::cerr<<"ECSRendTransform["<<i<<"]: ";
 		if(em.entities[i] & CM_VEL){
-		    std::cerr<<"has CM_VEL" << std::endl;
-		    em.comps_pos[i].x = em.comps_pos[i].x + em.comps_vel[i].x * alpha * FIXED_LOGIC_TS;
-		    em.comps_pos[i].y = em.comps_pos[i].y + em.comps_vel[i].y * alpha * FIXED_LOGIC_TS;
+		    em.rendpos[i].x = em.pos[i].x + em.vel[i].x * alpha * FIXED_LOGIC_TS;
+		    em.rendpos[i].y = em.pos[i].y + em.vel[i].y * alpha * FIXED_LOGIC_TS;
 		}
 		else{
-		    std::cerr<<"does not have CM_VEL" << std::endl;
-		    em.comps_rendpos[i].x = em.comps_pos[i].x;
-		    em.comps_rendpos[i].y = em.comps_pos[i].y;
+		    em.rendpos[i].x = em.pos[i].x;
+		    em.rendpos[i].y = em.pos[i].y;
 		}
-		em.comps_rendpos[i].w = em.comps_pos[i].w;
-		em.comps_rendpos[i].h = em.comps_pos[i].h;
+		em.rendpos[i].w = em.pos[i].w;
+		em.rendpos[i].h = em.pos[i].h;
 	    }
 	}
 	return OKAY;
