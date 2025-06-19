@@ -1,55 +1,77 @@
 #ifndef ENTITY_COMPONENT_H
 #define ENTITY_COMPONENT_H
-
+/******************************************************************************/
 #include "types.h"
-
-struct EntityComponent {
-    EntityComponent(i16 comp_id = -1){
-	owner_id = comp_id; 
+/******************************************************************************/
+struct EC {
+    EC(i16 own_id=-1, COMP_MASK pcm=CM_NULL){
+	owner_id = own_id;
+	cm = pcm;
     }
     i16 owner_id;
+    COMP_MASK cm;
 };
-
-struct cPos : EntityComponent{
+/******************************************************************************/
+typedef struct cPos : EC{
+/******************************************************************************/
     float x;
     float y;
     float w;
     float h;
 
-    cPos(i16 own_id=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
+    cPos(i16 own_id=-1, COMP_MASK pcm=CM_NULL, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
 	owner_id = own_id;
+	cm = pcm;
 	x = px;
 	y = py;
 	w = pw;
 	h = ph;
     }
-};
-
-struct cRendPos : EntityComponent{
+} cPos;
+/******************************************************************************/
+typedef struct cRendPos : EC{
+/******************************************************************************/
     float x;
     float y;
     float w;
     float h;
 
-    cRendPos(i16 own_id=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
+    cRendPos(i16 own_id=-1, COMP_MASK pcm=CM_NULL, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
 	owner_id = own_id;
+	cm = pcm;
 	x = px;
 	y = py;
 	w = pw;
 	h = ph;
     }
-};
-
-struct cVel : EntityComponent{
+} cRendPos;
+/******************************************************************************/
+typedef struct cVel : EC{
+/******************************************************************************/
     float x;
     float y;
 
-    cVel(i16 own_id=-1, float px=0.f, float py=0.f){
+    cVel(i16 own_id=-1, COMP_MASK pcm=CM_NULL, float px=0.f, float py=0.f){
 	owner_id = own_id;
+	cm = pcm;
 	x = px;
 	y = py;
     }
-};
+} cVel;
+/******************************************************************************/
+typedef struct cTexture : EC {
+/******************************************************************************/
+    i16 renderer_index;
+    i16 texture_index;
 
+    cTexture(i16 own_id=-1, COMP_MASK pcm=CM_NULL, i16 rend_i=-1, i16 text_i=-1){
+	owner_id = own_id;
+	cm = pcm;
+	renderer_index = rend_i;
+	texture_index = text_i;
+    }
+} cTexture;
+/******************************************************************************/
 #endif
+/******************************************************************************/
 

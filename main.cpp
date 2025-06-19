@@ -20,34 +20,48 @@
 
 int main(int argc, char** argv){
     Core core;
-    if( core.STATUS_INT64 ) return core.STATUS_INT64;
+    rt r = core.sdlw.init();
 
-    core.STATUS_INT64 = OKAY;
-    core.STATUS_STRING = "main()";
+    if(!r) r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DEF_WIN_W, DEF_WIN_H, SDL_WINDOW_VULKAN);
+    if(!r) r = core.sdlw.create_renderer(core.sdlw.windows[WINDOW_MAIN], -1, SDL_RENDERER_ACCELERATED);
+    if(!r) r = SDL_SetRenderDrawColor(core.sdlw.renderers[RENDERER_MAIN], DEF_R, DEF_G, DEF_B, DEF_A);
 
-    rt r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DEF_WIN_W, DEF_WIN_H, SDL_WINDOW_VULKAN);
-    if(r) return r;
+    if(!r) r = core.em.add_entity(CM_POS|CM_VEL);
+    if(!r) r = core.em.add_entity(CM_VEL|CM_TEXTURE);
+    if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS);
+    if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_VEL);
 
-    r = core.sdlw.create_renderer(core.sdlw.windows[WINDOW_MAIN], -1, SDL_RENDERER_ACCELERATED);
-    if(r) return r;
+    cPos tp = cPos(3, CM_POS, 0.f, 100.f, 10.f, 10.f);
+    cVel tv = cVel(3, CM_VEL, 1.2f, 3.7f);
 
-    r = SDL_SetRenderDrawColor(core.sdlw.renderers[RENDERER_MAIN], DEF_R, DEF_G, DEF_B, DEF_A);
-    if(r) { std::cerr << "SDL_SetRenderDrawColor failed. SDL_GetError: " << SDL_GetError(); return r; }
+    if(!r) r = core.em.set(tp);
+    if(!r) r = core.em.set(tv);
 
-    r = core.em.add_entity(CM_POS|CM_VEL);
-    r = core.em.add_entity(CM_VEL);
-    r = core.em.add_entity(CM_POS|CM_RENDPOS);
-    r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_VEL);
-
-    r = core.em.set_vel(0, 2.3f, 1.f);
-    r = core.em.set_pos(0, 0.f, 100.f, 10.f, 10.f);
-
-    r = core.em.set_pos(3,1,3,4,2);
-    if(!r) r = core.em.set_vel(3,3,4);
-
+    /***************************************************************************/
     if(!r) r = core.loop();
+    /***************************************************************************/
+    for(i16 i=0; i<core.em.ents.size(); ++i){
+	if(core.em.ents[i]&CM_POS){
+	    std::cerr << "ent["<<i<<"].x: " << core.em.pos[i].x <<
+		"\tent["<<i<<"].y: " << core.em.pos[i].y << std::endl <<
+		"ent["<<i<<"].w: " << core.em.pos[i].w <<
+		"\tent["<<i<<"].h: " <<core.em.pos[i].h << std::endl;
 
-    std::cerr << "Exit Code: " << r << std::endl;
+	    if(core.em.ents[i]&CM_RENDPOS){
+	    std::cerr << "ent["<<i<<"].x: " << core.em.rendpos[i].x <<
+		"\tent["<<i<<"].y: " << core.em.rendpos[i].y << std::endl <<
+		"ent["<<i<<"].w: " << core.em.rendpos[i].w <<
+		"\tent["<<i<<"].h: " <<core.em.rendpos[i].h << std::endl;
+	    }
+	}
+    }
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    std::cerr << "*** Exit Code: " << r << " ***" << std::endl;
+    /**************************************************************************/
     return r;
 }
 

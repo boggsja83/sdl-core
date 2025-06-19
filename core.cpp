@@ -6,8 +6,9 @@
 
 #include "core.h"
 #include "settings.h"
-
+/******************************************************************************/
 rt Core::loop(){
+/******************************************************************************/
     rt r = OKAY;
     bool running = true; 
 
@@ -22,47 +23,48 @@ rt Core::loop(){
     SDL_Window* temp_win = sdlw.windows[WINDOW_MAIN];
     SDL_Renderer* temp_rend = sdlw.renderers[RENDERER_MAIN];
 
-    // r = SDL_SetRenderDrawColor(temp_rend, DEF_R, DEF_G, DEF_B, DEF_A);
-
+    /**************************************************************************/
     while(running){
+    /**************************************************************************/
 	cft = SDL_GetTicks64();
 	dft = (cft - lft)/1000.0f; // convert to seconds
 	lft = cft;
 	dft = dft<DFT_CAP?dft:DFT_CAP; // dont let dft grow unchecked if system
 				       // bogged down
-
+	/**********************************************************************/
 	r = input();
 	if(r==QUIT) running = false;
-
+	/**********************************************************************/
 	accumulator += dft;
 	r = update(accumulator);
 	if(r==QUIT) running = false;
-
+	/**********************************************************************/
 	crt = SDL_GetTicks64();
 	if((crt-lrt)/1000.0f>=FIXED_RENDER_TS){
-	    alpha = accumulator / FIXED_LOGIC_TS; // the progress through current time step
+	    alpha = accumulator / FIXED_LOGIC_TS; // the progress through current
+						  // time step
 	    r = render(temp_rend, alpha);
-	    if(r==QUIT) running = false;
 	    lrt = crt;
 	}
+	/**********************************************************************/
     }
-
-    return OKAY;
+    /**************************************************************************/
+    return r;
 }
-
+/******************************************************************************/
 rt Core::input(){
+/******************************************************************************/
     rt r = kb.poll_events();
     if(r) return r;
-
-    /**********************************************************************/
+    /**************************************************************************/
     // HANDLE CONTEXTS
 
-    /**********************************************************************/
-
+    /**************************************************************************/
     return OKAY;
 }
-
+/******************************************************************************/
 rt Core::update(float& accumulator){
+/******************************************************************************/
     rt r = OKAY;
 
     while(accumulator >= FIXED_LOGIC_TS){
@@ -81,11 +83,12 @@ rt Core::update(float& accumulator){
     }
     return OKAY;
 }
-
-rt Core::render(SDL_Renderer* rend, float& alpha){
+/******************************************************************************/
+rt Core::render(SDL_Renderer* renderer, float& alpha){
+/******************************************************************************/
     rt r = OKAY;
 
-    SDL_RenderClear(rend);
+    SDL_RenderClear(renderer);
 
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
@@ -94,8 +97,8 @@ rt Core::render(SDL_Renderer* rend, float& alpha){
 
     /**************************************************************************/
 
-    SDL_RenderPresent(rend);
+    SDL_RenderPresent(renderer);
 
     return OKAY;
 }
-
+/******************************************************************************/

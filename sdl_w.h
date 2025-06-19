@@ -17,8 +17,6 @@
 #include <vector>
 #include <iostream>
 
-#include <cstdint>
-
 #include "types.h"
 
 /*----------------------------------------------------------------------------*/
@@ -62,11 +60,12 @@ class SDL_Wrap{
 	}
 
 	rt init();
-	rt create_window(const char*, int, int, int, int, uint32_t);
-	rt create_renderer(SDL_Window*, int16_t, uint32_t);
-	rt create_texture_from_surface(SDL_Renderer*, SDL_Surface*);
-	rt create_surface_from_img_load(const char*);
-	rt create_chunk_from_load_wav(const char*);
+	rt create_window(str title, i32 x, i32 y, i32 w, i32 h, ui32 flags);
+	rt create_renderer(SDL_Window* win, i16 index, ui32 flags);
+	rt create_texture_from_path(str path, SDL_Renderer* renderer=nullptr);
+	rt create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface);
+	rt create_surface_from_img_load(str path);
+	rt create_chunk_from_load_wav(str path);
 };
 
 #endif
