@@ -31,8 +31,8 @@ int main(int argc, char** argv){
     if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS);
     if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_VEL);
 
-    cPos tp = cPos(3, CM_POS, 0.f, 100.f, 10.f, 10.f);
-    cVel tv = cVel(3, CM_VEL, 1.2f, 3.7f);
+    cPos tp = cPos(3, 0.f, 100.f, 10.f, 10.f);
+    cVel tv = cVel(3, 1.2f, 3.7f);
 
     if(!r) r = core.em.set(tp);
     if(!r) r = core.em.set(tv);
