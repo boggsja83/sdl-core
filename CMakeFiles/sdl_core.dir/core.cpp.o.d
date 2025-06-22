@@ -317,5 +317,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /usr/include/SDL2/SDL_events.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
+ /usr/include/SDL2/SDL_rect.h \
  /home/sl1m/programming/source/sdl_core/entity_system.h \
+ /usr/include/SDL2/SDL_render.h \
  /home/sl1m/programming/source/sdl_core/settings.h

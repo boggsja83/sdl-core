@@ -4,14 +4,15 @@
 #include "types.h"
 #include <SDL_rect.h>
 
-struct EC {
-    EC(i16 own_id=-1, COMP_MASK pcm=CM_NULL){
-	owner_id = own_id;
+typedef struct EC {
+    i16 oid;
+    CM_MASK cm;
+
+    EC(i16 own_id=-1, CM_MASK pcm=CM_NULL){
+	oid = own_id;
 	cm = pcm;
     }
-    i16 owner_id;
-    COMP_MASK cm;
-};
+} EC;
 
 typedef struct cPos : EC{
     float x;
@@ -20,7 +21,7 @@ typedef struct cPos : EC{
     float h;
 
     cPos(i16 own_id=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
-	owner_id = own_id;
+	oid = own_id;
 	cm = CM_POS;
 	x = px;
 	y = py;
@@ -36,7 +37,7 @@ typedef struct cRendPos : EC{
     float h;
 
     cRendPos(i16 own_id=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
-	owner_id = own_id;
+	oid = own_id;
 	cm = CM_RENDPOS;
 	x = px;
 	y = py;
@@ -50,7 +51,7 @@ typedef struct cVel : EC{
     float y;
 
     cVel(i16 own_id=-1, float px=0.f, float py=0.f){
-	owner_id = own_id;
+	oid = own_id;
 	cm = CM_VEL;
 	x = px;
 	y = py;
@@ -62,14 +63,22 @@ typedef struct cTexture : EC {
     i16 text_i;
     SDL_Rect src;
 
-    cTexture(i16 own_id=-1, i16 prend_i=-1, i16 ptext_i=-1, SDL_Rect psrc=SDL_Rect()){//, SDL_Rect pdst=SDL_Rect()){
-	owner_id = own_id;
+    cTexture(i16 own_id=-1, i16 prend_i=-1, i16 ptext_i=-1, SDL_Rect psrc=SDL_Rect()){
+	oid = own_id;
 	cm = CM_TEXTURE;
 	rend_i = prend_i;
 	text_i = ptext_i;
 	src = psrc;
     }
 } cTexture;
+
+typedef struct cKB: EC {
+
+    cKB(i16 own_id=-1){
+	oid = own_id;
+	cm = CM_KB;
+    }
+} cKB;
 
 #endif
 

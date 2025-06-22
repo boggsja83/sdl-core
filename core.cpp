@@ -68,6 +68,18 @@ rt Core::update(float& accumulator){
 	if(kb.keystate[SDL_SCANCODE_Q]) return QUIT;
 	/**********************************************************************/
 
+	if(em.vel.size()>=2){
+	    i16 tid = 2;
+	    cVel t = em.vel[tid];
+	    cVel n = t;
+
+	    n.oid = tid;
+	    n.x = t.x * 1.006;
+	    n.y = t.y * 1.006;
+	    em.set(n);
+	    // std::cerr << "n.owner_id="<<n.owner_id<<"\tn.x="<<n.x<<"\tn.y="<<n.y<< std::endl;
+	}
+
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
 	r = ecs_ltf.update(em, FIXED_LOGIC_TS);
 	if(r) return r;
@@ -85,12 +97,12 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
-	r = ecs_rtf.update(em, alpha);
-	if(r) return r;
+    r = ecs_rtf.update(em, alpha);
+    if(r) return r;
 
-	em.sdlw = &sdlw;
-	r = ecs_rtx.update(em);
-	if(r) return r;
+    em.sdlw = &sdlw;
+    r = ecs_rtx.update(em);
+    if(r) return r;
     /**************************************************************************/
 
     SDL_RenderPresent(renderer);

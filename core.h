@@ -14,15 +14,15 @@ class Core{
 	Core(){}
 	~Core(){}
     public:
-	SDL_Wrap sdlw;
-	Keyboard kb; 
-	EntityManager em;
-	ECSLogicTransform ecs_ltf;
-	ECSRendTransform ecs_rtf;
-	ECSRendTexture ecs_rtx;
+	SDL_Wrap	    sdlw;
+	Keyboard	    kb; 
+	EntityManager	    em;
+	ECSLogicTransform   ecs_ltf;
+	ECSRendTransform    ecs_rtf;
+	ECSRendTexture	    ecs_rtx;
     public:
-	int64_t STATUS_INT64;
-	const char* STATUS_STRING;
+	int64_t	    STATUS_INT64;
+	str	    STATUS_STRING;
     public:
 	rt loop();
 	rt input();

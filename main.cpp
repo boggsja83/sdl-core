@@ -2,6 +2,7 @@
 #include "entity_component.h"
 #include "settings.h"
 #include "types.h"
+
 #include <SDL_error.h>
 #include <SDL_video.h>
 
@@ -29,7 +30,7 @@ int main(int argc, char** argv){
 
     if(!r) r = core.sdlw.create_texture_from_path("bg.jpg", core.sdlw.renderers[RENDERER_MAIN]);
 
-    if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_TEXTURE);
+    if(!r) r = core.em.add_entity(CM_POS);
     if(!r) r = core.em.add_entity(CM_POS|CM_VEL|CM_RENDPOS|CM_TEXTURE);
     if(!r) r = core.em.add_entity(CM_POS|CM_VEL|CM_RENDPOS|CM_TEXTURE);
     if(!r) r = core.em.add_entity(CM_POS|CM_VEL|CM_RENDPOS|CM_TEXTURE);
@@ -38,7 +39,7 @@ int main(int argc, char** argv){
     cTexture tt = cTexture(0,0,0,src);
     cVel tv = cVel(0, 50.f, 50.f);
     cPos tp = cPos(0, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
-    if(!r) r = core.em.set(tt);
+    // if(!r) r = core.em.set(tt);
     // if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
 
@@ -52,8 +53,8 @@ int main(int argc, char** argv){
 
     src = {0,0, 200, 400};
     tt = cTexture(2,0,0,src);
-    tv = cVel(2, 15.f, 15.f);
-    tp = cPos(2, 0.f, 0.f, 150, 150);
+    tv = cVel(2, -15.f, -15.f);
+    tp = cPos(2, 800-150.f, 600-150.f, 151, 151);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
@@ -61,37 +62,15 @@ int main(int argc, char** argv){
     src = {0,0, 300, 500};
     tt = cTexture(3,0,0,src);
     tv = cVel(3, -25.f, 25.f);
-    tp = cPos(3, 800.f, 000.f, 15, 350);
+    tp = cPos(3, 800.f, 000.f, 25, 35);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
 
-    /**************************************************************************/
     if(!r) r = core.loop();
-    /**************************************************************************/
-    /**************************************************************************/
-	//    for(i16 i=0; i<core.em.ents.size(); ++i){
-	// if(core.em.ents[i]&CM_POS){
-	//     std::cerr << "ent["<<i<<"].x: " << core.em.pos[i].x <<
-	// 	"\tent["<<i<<"].y: " << core.em.pos[i].y << std::endl <<
-	// 	"ent["<<i<<"].w: " << core.em.pos[i].w <<
-	// 	"\tent["<<i<<"].h: " <<core.em.pos[i].h << std::endl;
-	//
-	//     if(core.em.ents[i]&CM_RENDPOS){
-	//     std::cerr << "ent["<<i<<"].x: " << core.em.rendpos[i].x <<
-	// 	"\tent["<<i<<"].y: " << core.em.rendpos[i].y << std::endl <<
-	// 	"ent["<<i<<"].w: " << core.em.rendpos[i].w <<
-	// 	"\tent["<<i<<"].h: " <<core.em.rendpos[i].h << std::endl;
-	//     }
-	// }
-	//    }
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
+
     std::cerr << "*** Exit Code: " << r << " ***" << std::endl;
-    /**************************************************************************/
+
     return r;
 }
 
