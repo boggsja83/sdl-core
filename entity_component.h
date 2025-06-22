@@ -1,8 +1,9 @@
 #ifndef ENTITY_COMPONENT_H
 #define ENTITY_COMPONENT_H
-/******************************************************************************/
+
 #include "types.h"
-/******************************************************************************/
+#include <SDL_rect.h>
+
 struct EC {
     EC(i16 own_id=-1, COMP_MASK pcm=CM_NULL){
 	owner_id = own_id;
@@ -11,9 +12,8 @@ struct EC {
     i16 owner_id;
     COMP_MASK cm;
 };
-/******************************************************************************/
+
 typedef struct cPos : EC{
-/******************************************************************************/
     float x;
     float y;
     float w;
@@ -28,9 +28,8 @@ typedef struct cPos : EC{
 	h = ph;
     }
 } cPos;
-/******************************************************************************/
+
 typedef struct cRendPos : EC{
-/******************************************************************************/
     float x;
     float y;
     float w;
@@ -45,9 +44,8 @@ typedef struct cRendPos : EC{
 	h = ph;
     }
 } cRendPos;
-/******************************************************************************/
+
 typedef struct cVel : EC{
-/******************************************************************************/
     float x;
     float y;
 
@@ -58,20 +56,20 @@ typedef struct cVel : EC{
 	y = py;
     }
 } cVel;
-/******************************************************************************/
-typedef struct cTexture : EC {
-/******************************************************************************/
-    i16 renderer_index;
-    i16 texture_index;
 
-    cTexture(i16 own_id=-1, i16 rend_i=-1, i16 text_i=-1){
+typedef struct cTexture : EC {
+    i16 rend_i;
+    i16 text_i;
+    SDL_Rect src;
+
+    cTexture(i16 own_id=-1, i16 prend_i=-1, i16 ptext_i=-1, SDL_Rect psrc=SDL_Rect()){//, SDL_Rect pdst=SDL_Rect()){
 	owner_id = own_id;
 	cm = CM_TEXTURE;
-	renderer_index = rend_i;
-	texture_index = text_i;
+	rend_i = prend_i;
+	text_i = ptext_i;
+	src = psrc;
     }
 } cTexture;
-/******************************************************************************/
+
 #endif
-/******************************************************************************/
 

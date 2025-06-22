@@ -33,7 +33,9 @@ typedef enum {
     CREATE_SURFACE_FAIL =   -212,
     CREATE_TEXTURE_FAIL =   -213,
     MIX_LOAD_WAV_FAIL =	    -220,
-    IMG_LOAD_FAIL =	    -221
+    IMG_LOAD_FAIL =	    -221,
+    INVALID_TEXTURE =	    -222,
+    INVALID_RENDERER =	    -223
 } SDL_WRAP_CODES;
 /******************************************************************************/
 typedef enum {
