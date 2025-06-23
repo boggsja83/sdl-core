@@ -1,14 +1,15 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <cstdint>
+#include "types.h"
+#include <iostream>
 
 struct Component {
-    int16_t owner_id;
-
     Component(int16_t comp_id = -1){
 	owner_id = comp_id; 
     }
+
+    int16_t owner_id;
 };
 
 struct cPos : Component{
@@ -23,16 +24,6 @@ struct cPos : Component{
 	y = cy;
 	w = cw;
 	h = ch;
-    }
-};
-
-struct cVel : Component{
-    float x;
-    float y;
-
-    cVel(float cx, float cy){
-	x = cx;
-	y = cy;
     }
 };
 
