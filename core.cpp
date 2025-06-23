@@ -87,6 +87,11 @@ rt Core::update(float& accumulator){
 	/**********************************************************************/
 	accumulator -= FIXED_LOGIC_TS;
     }
+
+    // clamp accumulator - added 6/22/25 may delete needs testing
+    if(accumulator < 0.0f) accumulator = 0.0f;
+    if(accumulator > FIXED_LOGIC_TS) accumulator = FIXED_LOGIC_TS;
+
     return OKAY;
 }
 

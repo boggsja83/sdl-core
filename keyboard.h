@@ -11,7 +11,7 @@
 class Keyboard{
     public:
 	Keyboard(){
-	    rt r = reset_keystate();
+	    rt r = reset();
 	    if(r) std::cerr << "KB_MEMSET_FAIL" << std::endl;
 	}
 
@@ -22,7 +22,7 @@ class Keyboard{
 
     public:
 
-	inline rt reset_keystate(){
+	inline rt reset(){
 	    void* rp = memset(keystate, 0, sizeof(keystate));
 	    if (static_cast<bool*>(rp) != keystate) return KB_MEMSET_FAIL;
 	    return OKAY;
@@ -50,4 +50,47 @@ class Keyboard{
 	}
 };
 
+class Keymap{
+    SDL_Scancode map[KB_NUM_ACTIONS];
+
+    Keymap(){
+	rt r = default_map();
+	if(r) std::cerr << "KM_MEMSET_FAIL" << std::endl;
+    }
+
+    inline rt reset(){
+	void* rp = memset(map, KB_NO_ACTION, sizeof(map));
+	if (static_cast<SDL_Scancode*>(rp) != map) return KM_MEMSET_FAIL;
+	return OKAY;
+    }
+
+    inline rt default_map(){
+	rt r = reset();
+	if(r) return r;
+
+	for(i16 i=0; i<KB_NUM_ACTIONS; ++i){
+	    switch(i){
+		case MOVE_N:
+		    map[i] = SDL_SCANCODE_W;
+		    break;
+		case MOVE_S:
+		    map[i] = SDL_SCANCODE_S;
+		    break;
+		case MOVE_E:
+		    map[i] = SDL_SCANCODE_D;
+		    break;
+		case MOVE_W:
+		    map[i] = SDL_SCANCODE_A;
+		    break;
+		default:
+		    map[i] = SDL_SCANCODE_UNKNOWN;
+		    break;
+	    }
+	}
+
+	return OKAY;
+    }
+};
+
 #endif
+

@@ -14,10 +14,10 @@ constexpr uint8_t RENDERER_MAIN = 0;
 
 // loop settings
 // constexpr float FIXED_LOGIC_TS = 1.0f / 30.0f; // ~16.67ms
-constexpr float FIXED_LOGIC_TS = 1.0f / 45.0f; // ~16.67ms
-constexpr float DFT_CAP = 0.1f; // 100ms. maybe change this in terms of FIXED_TS
+constexpr float FIXED_LOGIC_TS = 1.0f / 45.f; // ~16.67ms
+constexpr float DFT_CAP = FIXED_LOGIC_TS * 2.f; //0.1f; // 100ms. maybe change this in terms of FIXED_TS
 				// i.e. max number of steps to fall behind
-constexpr float FIXED_RENDER_TS = 1.0f / 60.0f;
+constexpr float FIXED_RENDER_TS = 1.0f / 144.0f;
 // constexpr float FIXED_RENDER_TS = 1.0f / 60.0f;
 
 // default window settings

@@ -67,7 +67,7 @@ rt EntityManager::set(EC& pec){
 		}
 		else return ECS_LACKS_COMP;
 		break;
-	    case  CM_KB:
+	    case  CM_KBMOVE:
 
 		break;
 	    default:
