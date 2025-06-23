@@ -2,6 +2,7 @@
 #define ENTITY_MANAGER_H
 
 #include "component.h"
+#include "types.h"
 #include <cstdint>
 #include <iostream>
 #include <vector>
