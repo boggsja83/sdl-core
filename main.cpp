@@ -30,17 +30,20 @@ int main(int argc, char** argv){
 
     if(!r) r = core.sdlw.create_texture_from_path("bg.jpg", core.sdlw.renderers[RENDERER_MAIN]);
 
-    if(!r) r = core.em.add_entity(CM_POS);
-    if(!r) r = core.em.add_entity(CM_POS|CM_VEL|CM_RENDPOS|CM_TEXTURE);
-    if(!r) r = core.em.add_entity(CM_POS|CM_VEL|CM_RENDPOS|CM_TEXTURE);
-    if(!r) r = core.em.add_entity(CM_POS|CM_VEL|CM_RENDPOS|CM_TEXTURE);
+    ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
+
+    // if(!r) r = core.em.add_entity(allz-CM_VEL);
+    if(!r) r = core.em.add_entity(allz);
+    if(!r) r = core.em.add_entity(allz);
+    if(!r) r = core.em.add_entity(allz);
+    if(!r) r = core.em.add_entity(allz);
 
     SDL_Rect src{0,0,756,568};
     cTexture tt = cTexture(0,0,0,src);
-    cVel tv = cVel(0, 50.f, 50.f);
+    cVel tv = cVel(0, 50.f, -50.f);
     cPos tp = cPos(0, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
-    // if(!r) r = core.em.set(tt);
-    // if(!r) r = core.em.set(tv);
+    if(!r) r = core.em.set(tt);
+    if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
 
     src = {0,0,756,568};

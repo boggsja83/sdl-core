@@ -1,7 +1,7 @@
 CMakeFiles/sdl_core.dir/core.cpp.o: \
- /home/sl1m/programming/source/BU/core.cpp /usr/include/stdc-predef.h \
- /usr/include/SDL2/SDL_keycode.h /usr/include/SDL2/SDL_stdinc.h \
- /usr/include/SDL2/SDL_config.h \
+ /home/sl1m/programming/source/sdl_core/core.cpp \
+ /usr/include/stdc-predef.h /usr/include/SDL2/SDL_keycode.h \
+ /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
  /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
  /usr/include/SDL2/close_code.h /usr/include/x86_64-linux-gnu/sys/types.h \
@@ -114,9 +114,11 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_rwops.h \
  /usr/include/SDL2/SDL_video.h /usr/include/SDL2/SDL_surface.h \
  /usr/include/SDL2/SDL_blendmode.h /usr/include/SDL2/SDL_scancode.h \
- /usr/include/SDL2/SDL_timer.h /home/sl1m/programming/source/BU/core.h \
- /usr/include/c++/13/cstdint /home/sl1m/programming/source/BU/types.h \
- /home/sl1m/programming/source/BU/sdl_w.h /usr/include/SDL2/SDL.h \
+ /usr/include/SDL2/SDL_timer.h \
+ /home/sl1m/programming/source/sdl_core/core.h \
+ /usr/include/c++/13/cstdint \
+ /home/sl1m/programming/source/sdl_core/types.h \
+ /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_assert.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
  /usr/include/SDL2/SDL_audio.h /usr/include/SDL2/SDL_mutex.h \
@@ -311,11 +313,11 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/sl1m/programming/source/BU/keyboard.h \
+ /home/sl1m/programming/source/sdl_core/keyboard.h \
  /usr/include/SDL2/SDL_events.h \
- /home/sl1m/programming/source/BU/entity_manager.h \
- /home/sl1m/programming/source/BU/entity_component.h \
+ /home/sl1m/programming/source/sdl_core/entity_manager.h \
+ /home/sl1m/programming/source/sdl_core/entity_component.h \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_scancode.h \
- /home/sl1m/programming/source/BU/entity_system.h \
+ /home/sl1m/programming/source/sdl_core/entity_system.h \
  /usr/include/SDL2/SDL_render.h \
- /home/sl1m/programming/source/BU/settings.h
+ /home/sl1m/programming/source/sdl_core/settings.h

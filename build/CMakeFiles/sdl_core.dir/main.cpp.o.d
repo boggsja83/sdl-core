@@ -1,6 +1,7 @@
 CMakeFiles/sdl_core.dir/main.cpp.o: \
- /home/sl1m/programming/source/BU/main.cpp /usr/include/stdc-predef.h \
- /home/sl1m/programming/source/BU/core.h /usr/include/c++/13/cstdint \
+ /home/sl1m/programming/source/sdl_core/main.cpp \
+ /usr/include/stdc-predef.h /home/sl1m/programming/source/sdl_core/core.h \
+ /usr/include/c++/13/cstdint \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -21,8 +22,8 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /home/sl1m/programming/source/BU/types.h \
- /home/sl1m/programming/source/BU/sdl_w.h /usr/include/SDL2/SDL.h \
+ /home/sl1m/programming/source/sdl_core/types.h \
+ /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -308,13 +309,13 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/sl1m/programming/source/BU/keyboard.h \
+ /home/sl1m/programming/source/sdl_core/keyboard.h \
  /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_scancode.h \
- /home/sl1m/programming/source/BU/entity_manager.h \
- /home/sl1m/programming/source/BU/entity_component.h \
+ /home/sl1m/programming/source/sdl_core/entity_manager.h \
+ /home/sl1m/programming/source/sdl_core/entity_component.h \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_scancode.h \
- /home/sl1m/programming/source/BU/entity_system.h \
+ /home/sl1m/programming/source/sdl_core/entity_system.h \
  /usr/include/SDL2/SDL_render.h \
- /home/sl1m/programming/source/BU/settings.h \
+ /home/sl1m/programming/source/sdl_core/settings.h \
  /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_error.h \
  /usr/include/SDL2/SDL_video.h

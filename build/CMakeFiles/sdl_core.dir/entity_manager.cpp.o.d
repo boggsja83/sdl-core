@@ -1,9 +1,10 @@
 CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
- /home/sl1m/programming/source/BU/entity_manager.cpp \
+ /home/sl1m/programming/source/sdl_core/entity_manager.cpp \
  /usr/include/stdc-predef.h \
- /home/sl1m/programming/source/BU/entity_manager.h \
- /home/sl1m/programming/source/BU/entity_component.h \
- /home/sl1m/programming/source/BU/types.h /usr/include/c++/13/cstdint \
+ /home/sl1m/programming/source/sdl_core/entity_manager.h \
+ /home/sl1m/programming/source/sdl_core/entity_component.h \
+ /home/sl1m/programming/source/sdl_core/types.h \
+ /usr/include/c++/13/cstdint \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -187,7 +188,7 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/sl1m/programming/source/BU/sdl_w.h /usr/include/SDL2/SDL.h \
+ /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_assert.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
  /usr/include/SDL2/SDL_audio.h /usr/include/SDL2/SDL_mutex.h \
