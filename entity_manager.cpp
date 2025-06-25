@@ -36,7 +36,7 @@ rt EntityManager::set(EC& pec){
     if(pec.oid>=0 && pec.oid<ents.size()){
 	switch(pec.cm){
 	    case  CM_POS:
-		if(ents[pec.oid]& CM_POS){
+		if(ents[pec.oid] & CM_POS){
 		    pos[pec.oid].x = static_cast<cPos*>(&pec)->x;
 		    pos[pec.oid].y = static_cast<cPos*>(&pec)->y;
 		    pos[pec.oid].w = static_cast<cPos*>(&pec)->w;
@@ -45,7 +45,7 @@ rt EntityManager::set(EC& pec){
 		else return ECS_LACKS_COMP;
 		break;
 	    case  CM_RENDPOS:
-		if(ents[pec.oid]& CM_RENDPOS){
+		if(ents[pec.oid] & CM_RENDPOS){
 		    rendpos[pec.oid].x = static_cast<cRendPos*>(&pec)->x;
 		    rendpos[pec.oid].y = static_cast<cRendPos*>(&pec)->y;
 		    rendpos[pec.oid].w = static_cast<cRendPos*>(&pec)->w;
@@ -54,21 +54,27 @@ rt EntityManager::set(EC& pec){
 		else return ECS_LACKS_COMP;
 		break;
 	    case  CM_VEL:
-		if(ents[pec.oid]& CM_VEL){
+		if(ents[pec.oid] & CM_VEL){
 		    vel[pec.oid].x = static_cast<cVel*>(&pec)->x;
 		    vel[pec.oid].y = static_cast<cVel*>(&pec)->y;
 		} else return ECS_LACKS_COMP;
 		break;
 	    case  CM_TEXTURE:
-		if(ents[pec.oid]& CM_TEXTURE){
+		if(ents[pec.oid] & CM_TEXTURE){
 		    texture[pec.oid].rend_i = static_cast<cTexture*>(&pec)->rend_i;
 		    texture[pec.oid].text_i = static_cast<cTexture*>(&pec)->text_i;
 		    texture[pec.oid].src = static_cast<cTexture*>(&pec)->src;
 		}
 		else return ECS_LACKS_COMP;
 		break;
-	    case  CM_KBMOVE:
-
+	    case  CM_KB:
+		if(ents[pec.oid] & CM_KB){
+		    kb[pec.oid].acts.resize(static_cast<cKB*>(&pec)->acts.size());
+		    for(i16 i=0; i<static_cast<cKB*>(&pec)->acts.size(); ++i){
+			kb[pec.oid].acts[i] = static_cast<cKB*>(&pec)->acts[i];
+		    }
+		}
+		else return ECS_LACKS_COMP;
 		break;
 	    default:
 		return ECS_INVALID_COMP;

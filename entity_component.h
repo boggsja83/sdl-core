@@ -5,6 +5,7 @@
 #include <SDL_rect.h>
 #include <SDL_scancode.h>
 #include <iostream>
+#include <vector>
 
 typedef struct EC {
     i16 oid;
@@ -74,17 +75,30 @@ typedef struct cTexture : EC {
     }
 } cTexture;
 
-typedef struct cKBmove : EC {
-    // these must be in N S E W order for this indexing to work*
-    bool active[MOVE_W-MOVE_N+1];
+typedef struct cKB : EC {
+    std::vector<KB_ACTION> acts;
+    // std::vector<bool> active;
 
-    cKBmove(i16 pid=-1){
+    cKB(i16 pid=-1){
 	oid = pid;
-	cm = CM_KBMOVE;
-	void* rp = memset(active, false, sizeof(active));
-	if(static_cast<bool*>(rp)!=active){ std::cerr << "cKBmove fail" << std::endl; }
+	cm = CM_KB;
+
+	acts.clear();
+	// active.clear();
     }
-} cKBmove;
+} cKB;
+
+// typedef struct cKBmove : EC {
+//     // these must be in N S E W order for this indexing to work*
+//     bool active[MOVE_W-MOVE_N+1];
+//
+//     cKBmove(i16 pid=-1){
+// 	oid = pid;
+// 	cm = CM_KBMOVE;
+// 	void* rp = memset(active, false, sizeof(active));
+// 	if(static_cast<bool*>(rp)!=active){ std::cerr << "cKBmove fail" << std::endl; }
+//     }
+// } cKBmove;
 
 #endif
 

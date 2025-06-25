@@ -16,6 +16,7 @@ class Core{
     public:
 	SDL_Wrap	    sdlw;
 	Keyboard	    kb; 
+	Keymap		    km;
 	EntityManager	    em;
 	ECSLogicTransform   ecs_ltf;
 	ECSRendTransform    ecs_rtf;

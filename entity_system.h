@@ -70,4 +70,18 @@ typedef struct ECSRendTexture : ECS {
     }
 } ECSRendTexture;
 
+typedef struct ECSKB : ECS {
+    rt update(EntityManager& em, float alpha=0.f) override {
+	for(i16 i=0; i<em.ents.size(); ++i){
+	    if(em.ents[i] & CM_KB){
+
+
+
+	    }
+	}
+
+	return OKAY;
+    }
+} ECSKB;
+
 #endif

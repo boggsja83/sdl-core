@@ -15,6 +15,7 @@ class EntityManager{
 	    vel.resize(5);
 	    rendpos.resize(5);
 	    texture.resize(5);
+	    kb.resize(5);
 
 	    sdlw = nullptr;
 	}
@@ -36,6 +37,7 @@ class EntityManager{
 	std::vector<cVel> vel;
 	std::vector<cRendPos> rendpos;
 	std::vector<cTexture> texture;
+	std::vector<cKB> kb;
 
     public:
 	SDL_Wrap *sdlw;
