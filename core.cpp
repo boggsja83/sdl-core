@@ -70,6 +70,7 @@ rt Core::update(float& accumulator){
 
 	em.pkb = &kb;
 	r = ecs_kb.update(em, FIXED_LOGIC_TS);
+	if(r) return r;
 
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
 	r = ecs_ltf.update(em, FIXED_LOGIC_TS);

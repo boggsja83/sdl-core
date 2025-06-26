@@ -81,27 +81,50 @@ typedef struct ECSKB : ECS {
 		    tka = em.kb[o].acts[i];
 		    tsc = em.pkb->map[tka];
 		    if(em.pkb->keystate[tsc]){
+			// key down actions
 			switch(tka){
 			    case KB_NO_ACTION:
 				std::cerr << "kb_no_action, somehow?" << std::endl;
 				break;
 			    case MOVE_N:
-				std::cerr << "move N" << std::endl;
+				if(em.ents[o]&CM_VEL){ em.vel[o].y = -345.0f; }
 				break;
 			    case MOVE_S:
-				std::cerr << "move S" << std::endl;
+				if(em.ents[o]&CM_VEL){ em.vel[o].y = 345.0f; }
 				break;
 			    case MOVE_E:
-				std::cerr << "move E" << std::endl;
+				if(em.ents[o]&CM_VEL){ em.vel[o].x = 345.0f; }
 				break;
 			    case MOVE_W:
-				std::cerr << "move W" << std::endl;
+				if(em.ents[o]&CM_VEL){ em.vel[o].x = -345.0f; }
 				break;
 			    default:
 				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 
 				break;
 			}
 		    }
+		    else{
+			switch(tka){
+			    // key not down actions
+			    case MOVE_N:
+				if(em.ents[o]&CM_VEL){ em.vel[o].y = (em.vel[o].y<0)?0:em.vel[o].y; }
+				break;
+			    case MOVE_S:
+				if(em.ents[o]&CM_VEL){ em.vel[o].y = (em.vel[o].y>0)?0:em.vel[o].y; }
+				break;
+			    case MOVE_E:
+				if(em.ents[o]&CM_VEL){ em.vel[o].x = (em.vel[o].x>0)?0:em.vel[o].x; }
+				break;
+			    case MOVE_W:
+				if(em.ents[o]&CM_VEL){ em.vel[o].x = (em.vel[o].x<0)?0:em.vel[o].x; }
+				break;
+			    default:
+				break;
+			}
+		    }
+
+
+
 		    tka = KB_NO_ACTION;
 		    tsc = SDL_SCANCODE_UNKNOWN;
 		}

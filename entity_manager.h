@@ -33,12 +33,12 @@ class EntityManager{
 	//rt del_comp(i16 ownid, ENTITY_COMPONENT comp)
 
     public:
-	std::vector<ui64> ents;
-	std::vector<cPos> pos;
-	std::vector<cVel> vel;
-	std::vector<cRendPos> rendpos;
-	std::vector<cTexture> texture;
-	std::vector<cKB> kb;
+	std::vector<ui64>	ents;
+	std::vector<cPos>	pos;
+	std::vector<cVel>	vel;
+	std::vector<cRendPos>	rendpos;
+	std::vector<cTexture>	texture;
+	std::vector<cKB>	kb;
 
     public:
 	SDL_Wrap*   psdlw;
