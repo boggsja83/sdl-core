@@ -16,11 +16,11 @@ class Core{
     public:
 	SDL_Wrap	    sdlw;
 	Keyboard	    kb; 
-	Keymap		    km;
 	EntityManager	    em;
 	ECSLogicTransform   ecs_ltf;
 	ECSRendTransform    ecs_rtf;
 	ECSRendTexture	    ecs_rtx;
+	ECSKB		    ecs_kb;
     public:
 	int64_t	    STATUS_INT64;
 	str	    STATUS_STRING;

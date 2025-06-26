@@ -28,6 +28,11 @@ rt EntityManager::add_entity(ui64 comp_mask){
 	texture[temp_id] = cTexture();
     }
 
+    if(comp_mask &  CM_KB){
+	if(kb.size() <= temp_id) { kb.resize(kb.size()*2+1); } // add 1 in case size is 0
+	kb[temp_id] = cKB();
+    }
+
     return OKAY;
 }
 

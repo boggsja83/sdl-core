@@ -4,7 +4,6 @@
 #include "types.h"
 #include <SDL_rect.h>
 #include <SDL_scancode.h>
-#include <iostream>
 #include <vector>
 
 typedef struct EC {
@@ -77,14 +76,12 @@ typedef struct cTexture : EC {
 
 typedef struct cKB : EC {
     std::vector<KB_ACTION> acts;
-    // std::vector<bool> active;
 
     cKB(i16 pid=-1){
 	oid = pid;
 	cm = CM_KB;
 
 	acts.clear();
-	// active.clear();
     }
 } cKB;
 

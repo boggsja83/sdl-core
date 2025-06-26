@@ -68,17 +68,8 @@ rt Core::update(float& accumulator){
 	if(kb.keystate[SDL_SCANCODE_Q]) return QUIT;
 	/**********************************************************************/
 
-	if(em.vel.size()>=2){
-	    i16 tid = 2;
-	    cVel t = em.vel[tid];
-	    cVel n = t;
-
-	    n.oid = tid;
-	    n.x = t.x * 1.006;
-	    n.y = t.y * 1.006;
-	    em.set(n);
-	    // std::cerr << "n.owner_id="<<n.owner_id<<"\tn.x="<<n.x<<"\tn.y="<<n.y<< std::endl;
-	}
+	em.pkb = &kb;
+	r = ecs_kb.update(em, FIXED_LOGIC_TS);
 
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
 	r = ecs_ltf.update(em, FIXED_LOGIC_TS);
@@ -89,8 +80,9 @@ rt Core::update(float& accumulator){
     }
 
     // clamp accumulator - added 6/22/25 may delete needs testing
-    if(accumulator < 0.0f) accumulator = 0.0f;
-    if(accumulator > FIXED_LOGIC_TS) accumulator = FIXED_LOGIC_TS;
+    //  decided this is just redundant to loop logic
+    //if(accumulator < 0.0f) accumulator = 0.0f;
+    //if(accumulator > FIXED_LOGIC_TS) accumulator = FIXED_LOGIC_TS;
 
     return OKAY;
 }
@@ -105,7 +97,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     r = ecs_rtf.update(em, alpha);
     if(r) return r;
 
-    em.sdlw = &sdlw;
+    em.psdlw = &sdlw;
     r = ecs_rtx.update(em);
     if(r) return r;
     /**************************************************************************/

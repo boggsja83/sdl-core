@@ -34,25 +34,33 @@ int main(int argc, char** argv){
 
     // if(!r) r = core.em.add_entity(allz-CM_VEL);
     if(!r) r = core.em.add_entity(allz);
-    if(!r) r = core.em.add_entity(allz);
+    if(!r) r = core.em.add_entity(allz | CM_KB);
     if(!r) r = core.em.add_entity(allz);
     if(!r) r = core.em.add_entity(allz);
 
-    SDL_Rect src{0,0,756,568};
+    SDL_Rect src = {0,0,756,568};
     cTexture tt = cTexture(0,0,0,src);
     cVel tv = cVel(0, 50.f, -50.f);
     cPos tp = cPos(0, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
+    cKB tk = cKB();
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
 
     src = {0,0,756,568};
     tt = cTexture(1,0,0,src);
-    tv = cVel(1, 75.f, 75.f);
+    tv = cVel(1, 0.f, 0.f);
     tp = cPos(1, 0.f, 0.f, 50, 75);
+    tk = cKB(1);
+    tk.acts.push_back(MOVE_N);
+    tk.acts.push_back(MOVE_S);
+    tk.acts.push_back(MOVE_E);
+    tk.acts.push_back(MOVE_W);
+
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
+    if(!r) r = core.em.set(tk);
 
     src = {0,0, 200, 400};
     tt = cTexture(2,0,0,src);

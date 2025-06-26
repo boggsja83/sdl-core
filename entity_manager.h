@@ -2,6 +2,7 @@
 #define ENTITY_MANAGER_H
 
 #include "entity_component.h"
+#include "keyboard.h"
 #include "types.h"
 #include "sdl_w.h"
 #include <vector>
@@ -16,8 +17,8 @@ class EntityManager{
 	    rendpos.resize(5);
 	    texture.resize(5);
 	    kb.resize(5);
-
-	    sdlw = nullptr;
+	    psdlw = nullptr;
+	    pkb = nullptr;
 	}
 
     public:
@@ -40,7 +41,8 @@ class EntityManager{
 	std::vector<cKB> kb;
 
     public:
-	SDL_Wrap *sdlw;
+	SDL_Wrap*   psdlw;
+	Keyboard*   pkb;
 
     public:
 	rt set(EC& pec);

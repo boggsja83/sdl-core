@@ -49,10 +49,10 @@ typedef struct ECSRendTexture : ECS {
 		i16 tri = em.texture[i].rend_i;
 		i16 tti = em.texture[i].text_i;
 
-		if(tri>=0 && tri<em.sdlw->renderers.size()) tr = em.sdlw->renderers[tri];	
+		if(tri>=0 && tri<em.psdlw->renderers.size()) tr = em.psdlw->renderers[tri];	
 		else return INVALID_RENDERER;
 		
-		if(tti>=0 && tti<em.sdlw->textures.size()) tt = em.sdlw->textures[tti];
+		if(tti>=0 && tti<em.psdlw->textures.size()) tt = em.psdlw->textures[tti];
 		else return INVALID_TEXTURE;
 
 		SDL_Rect* src = &em.texture[i].src;
@@ -72,14 +72,41 @@ typedef struct ECSRendTexture : ECS {
 
 typedef struct ECSKB : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
-	for(i16 i=0; i<em.ents.size(); ++i){
-	    if(em.ents[i] & CM_KB){
+	KB_ACTION tka = KB_NO_ACTION;
+	SDL_Scancode tsc = SDL_SCANCODE_UNKNOWN;
 
-
-
+	for(i16 o=0; o<em.ents.size(); ++o){
+	    if(em.ents[o] & CM_KB){
+		for(i16 i=0; i<em.kb[o].acts.size(); ++i){
+		    tka = em.kb[o].acts[i];
+		    tsc = em.pkb->map[tka];
+		    if(em.pkb->keystate[tsc]){
+			switch(tka){
+			    case KB_NO_ACTION:
+				std::cerr << "kb_no_action, somehow?" << std::endl;
+				break;
+			    case MOVE_N:
+				std::cerr << "move N" << std::endl;
+				break;
+			    case MOVE_S:
+				std::cerr << "move S" << std::endl;
+				break;
+			    case MOVE_E:
+				std::cerr << "move E" << std::endl;
+				break;
+			    case MOVE_W:
+				std::cerr << "move W" << std::endl;
+				break;
+			    default:
+				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 
+				break;
+			}
+		    }
+		    tka = KB_NO_ACTION;
+		    tsc = SDL_SCANCODE_UNKNOWN;
+		}
 	    }
 	}
-
 	return OKAY;
     }
 } ECSKB;
