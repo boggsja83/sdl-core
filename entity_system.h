@@ -87,17 +87,22 @@ typedef struct ECSKB : ECS {
 				std::cerr << "kb_no_action, somehow?" << std::endl;
 				break;
 			    case MOVE_N:
-				if(em.ents[o]&CM_VEL){ em.vel[o].y = -345.0f; }
+				if(em.ents[o]&CM_VEL){ em.vel[o].y = -175.0f; }
 				break;
 			    case MOVE_S:
-				if(em.ents[o]&CM_VEL){ em.vel[o].y = 345.0f; }
+				if(em.ents[o]&CM_VEL){ em.vel[o].y = 175.0f; }
 				break;
 			    case MOVE_E:
-				if(em.ents[o]&CM_VEL){ em.vel[o].x = 345.0f; }
+				if(em.ents[o]&CM_VEL){ em.vel[o].x = 175.0f; }
 				break;
 			    case MOVE_W:
-				if(em.ents[o]&CM_VEL){ em.vel[o].x = -345.0f; }
+				if(em.ents[o]&CM_VEL){ em.vel[o].x = -175.0f; }
 				break;
+
+
+
+
+
 			    default:
 				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 
 				break;
@@ -118,13 +123,15 @@ typedef struct ECSKB : ECS {
 			    case MOVE_W:
 				if(em.ents[o]&CM_VEL){ em.vel[o].x = (em.vel[o].x<0)?0:em.vel[o].x; }
 				break;
+
+
+
+
+
 			    default:
 				break;
 			}
 		    }
-
-
-
 		    tka = KB_NO_ACTION;
 		    tsc = SDL_SCANCODE_UNKNOWN;
 		}
