@@ -314,13 +314,6 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_scancode.h \
- /usr/include/c++/13/locale \
- /usr/include/c++/13/bits/locale_facets_nonio.h /usr/include/c++/13/ctime \
- /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/13/bits/codecvt.h \
- /usr/include/c++/13/bits/locale_facets_nonio.tcc \
- /usr/include/c++/13/bits/locale_conv.h \
  /home/sl1m/programming/source/sdl_core/entity_system.h \
  /usr/include/SDL2/SDL_render.h \
  /home/sl1m/programming/source/sdl_core/settings.h \

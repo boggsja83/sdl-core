@@ -78,8 +78,7 @@ class Keyboard{
 			map[i] = SDL_SCANCODE_A;
 			break;
 		    case TEST_ACTION:
-			map[i] = SDL_SCANCODE_N;
-			// map[i] = SDL_SCANCODE_SPACE;
+			map[i] = SDL_SCANCODE_SPACE;
 			break;
 		    default:
 			map[i] = SDL_SCANCODE_UNKNOWN;
@@ -90,23 +89,6 @@ class Keyboard{
 	    return OKAY;
 	}
 };
-
-// class Keymap{
-//     public:
-// 	SDL_Scancode map[KB_NUM_ACTIONS];
-//
-// 	Keymap(){
-// 	    rt r = default_map();
-// 	    if(r) std::cerr << "KM_MEMSET_FAIL" << std::endl;
-// 	}
-//
-// 	inline rt reset(){
-// 	    void* rp = memset(map, KB_NO_ACTION, sizeof(map));
-// 	    if (static_cast<SDL_Scancode*>(rp) != map) return KM_MEMSET_FAIL;
-// 	    return OKAY;
-// 	}
-
-// };
 
 #endif
 

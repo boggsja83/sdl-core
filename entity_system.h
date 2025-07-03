@@ -74,6 +74,7 @@ typedef struct ECSKB : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
 	KB_ACTION tka = KB_NO_ACTION;
 	SDL_Scancode tsc = SDL_SCANCODE_UNKNOWN;
+	rt r = OKAY;
 
 	for(i16 o=0; o<em.ents.size(); ++o){
 	    if(em.ents[o] & CM_KB){
@@ -89,7 +90,7 @@ typedef struct ECSKB : ECS {
 			    case MOVE_N:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = -175.0f; }
 				break;
-			    case MOVE_S:
+	 		    case MOVE_S:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = 175.0f; }
 				break;
 			    case MOVE_E:
@@ -99,8 +100,8 @@ typedef struct ECSKB : ECS {
 				if(em.ents[o]&CM_VEL){ em.vel[o].x = -175.0f; }
 				break;
 			    case TEST_ACTION:
-				em.psdlw->play_channel(-1, 0, 0);
-				std::cerr << "TEST_ACTION/n";
+				r = em.psdlw->play_channel(-1, 0, 0);
+				if(!r) return r;
 				break;
 			    default:
 				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 

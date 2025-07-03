@@ -5,7 +5,6 @@
 #include "keyboard.h"
 #include "types.h"
 #include "sdl_w.h"
-#include <locale>
 #include <vector>
 
 class EntityManager{

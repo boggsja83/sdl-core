@@ -29,6 +29,9 @@ int main(int argc, char** argv){
     if(!r) r = SDL_SetRenderDrawColor(core.sdlw.renderers[RENDERER_MAIN], DEF_R, DEF_G, DEF_B, DEF_A);
 
     if(!r) r = core.sdlw.create_texture_from_path("bg.jpg", core.sdlw.renderers[RENDERER_MAIN]);
+    if(!r) r = core.sdlw.create_chunk_from_load_wav("sound.wav");
+    if(!r) r = core.sdlw.create_music_from_load_mus("background.mp3");
+    if(!r) r = core.sdlw.play_music(0,-1); 
 
     ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
 

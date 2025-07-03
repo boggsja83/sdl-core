@@ -1,5 +1,6 @@
 #include "sdl_w.h"
 #include "settings.h"
+#include "types.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_error.h>
@@ -84,18 +85,40 @@ rt SDL_Wrap::create_texture_from_path(str path, SDL_Renderer* renderer){
 rt SDL_Wrap::create_chunk_from_load_wav(str path){
     Mix_Chunk* temp = Mix_LoadWAV(path);
     if(!temp){
-	std::cerr << "Load_WAV failed. Mix_Errror: " << Mix_GetError() << std::endl;
+	std::cerr << "LoadWAV failed. Mix_Errror: " << Mix_GetError() << std::endl;
 	return MIX_LOAD_WAV_FAIL;
     }
     chunks.push_back(temp);
     return OKAY;
 }
 
+rt SDL_Wrap::create_music_from_load_mus(str path){
+    Mix_Music* temp = Mix_LoadMUS(path);
+    if(!temp){
+	std::cerr << "LoadMUS failed. Mix_Error: " << Mix_GetError() << std::endl;
+	return MIX_LOAD_MP3_FAIL;
+    }
+    musics.push_back(temp);
+    return OKAY;
+}
+
 rt SDL_Wrap::play_channel(i16 pchan=-1, i16 pcid=-1, i16 ploop=0){
+    if(pcid<0 || pcid>=chunks.size()){ return INVALID_CHUNK; }
     if(Mix_PlayChannel(pchan, chunks[pcid], ploop)<0){
 	std::cerr << "PlayChannel failed. Mix_Error: " << Mix_GetError() << std::endl;
 	return PLAY_CHANNEL_FAIL;
     }
     return OKAY;
 }
+
+rt SDL_Wrap::play_music(i16 pmid=-1, i16 ploop=-1){
+    if(pmid<0 || pmid>=musics.size()){ return INVALID_MUSIC; }
+    if(Mix_PlayMusic(musics[pmid], ploop) < 0){
+	std::cerr << "PlayMusic failed. Mix_Error: " << Mix_GetError() << std::endl;
+	return PLAY_MUSIC_FAIL;
+    }
+
+    return OKAY;
+}
+
 

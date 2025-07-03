@@ -76,7 +76,9 @@ class SDL_Wrap{
 	rt create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface);
 	rt create_surface_from_img_load(str path);
 	rt create_chunk_from_load_wav(str path);
+	rt create_music_from_load_mus(str path);
 
+	rt play_music(i16 pmid, i16 ploop);
 	rt play_channel(i16 pchan, i16 pcid, i16 ploop);
 };
 
