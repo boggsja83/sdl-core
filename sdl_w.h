@@ -19,23 +19,33 @@
 
 #include "types.h"
 
-/*----------------------------------------------------------------------------*/
-
 class SDL_Wrap{
-    private:
     public:
 	std::vector<SDL_Window*>    windows;
 	std::vector<SDL_Renderer*>  renderers;
-	std::vector<SDL_Surface*>    surfaces;
-	std::vector<SDL_Texture*>    textures;
-	std::vector<Mix_Chunk*>	chunks;
+	std::vector<SDL_Surface*>   surfaces;
+	std::vector<SDL_Texture*>   textures;
+	std::vector<Mix_Music*>	    musics;
+	std::vector<Mix_Chunk*>	    chunks;
 
     public:
-	SDL_Wrap(){}
+	SDL_Wrap(){
+	    windows.clear();
+	    renderers.clear();
+	    surfaces.clear();
+	    textures.clear();
+	    musics.clear();
+	    chunks.clear();
+	}
+
 	~SDL_Wrap(){
 	    rt r = chunks.size();
 	    std::cerr << "Deleting " << r << " chunks" << std::endl;
 	    for(i16 i=0; i < r; ++i){ Mix_FreeChunk(chunks[i]); }
+
+	    r = musics.size();
+	    std::cerr << "Deleting " << r << " musics" << std::endl;
+	    for(i16 i=0; i < r; ++i){ Mix_FreeMusic(musics[i]); }
 
 	    r = surfaces.size();
 	    std::cerr << "Deleting " << r << " surfaces" << std::endl;
@@ -66,6 +76,8 @@ class SDL_Wrap{
 	rt create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface);
 	rt create_surface_from_img_load(str path);
 	rt create_chunk_from_load_wav(str path);
+
+	rt play_channel(i16 pchan, i16 pcid, i16 ploop);
 };
 
 #endif

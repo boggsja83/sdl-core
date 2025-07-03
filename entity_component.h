@@ -85,17 +85,13 @@ typedef struct cKB : EC {
     }
 } cKB;
 
-// typedef struct cKBmove : EC {
-//     // these must be in N S E W order for this indexing to work*
-//     bool active[MOVE_W-MOVE_N+1];
+// typedef struct cTest: EC {
 //
-//     cKBmove(i16 pid=-1){
+//     cTest(i16 pid=-1){
 // 	oid = pid;
-// 	cm = CM_KBMOVE;
-// 	void* rp = memset(active, false, sizeof(active));
-// 	if(static_cast<bool*>(rp)!=active){ std::cerr << "cKBmove fail" << std::endl; }
+// 	cm = CM_TEST;
 //     }
-// } cKBmove;
+// } cTest;
 
 #endif
 

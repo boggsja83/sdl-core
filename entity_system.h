@@ -84,7 +84,7 @@ typedef struct ECSKB : ECS {
 			// key down actions
 			switch(tka){
 			    case KB_NO_ACTION:
-				std::cerr << "kb_no_action, somehow?" << std::endl;
+				std::cerr << "KB_NO_ACTION, somehow?" << std::endl;
 				break;
 			    case MOVE_N:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = -175.0f; }
@@ -98,11 +98,10 @@ typedef struct ECSKB : ECS {
 			    case MOVE_W:
 				if(em.ents[o]&CM_VEL){ em.vel[o].x = -175.0f; }
 				break;
-
-
-
-
-
+			    case TEST_ACTION:
+				em.psdlw->play_channel(-1, 0, 0);
+				std::cerr << "TEST_ACTION/n";
+				break;
 			    default:
 				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 
 				break;
@@ -110,7 +109,8 @@ typedef struct ECSKB : ECS {
 		    }
 		    else{
 			switch(tka){
-			    // key not down actions
+			    // key not down actions - not a "on key up action" function.
+			    // can only assume key is not pressed at this point
 			    case MOVE_N:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = (em.vel[o].y<0)?0:em.vel[o].y; }
 				break;
@@ -123,11 +123,8 @@ typedef struct ECSKB : ECS {
 			    case MOVE_W:
 				if(em.ents[o]&CM_VEL){ em.vel[o].x = (em.vel[o].x<0)?0:em.vel[o].x; }
 				break;
-
-
-
-
-
+			    case TEST_ACTION:
+				break;
 			    default:
 				break;
 			}

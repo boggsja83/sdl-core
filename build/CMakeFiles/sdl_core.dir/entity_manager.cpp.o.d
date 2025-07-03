@@ -313,4 +313,11 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_mixer.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_stdinc.h \
- /usr/include/SDL2/SDL_surface.h /usr/include/SDL2/SDL_video.h
+ /usr/include/SDL2/SDL_surface.h /usr/include/SDL2/SDL_video.h \
+ /usr/include/c++/13/locale \
+ /usr/include/c++/13/bits/locale_facets_nonio.h /usr/include/c++/13/ctime \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/c++/13/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13/bits/locale_conv.h

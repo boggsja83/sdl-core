@@ -56,7 +56,7 @@ int main(int argc, char** argv){
     tk.acts.push_back(MOVE_S);
     tk.acts.push_back(MOVE_E);
     tk.acts.push_back(MOVE_W);
-
+    tk.acts.push_back(TEST_ACTION);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
@@ -86,6 +86,7 @@ int main(int argc, char** argv){
     if(!r) r = core.em.set(tp);
 
     if(!r) r = core.loop();
+    r = (r==-1)?0:r;
 
     std::cerr << "*** Exit Code: " << r << " ***" << std::endl;
 

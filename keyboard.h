@@ -14,7 +14,7 @@ class Keyboard{
 	    rt r = reset_ks();
 	    if(r) std::cerr << "KB_MEMSET_FAIL" << std::endl;
 
-	    r = default_map();
+	    r = set_default_map();
 	    if(r) std::cerr << "KM_MEMSET_FAIL" << std::endl;
 	}
 
@@ -59,7 +59,7 @@ class Keyboard{
 	    return OKAY;
 	}
 
-	inline rt default_map(){
+	inline rt set_default_map(){
 	    rt r = reset_km();
 	    if(r) return r;
 
@@ -76,6 +76,10 @@ class Keyboard{
 			break;
 		    case MOVE_W:
 			map[i] = SDL_SCANCODE_A;
+			break;
+		    case TEST_ACTION:
+			map[i] = SDL_SCANCODE_N;
+			// map[i] = SDL_SCANCODE_SPACE;
 			break;
 		    default:
 			map[i] = SDL_SCANCODE_UNKNOWN;

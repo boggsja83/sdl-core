@@ -31,6 +31,7 @@ typedef enum {
     MOVE_S =		    2,
     MOVE_E =		    3,
     MOVE_W =		    4,
+    TEST_ACTION =	    5,
     KB_NUM_ACTIONS =	    10
 } KB_ACTION;
 
@@ -45,7 +46,8 @@ typedef enum {
     MIX_LOAD_WAV_FAIL =	    -220,
     IMG_LOAD_FAIL =	    -221,
     INVALID_TEXTURE =	    -232,
-    INVALID_RENDERER =	    -233
+    INVALID_RENDERER =	    -233,
+    PLAY_CHANNEL_FAIL =	    -300
 } SDL_WRAP_CODES;
 
 typedef enum {
@@ -60,7 +62,7 @@ typedef enum {
     CM_VEL =		    0b0000'0010,
     CM_RENDPOS =	    0b0000'0100,
     CM_TEXTURE =	    0b0000'1000,
-    // CM_KBMOVE =		    0b0001'0000,
+    // CM_TEST =		    0b0001'0000,    // not using this aKtuALLy
     CM_KB =		    0b0010'0000
 } CM_MASK;
 

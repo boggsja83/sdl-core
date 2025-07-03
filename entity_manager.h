@@ -5,18 +5,22 @@
 #include "keyboard.h"
 #include "types.h"
 #include "sdl_w.h"
+#include <locale>
 #include <vector>
 
 class EntityManager{
 
     public:
 	EntityManager(){
+	    i16 s = 5;
+
 	    ents.clear();
-	    pos.resize(5);
-	    vel.resize(5);
-	    rendpos.resize(5);
-	    texture.resize(5);
-	    kb.resize(5);
+	    pos.resize(s);
+	    vel.resize(s);
+	    rendpos.resize(s);
+	    texture.resize(s);
+	    kb.resize(s);
+
 	    psdlw = nullptr;
 	    pkb = nullptr;
 	}
@@ -29,8 +33,15 @@ class EntityManager{
 	rt add_entity(ui64 comp_mask);
 	//TODO:
 	//rt del_entity(i16 id);
-	//rt add_comp(i16 ownid, ENTITY_COMPONENT comp)
-	//rt del_comp(i16 ownid, ENTITY_COMPONENT comp)
+	inline rt add_comp(i16 pid, CM_MASK pcmp){
+	    if(pid>=0 && pid<ents.size()){
+		
+	    }
+	    else { return ECS_INVALID_ID; }
+	    return OKAY;
+	}
+
+	rt del_comp(i16 pid, CM_MASK pcmp);
 
     public:
 	std::vector<ui64>	ents;
