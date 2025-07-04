@@ -72,7 +72,7 @@ typedef struct ECSRendTexture : ECS {
 
 typedef struct ECSKB : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
-	KB_ACTION tka = KB_NO_ACTION;
+	KB_ACTION tka = KB_INVALID_ACTION;
 	SDL_Scancode tsc = SDL_SCANCODE_UNKNOWN;
 	rt r = OKAY;
 
@@ -84,13 +84,13 @@ typedef struct ECSKB : ECS {
 		    if(em.pkb->keystate[tsc]){
 			// key down actions
 			switch(tka){
-			    case KB_NO_ACTION:
+			    case KB_INVALID_ACTION:
 				std::cerr << "KB_NO_ACTION, somehow?" << std::endl;
 				break;
 			    case MOVE_N:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = -175.0f; }
 				break;
-	 		    case MOVE_S:
+			    case MOVE_S:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = 175.0f; }
 				break;
 			    case MOVE_E:
@@ -100,8 +100,10 @@ typedef struct ECSKB : ECS {
 				if(em.ents[o]&CM_VEL){ em.vel[o].x = -175.0f; }
 				break;
 			    case TEST_ACTION:
-				r = em.psdlw->play_channel(-1, 0, 0);
-				if(!r) return r;
+				if(em.pkb->get_action_repeats(TEST_ACTION)==0){	
+				    r = em.psdlw->play_channel(-1, 0, 0);
+				    if(!r) return r;
+				}
 				break;
 			    default:
 				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 
@@ -130,7 +132,7 @@ typedef struct ECSKB : ECS {
 				break;
 			}
 		    }
-		    tka = KB_NO_ACTION;
+		    tka = KB_INVALID_ACTION;
 		    tsc = SDL_SCANCODE_UNKNOWN;
 		}
 	    }

@@ -22,11 +22,13 @@ typedef enum {
 
 typedef enum {
     KB_MEMSET_FAIL =	    -100,
-    KM_MEMSET_FAIL =	    -200
+    KM_MEMSET_FAIL =	    -200,
+    RP_MEMSET_FAIL =	    -300
+	// INVALID_ACTION =	    -400
 } KB_CODES;
 
 typedef enum {
-    KB_NO_ACTION =          0,
+    KB_INVALID_ACTION =     0,
     MOVE_N =		    1,
     MOVE_S =		    2,
     MOVE_E =		    3,
