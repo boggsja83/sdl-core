@@ -147,11 +147,11 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /usr/include/SDL2/SDL_gamecontroller.h /usr/include/SDL2/SDL_sensor.h \
  /usr/include/SDL2/SDL_quit.h /usr/include/SDL2/SDL_gesture.h \
  /usr/include/SDL2/SDL_touch.h /usr/include/SDL2/SDL_scancode.h \
- /usr/include/c++/13/iostream /usr/include/c++/13/ostream \
- /usr/include/c++/13/ios /usr/include/c++/13/iosfwd \
- /usr/include/c++/13/bits/stringfwd.h /usr/include/c++/13/bits/postypes.h \
- /usr/include/c++/13/cwchar /usr/include/c++/13/exception \
- /usr/include/c++/13/bits/exception_ptr.h \
+ /usr/include/SDL2/SDL_timer.h /usr/include/c++/13/iostream \
+ /usr/include/c++/13/ostream /usr/include/c++/13/ios \
+ /usr/include/c++/13/iosfwd /usr/include/c++/13/bits/stringfwd.h \
+ /usr/include/c++/13/bits/postypes.h /usr/include/c++/13/cwchar \
+ /usr/include/c++/13/exception /usr/include/c++/13/bits/exception_ptr.h \
  /usr/include/c++/13/bits/cxxabi_init_exception.h \
  /usr/include/c++/13/typeinfo /usr/include/c++/13/bits/nested_exception.h \
  /usr/include/c++/13/bits/char_traits.h \

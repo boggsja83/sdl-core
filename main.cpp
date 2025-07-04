@@ -31,12 +31,14 @@ int main(int argc, char** argv){
     if(!r) r = core.sdlw.create_texture_from_path("bg.jpg", core.sdlw.renderers[RENDERER_MAIN]);
     if(!r) r = core.sdlw.create_chunk_from_load_wav("sound.wav");
     if(!r) r = core.sdlw.create_music_from_load_mus("background.mp3");
-    if(!r) r = core.sdlw.play_music(0,-1); 
+    
+    // Mix_VolumeMusic(64);    // accepts 0-128
+    // if(!r) r = core.sdlw.play_music(0,-1); 
 
     ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
 
     // if(!r) r = core.em.add_entity(allz-CM_VEL);
-    if(!r) r = core.em.add_entity(allz);
+    if(!r) r = core.em.add_entity(allz-CM_TEXTURE);
     if(!r) r = core.em.add_entity(allz | CM_KB);
     if(!r) r = core.em.add_entity(allz | CM_KB);
     if(!r) r = core.em.add_entity(allz);
@@ -46,7 +48,7 @@ int main(int argc, char** argv){
     cVel tv = cVel(0, 50.f, -50.f);
     cPos tp = cPos(0, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
     cKB tk = cKB();
-    if(!r) r = core.em.set(tt);
+    // if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
 

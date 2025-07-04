@@ -314,7 +314,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
  /home/sl1m/programming/source/sdl_core/keyboard.h \
- /usr/include/SDL2/SDL_events.h \
+ /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_timer.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_scancode.h \

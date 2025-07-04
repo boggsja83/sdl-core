@@ -100,9 +100,10 @@ typedef struct ECSKB : ECS {
 				if(em.ents[o]&CM_VEL){ em.vel[o].x = -175.0f; }
 				break;
 			    case TEST_ACTION:
-				if(em.pkb->get_action_repeats(TEST_ACTION)==0){	
+				// if(em.pkb->get_action_repeats(TEST_ACTION)==0){	
+				r = em.pkb->is_held(TEST_ACTION);
+				if(r<KB_THRESHOLD_PRESS){
 				    r = em.psdlw->play_channel(-1, 0, 0);
-				    if(!r) return r;
 				}
 				break;
 			    default:
@@ -112,7 +113,7 @@ typedef struct ECSKB : ECS {
 		    }
 		    else{
 			switch(tka){
-			    // key not down actions - not a "on key up action" function.
+			    // key not-down actions - not a "on key up action" function.
 			    // can only assume key is not pressed at this point
 			    case MOVE_N:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = (em.vel[o].y<0)?0:em.vel[o].y; }

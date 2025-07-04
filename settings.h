@@ -20,6 +20,9 @@ constexpr float DFT_CAP = FIXED_LOGIC_TS * 2.f; //0.1f; // 100ms. maybe change t
 constexpr float FIXED_RENDER_TS = 1.0f / 144.0f;
 // constexpr float FIXED_RENDER_TS = 1.0f / 60.0f;
 
+constexpr uint64_t KB_THRESHOLD_PRESS = 30;	//milliseconds
+// constexpr uint64_t KB_THRESHOLD_PRESS = (1.0f/45.f)*1000;	//milliseconds
+
 // default window settings
 constexpr int16_t DEF_WIN_W = 800;
 constexpr int16_t DEF_WIN_H = 600;

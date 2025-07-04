@@ -21,7 +21,7 @@ typedef enum {
 } CORE_CODES;
 
 typedef enum {
-    KB_MEMSET_FAIL =	    -100,
+    KS_MEMSET_FAIL =	    -100,
     KM_MEMSET_FAIL =	    -200,
     RP_MEMSET_FAIL =	    -300
 	// INVALID_ACTION =	    -400

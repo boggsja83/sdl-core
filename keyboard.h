@@ -3,71 +3,62 @@
 
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_scancode.h>
+#include <SDL_timer.h>
 #include <iostream>
-#include <ostream>
 
 #include "types.h"
 
 class Keyboard{
     public:
 	Keyboard(){
-	    rt r = reset_ks();
-	    if(r) std::cerr << "KB_MEMSET_FAIL" << std::endl;
-
-	    r = set_default_map();
-	    if(r) std::cerr << "KM_MEMSET_FAIL" << std::endl;
-
-	    r = reset_rp();
-	    if(r) std::cerr << "RP_MEMSET_FAIL" << std::endl;
+	    reset_array(keystate, false);
+	    reset_array(time_down,ui64(0));
+	    reset_array(time_up);
+	    set_default_map();
 	}
 
 	~Keyboard(){}
 
     public:
-	bool keystate[SDL_NUM_SCANCODES];
-	SDL_Scancode map[KB_NUM_ACTIONS];
-	i16 rpts[SDL_NUM_SCANCODES];
+	bool		keystate[SDL_NUM_SCANCODES];
+	SDL_Scancode	map[KB_NUM_ACTIONS];
+	// i16		rpts[SDL_NUM_SCANCODES];
+	ui64		time_down[SDL_NUM_SCANCODES];
+	ui64		time_up[SDL_NUM_SCANCODES];
 
     public:
-	inline rt reset_ks(){
-	    void* rp = memset(keystate, 0, sizeof(keystate));
-	    if (static_cast<bool*>(rp) != keystate) return KB_MEMSET_FAIL;
-	    return OKAY;
-	}
 
-	inline rt reset_km(){
-	    void* rp = memset(map, 0, sizeof(map));
-	    if (static_cast<SDL_Scancode*>(rp) != map) return KM_MEMSET_FAIL;
-	    return OKAY;
-	}
+	template<typename T, size_t N>
+	    inline void reset_array(T (&arr)[N], T val){ memset(arr, val, N*sizeof(T)); }
 
-	inline rt reset_rp(){
-	    void* rp = memset(rpts, 0, sizeof(rpts));
-	    if(static_cast<i16*>(rp) != rpts) return RP_MEMSET_FAIL;
-	    return OKAY;
-	}
+	template<typename T, size_t N>
+	    inline void reset_array(T (&arr)[N]){ memset(arr, 0, N*sizeof(T)); }
 
 	inline rt poll_events(){
 	    SDL_Event event;
-	    rt r = OKAY;
+	    SDL_Scancode tcode = SDL_SCANCODE_UNKNOWN;
 
 	    while(SDL_PollEvent(&event)) {
+		tcode = event.key.keysym.scancode;
 		switch(event.type){
 		    case SDL_QUIT:
 			return QUIT;
 		    case SDL_KEYDOWN:
-			if(event.key.repeat){
-			    std::cerr << "incrementing key repeat" << std::endl;
-			    ++rpts[event.key.keysym.scancode];
-			}
-			else{
-			    keystate[event.key.keysym.scancode] = true;
-			    rpts[event.key.keysym.scancode] = 0;
+			keystate[tcode] = true;
+			if(!is_held(tcode)){
+			    time_down[tcode] = SDL_GetTicks64();
+			    std::cerr<<"set down time\n";
 			}
 			break;
 		    case SDL_KEYUP:
-			keystate[event.key.keysym.scancode] = false;
-			rpts[event.key.keysym.scancode] = 0;
+			keystate[tcode] = false;
+			time_up[tcode] = SDL_GetTicks64();
+
+
+			std::cerr<<"key held for " << (time_up[tcode] - time_down[tcode]) << "ms\n";
+
+
+
 			break;
 		    default:
 			break;
@@ -77,8 +68,7 @@ class Keyboard{
 	}
 
 	inline rt set_default_map(){
-	    rt r = reset_km();
-	    if(r) return r;
+	    reset_array(map, SDL_SCANCODE_UNKNOWN);
 
 	    for(i16 i=0; i<KB_NUM_ACTIONS; ++i){
 		switch(i){
@@ -102,19 +92,34 @@ class Keyboard{
 			break;
 		}
 	    }
-
 	    return OKAY;
 	}
 
-	inline rt get_action_repeats(KB_ACTION pact){
-	    if(pact>=0 && pact<KB_NUM_ACTIONS) return rpts[map[pact]];
-	    return KB_INVALID_ACTION;
+	inline ui64 is_held(KB_ACTION pka){
+	    ui64 t = 0;
+	    if(pka>=0 && pka<KB_NUM_ACTIONS)
+		if(time_down[map[pka]]>time_up[map[pka]]) return SDL_GetTicks64() - time_down[map[pka]];
+		else return 0;
+	    else return 0;
 	}
 
-	inline rt get_key_repeats(SDL_Scancode psc){
-	    return rpts[psc];
+	inline ui64 is_held(SDL_Scancode psc){
+	    ui64 t = 0;
+	    if(psc>=0 && psc<SDL_NUM_SCANCODES)
+		if(time_down[psc]>time_up[psc]) return SDL_GetTicks64() - time_down[psc];
+		else return 0;
+	    else return 0;
 	}
-};
+
+	// inline rt get_action_repeats(KB_ACTION pact){
+	//     if(pact>=0 && pact<KB_NUM_ACTIONS) return rpts[map[pact]];
+	//     return KB_INVALID_ACTION;
+	// }
+
+	// inline rt get_key_repeats(SDL_Scancode psc){
+	//     return rpts[psc];
+	// }
+	};
 
 #endif
 
