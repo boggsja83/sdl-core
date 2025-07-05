@@ -203,6 +203,8 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
+ /home/sl1m/programming/source/sdl_core/settings.h \
+ /usr/include/SDL2/SDL_pixels.h \
  /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_assert.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \

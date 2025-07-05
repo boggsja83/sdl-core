@@ -389,6 +389,7 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_
   /home/sl1m/programming/source/sdl_core/entity_manager.h \
   /home/sl1m/programming/source/sdl_core/keyboard.h \
   /home/sl1m/programming/source/sdl_core/sdl_w.h \
+  /home/sl1m/programming/source/sdl_core/settings.h \
   /home/sl1m/programming/source/sdl_core/types.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_assert.h \

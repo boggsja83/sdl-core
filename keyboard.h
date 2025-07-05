@@ -6,6 +6,7 @@
 #include <SDL_timer.h>
 #include <iostream>
 
+#include "settings.h"
 #include "types.h"
 
 class Keyboard{
@@ -47,18 +48,13 @@ class Keyboard{
 			keystate[tcode] = true;
 			if(!is_held(tcode)){
 			    time_down[tcode] = SDL_GetTicks64();
-			    std::cerr<<"set down time\n";
+			    // std::cerr<<"set down time\n";
 			}
 			break;
 		    case SDL_KEYUP:
 			keystate[tcode] = false;
 			time_up[tcode] = SDL_GetTicks64();
-
-
-			std::cerr<<"key held for " << (time_up[tcode] - time_down[tcode]) << "ms\n";
-
-
-
+			// std::cerr<<"key held for " << (time_up[tcode] - time_down[tcode]) << "ms\n";
 			break;
 		    default:
 			break;
@@ -95,8 +91,12 @@ class Keyboard{
 	    return OKAY;
 	}
 
+
+	// TODO
+	// need to test out considering KB_THRESHOLD_PRESS here to determine
+	// if is held... (by definition this should be done, right??) 7-4-25
+	// answerish: acktualLy prob not. keep this function "raw"
 	inline ui64 is_held(KB_ACTION pka){
-	    ui64 t = 0;
 	    if(pka>=0 && pka<KB_NUM_ACTIONS)
 		if(time_down[map[pka]]>time_up[map[pka]]) return SDL_GetTicks64() - time_down[map[pka]];
 		else return 0;
@@ -111,6 +111,14 @@ class Keyboard{
 	    else return 0;
 	}
 
+	inline float repeats(KB_ACTION pka){
+	    if(pka>=0 && pka<KB_NUM_ACTIONS){ 
+		if(time_down[map[pka]]>time_up[map[pka]]) return (1.f*SDL_GetTicks64() - time_down[map[pka]]) / KB_THRESHOLD_PRESS;
+		else return 0;
+	    }
+	    else return 0;
+	}
+
 	// inline rt get_action_repeats(KB_ACTION pact){
 	//     if(pact>=0 && pact<KB_NUM_ACTIONS) return rpts[map[pact]];
 	//     return KB_INVALID_ACTION;
@@ -119,7 +127,7 @@ class Keyboard{
 	// inline rt get_key_repeats(SDL_Scancode psc){
 	//     return rpts[psc];
 	// }
-	};
+};
 
 #endif
 

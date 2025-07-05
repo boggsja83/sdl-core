@@ -312,11 +312,11 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /home/sl1m/programming/source/sdl_core/keyboard.h \
  /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_scancode.h \
  /usr/include/SDL2/SDL_timer.h \
+ /home/sl1m/programming/source/sdl_core/settings.h \
+ /usr/include/SDL2/SDL_pixels.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_scancode.h \
  /home/sl1m/programming/source/sdl_core/entity_system.h \
- /usr/include/SDL2/SDL_render.h \
- /home/sl1m/programming/source/sdl_core/settings.h \
- /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_error.h \
+ /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_error.h \
  /usr/include/SDL2/SDL_video.h

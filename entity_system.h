@@ -75,6 +75,7 @@ typedef struct ECSKB : ECS {
 	KB_ACTION tka = KB_INVALID_ACTION;
 	SDL_Scancode tsc = SDL_SCANCODE_UNKNOWN;
 	rt r = OKAY;
+	float tf = 0.f;
 
 	for(i16 o=0; o<em.ents.size(); ++o){
 	    if(em.ents[o] & CM_KB){
@@ -100,11 +101,15 @@ typedef struct ECSKB : ECS {
 				if(em.ents[o]&CM_VEL){ em.vel[o].x = -175.0f; }
 				break;
 			    case TEST_ACTION:
-				// if(em.pkb->get_action_repeats(TEST_ACTION)==0){	
-				r = em.pkb->is_held(TEST_ACTION);
-				if(r<KB_THRESHOLD_PRESS){
-				    r = em.psdlw->play_channel(-1, 0, 0);
-				}
+				//need to experiment more with method a and method b and perhaps others 7-4-25
+				//method a
+				if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) em.psdlw->play_channel(-1, 0, 0);
+
+				// method b
+				// tf = em.pkb->repeats(TEST_ACTION);
+				// if(tf<1.f){ em.psdlw->play_channel(-1, 0, 0); }
+				// std::cerr<<"repeats: " << tf << std::endl;
+
 				break;
 			    default:
 				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 
