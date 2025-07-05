@@ -143,6 +143,7 @@ sdl_core: CMakeFiles/sdl_core.dir/build.make
 sdl_core: /usr/lib/x86_64-linux-gnu/libSDL2.so
 sdl_core: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
 sdl_core: /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so
+sdl_core: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
 sdl_core: CMakeFiles/sdl_core.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/sl1m/programming/source/sdl_core/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable sdl_core"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sdl_core.dir/link.txt --verbose=$(VERBOSE)

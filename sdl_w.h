@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_stdinc.h>
@@ -27,6 +28,7 @@ class SDL_Wrap{
 	std::vector<SDL_Texture*>   textures;
 	std::vector<Mix_Music*>	    musics;
 	std::vector<Mix_Chunk*>	    chunks;
+	TTF_Font*		    font;
 
     public:
 	SDL_Wrap(){
@@ -36,6 +38,7 @@ class SDL_Wrap{
 	    textures.clear();
 	    musics.clear();
 	    chunks.clear();
+	    font = nullptr;
 	}
 
 	~SDL_Wrap(){
@@ -63,6 +66,8 @@ class SDL_Wrap{
 	    std::cerr << "Deleting " << r << " windows" << std::endl;
 	    for(i16 i=0; i < windows.size(); ++i){ SDL_DestroyWindow(windows[i]); }
 
+	    TTF_CloseFont(font);
+	    TTF_Quit();
 	    Mix_CloseAudio();
 	    IMG_Quit();
 	    SDL_Quit();
@@ -75,11 +80,14 @@ class SDL_Wrap{
 	rt create_texture_from_path(str path, SDL_Renderer* renderer=nullptr);
 	rt create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface);
 	rt create_surface_from_img_load(str path);
+	rt create_surface_from_ttf(TTF_Font* pfont, str ptxt, SDL_Color pcol);
 	rt create_chunk_from_load_wav(str path);
 	rt create_music_from_load_mus(str path);
 
 	rt play_music(i16 pmid, i16 ploop);
 	rt play_channel(i16 pchan, i16 pcid, i16 ploop);
+
+	rt open_font(str path, ui16 size);
 };
 
 #endif

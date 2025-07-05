@@ -314,5 +314,6 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_mixer.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_stdinc.h \
- /usr/include/SDL2/SDL_surface.h /usr/include/SDL2/SDL_video.h
+ /usr/include/SDL2/SDL_ttf.h /usr/include/SDL2/SDL_render.h \
+ /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_surface.h \
+ /usr/include/SDL2/SDL_video.h

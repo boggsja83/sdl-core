@@ -8,6 +8,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_stdinc.h>
+#include <SDL_ttf.h>
 
 rt SDL_Wrap::init(){
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){
@@ -23,6 +24,11 @@ rt SDL_Wrap::init(){
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
 	std::cerr << "MIX_OpenAudio failed. MIX_Error: " << Mix_GetError() << std::endl;
 	return MIX_INIT_FAIL;
+    }
+
+    if(TTF_Init() < 0){
+	std::cerr << "TTF_Init could not initialize. TTF_Error: " << TTF_GetError() << std::endl;	
+	return TTF_INIT_FAIL;
     }
 
     return OKAY;
@@ -55,7 +61,17 @@ rt SDL_Wrap::create_surface_from_img_load(str path){
     	return IMG_LOAD_FAIL;
     }
     surfaces.push_back(temp);
-    return OKAY;
+    return surfaces.size()-1;
+}
+
+rt SDL_Wrap::create_surface_from_ttf(TTF_Font* pfont, str ptxt, SDL_Color pcol){
+    SDL_Surface* temp = TTF_RenderText_Solid(pfont, ptxt, pcol);
+    if(!temp){
+	std::cerr << "RenderText failed. TTF_Error: " << TTF_GetError() << std::endl;
+	return TTF_SURFACE_FAIL;
+    }
+    surfaces.push_back(temp);
+    return surfaces.size()-1;
 }
 
 rt SDL_Wrap::create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface){
@@ -70,7 +86,7 @@ rt SDL_Wrap::create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* su
 
 rt SDL_Wrap::create_texture_from_path(str path, SDL_Renderer* renderer){
     rt r = create_surface_from_img_load(path);
-    if(r) return r;
+    if(r<0) return r;
 
     if(renderer){
 	r = create_texture_from_surface(renderer, surfaces.back());
@@ -118,6 +134,15 @@ rt SDL_Wrap::play_music(i16 pmid=-1, i16 ploop=-1){
 	return PLAY_MUSIC_FAIL;
     }
 
+    return OKAY;
+}
+
+rt SDL_Wrap::open_font(str path, ui16 size){
+    font = TTF_OpenFont(path, size);
+    if(!font){
+	std::cerr << "OpenFont failed. TTF_Error: " << TTF_GetError() << std::endl;
+	return TTF_OPEN_FAIL;
+    }
     return OKAY;
 }
 

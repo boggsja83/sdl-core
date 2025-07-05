@@ -16,6 +16,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/SDL2_image/sdl2_image-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/SDL2_mixer/sdl2_mixer-config-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/SDL2_mixer/sdl2_mixer-config.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2_ttf/sdl2_ttf-config-version.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2_ttf/sdl2_ttf-config.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake"

@@ -23,6 +23,8 @@
 int main(int argc, char** argv){
     Core core;
     rt r = core.sdlw.init();
+    ui16 tw = 0;
+    ui16 th = 0;
 
     if(!r) r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DEF_WIN_W, DEF_WIN_H, SDL_WINDOW_VULKAN);
     if(!r) r = core.sdlw.create_renderer(core.sdlw.windows[WINDOW_MAIN], -1, SDL_RENDERER_ACCELERATED);
@@ -35,6 +37,12 @@ int main(int argc, char** argv){
     // Mix_VolumeMusic(64);    // accepts 0-128
     // if(!r) r = core.sdlw.play_music(0,-1); 
 
+    if(!r) r = core.sdlw.open_font("BigBlueTerm437NerdFont-Regular.ttf", 24);
+    if(!r) r = core.sdlw.create_surface_from_ttf(core.sdlw.font,"Big Ol MACK diDAAD!",SDL_Color({255,34,56,255}));
+    // r=r>0?0:r;
+    if(r>=0) { tw=core.sdlw.surfaces[r]->w; th=core.sdlw.surfaces[r]->h;}
+    if(r>=0) r = core.sdlw.create_texture_from_surface(core.sdlw.renderers[RENDERER_MAIN], core.sdlw.surfaces[r]);
+
     ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
 
     // if(!r) r = core.em.add_entity(allz-CM_VEL);
@@ -42,6 +50,7 @@ int main(int argc, char** argv){
     if(!r) r = core.em.add_entity(allz | CM_KB);
     if(!r) r = core.em.add_entity(allz | CM_KB);
     if(!r) r = core.em.add_entity(allz);
+    if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_TEXTURE);
 
     SDL_Rect src = {0,0,756,568};
     cTexture tt = cTexture(0,0,0,src);
@@ -88,6 +97,12 @@ int main(int argc, char** argv){
     tp = cPos(3, 800.f, 000.f, 25, 35);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
+    if(!r) r = core.em.set(tp);
+
+    src = {0,0, tw, th};
+    tt = cTexture(4,0,1,src);
+    tp = cPos(4,(1.f*800-tw)/2,(1.f*600-th)/2,tw,th);
+    if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tp);
 
     if(!r) r = core.loop();

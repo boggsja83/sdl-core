@@ -58,6 +58,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/begin_code.h \
@@ -439,6 +440,7 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/begin_code.h \
@@ -822,6 +824,7 @@ CMakeFiles/sdl_core.dir/main.cpp.o: /home/sl1m/programming/source/sdl_core/main.
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/begin_code.h \
@@ -1200,6 +1203,7 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/begin_code.h \
@@ -1687,12 +1691,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/usr/include/c++/13/cerrno:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
-
 /usr/include/c++/13/bits/stl_function.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/hresetintrin.h:
@@ -1724,8 +1722,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/13/system_error:
-
-/usr/include/c++/13/bits/ptr_traits.h:
 
 /usr/include/c++/13/bits/predefined_ops.h:
 
@@ -1834,6 +1830,22 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/bits/charconv.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/c++/13/cctype:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/13/ext/atomicity.h:
+
+/usr/include/c++/13/tr1/gamma.tcc:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/ia32intrin.h:
+
+/usr/include/SDL2/SDL_video.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /usr/include/SDL2/SDL_joystick.h:
 
@@ -1965,6 +1977,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /home/sl1m/programming/source/sdl_core/core.cpp:
 
+/usr/include/c++/13/bits/ptr_traits.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlbwintrin.h:
 
 /usr/include/c++/13/bits/locale_facets.h:
@@ -1992,14 +2006,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/stdlib.h:
 
 /usr/include/SDL2/SDL_loadso.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/ia32intrin.h:
-
-/usr/include/SDL2/SDL_video.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /usr/include/SDL2/SDL_locale.h:
 
@@ -2065,9 +2071,11 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/clocale:
 
-/usr/include/c++/13/cctype:
+/usr/include/c++/13/cerrno:
 
-/usr/include/c++/13/tr1/gamma.tcc:
+/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/cetintrin.h:
 
@@ -2106,6 +2114,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/ext/alloc_traits.h:
 
 /usr/include/c++/13/new:
+
+/usr/include/SDL2/SDL_ttf.h:
 
 /usr/include/inttypes.h:
 
@@ -2292,7 +2302,3 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/asm-generic/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
-
-/usr/include/c++/13/ext/atomicity.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
