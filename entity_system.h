@@ -88,6 +88,8 @@ typedef struct ECSRendTexture : ECS {
 // i should rewrite this function so that it doesnt loop through
 // all of the entities. just work on the component vector irself
 // same for all functions in this file
+// AckTUaLLY, there will always be less entites (or =) than components,
+// so loop through entities is better
 typedef struct ECSKB : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
 	KB_ACTION tka = KB_INVALID_ACTION;
