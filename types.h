@@ -3,10 +3,12 @@
 
 #include <cstdint>
 
+typedef int8_t	i8;
 typedef int16_t i16;
 typedef int32_t i32;
 typedef int64_t i64;
 
+typedef uint8_t	 ui8;
 typedef uint16_t ui16;
 typedef uint32_t ui32;
 typedef uint64_t ui64;
@@ -47,7 +49,7 @@ typedef enum {
     CREATE_SURFACE_FAIL =   -212,
     CREATE_TEXTURE_FAIL =   -213,
     MIX_LOAD_WAV_FAIL =	    -220,
-    MIX_LOAD_MP3_FAIL =	    -221,
+    MIX_LOAD_MUS_FAIL =	    -221,
     IMG_LOAD_FAIL =	    -222,
     TTF_OPEN_FAIL =	    -223,
     TTF_SURFACE_FAIL =	    -224,

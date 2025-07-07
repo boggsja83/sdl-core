@@ -23,44 +23,47 @@
 int main(int argc, char** argv){
     Core core;
     rt r = core.sdlw.init();
-    ui16 tw = 0;
-    ui16 th = 0;
+    ui16 tw1 = 0, tw2 = 0;
+    ui16 th1 = 0, th2 = 0;
 
     if(!r) r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DEF_WIN_W, DEF_WIN_H, SDL_WINDOW_VULKAN);
     if(!r) r = core.sdlw.create_renderer(core.sdlw.windows[WINDOW_MAIN], -1, SDL_RENDERER_ACCELERATED);
-    if(!r) r = SDL_SetRenderDrawColor(core.sdlw.renderers[RENDERER_MAIN], DEF_R, DEF_G, DEF_B, DEF_A);
+    if(!r) r = SDL_SetRenderDrawColor(core.sdlw.renderers[REND_MAIN], DEF_R, DEF_G, DEF_B, DEF_A);
 
-    if(!r) r = core.sdlw.create_texture_from_path("bg.jpg", core.sdlw.renderers[RENDERER_MAIN]);
-    if(!r) r = core.sdlw.create_chunk_from_load_wav("sound2.wav");
-    if(!r) r = core.sdlw.create_music_from_load_mus("background.mp3");
+    if(!r) r = core.sdlw.create_texture_from_path("bg.jpg", core.sdlw.renderers[REND_MAIN]);
+    if(!r) r = core.sdlw.create_chunk_wav_from_path("sound2.wav");
+    if(!r) r = core.sdlw.create_music_from_path("background.mp3");
     
-    // Mix_VolumeMusic(64);    // accepts 0-128
-    // if(!r) r = core.sdlw.play_music(0,-1); 
+    std::cerr << "Previous Volume: " << 100.f*Mix_VolumeMusic(64)/128.f << "% | Current Volume: " << 100.f*Mix_VolumeMusic(-1)/128.f << '%' << std::endl;    // accepts 0-128
+    if(!r) r = core.sdlw.play_music(0,-1); 
 
-    if(!r) r = core.sdlw.open_font("BigBlueTerm437NerdFont-Regular.ttf", 24);
-    if(!r) r = core.sdlw.create_surface_from_ttf(core.sdlw.font,"Big Ol MACK diDAAD!",SDL_Color({255,34,56,255}));
-    // r=r>0?0:r;
-    if(r>=0) { tw=core.sdlw.surfaces[r]->w; th=core.sdlw.surfaces[r]->h;}
-    if(r>=0) r = core.sdlw.create_texture_from_surface(core.sdlw.renderers[RENDERER_MAIN], core.sdlw.surfaces[r]);
+    if(!r) r = core.sdlw.open_font("BigBlue437-Regular.ttf", 24);
+    // if(!r) r = core.sdlw.open_font("BigBlueTerm437NerdFont-Regular.ttf", 24);
+    if(!r) r = core.sdlw.create_surface_from_ttf(core.sdlw.font,"abcdefghijklmnopqrstuvwxyz",SDL_Color({0,100,150,255}));
+    if(r>=0) { tw1=core.sdlw.surfaces[r]->w; th1=core.sdlw.surfaces[r]->h; }
+    if(r>=0) r = core.sdlw.create_texture_from_surface(core.sdlw.renderers[REND_MAIN], core.sdlw.surfaces[r]);
+    if(r>=0) r = core.sdlw.create_texture_from_text(core.sdlw.font,"ABCDEFGHIJKLMNOPQRSTUVWXYZ",SDL_Color({0,255,0,255}),core.sdlw.renderers[REND_MAIN]);
+    if(r>=0) tw2 = core.sdlw.surfaces[r]->w; th2 = core.sdlw.surfaces[r]->h;
+    r=r>0?0:r;
+
+    SDL_Rect src;
+    cTexture tt;
+    cVel tv;
+    cPos tp;
+    cKB tk;
 
     ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
 
-    // if(!r) r = core.em.add_entity(allz-CM_VEL);
     if(!r) r = core.em.add_entity(allz);
-    if(!r) r = core.em.add_entity(allz | CM_KB);
-    if(!r) r = core.em.add_entity(allz | CM_KB);
-    if(!r) r = core.em.add_entity(allz);
-    if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_TEXTURE);
-
-    SDL_Rect src = {0,0,756,568};
-    cTexture tt = cTexture(0,0,0,src);
-    cVel tv = cVel(0, 50.f, -50.f);
-    cPos tp = cPos(0, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
-    cKB tk = cKB();
+    src = {0,0,756,568};
+    tt = cTexture(0,0,0,src);
+    tv = cVel(0, 50.f, -50.f);
+    tp = cPos(0, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
 
+    if(!r) r = core.em.add_entity(allz | CM_KB);
     src = {0,0,756,568};
     tt = cTexture(1,0,0,src);
     tv = cVel(1, 0.f, 0.f);
@@ -76,6 +79,7 @@ int main(int argc, char** argv){
     if(!r) r = core.em.set(tp);
     if(!r) r = core.em.set(tk);
 
+    if(!r) r = core.em.add_entity(allz | CM_KB);
     src = {0,0, 200, 400};
     tt = cTexture(2,0,0,src);
     tv = cVel(2, -15.f, -15.f);
@@ -85,12 +89,12 @@ int main(int argc, char** argv){
     tk.acts.push_back(MOVE_E);
     tk.acts.push_back(MOVE_W);
     tk.acts.push_back(MOVE_N);
-
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
     if(!r) r = core.em.set(tk);
 
+    if(!r) r = core.em.add_entity(allz);
     src = {0,0, 300, 500};
     tt = cTexture(3,0,0,src);
     tv = cVel(3, -25.f, 25.f);
@@ -99,11 +103,21 @@ int main(int argc, char** argv){
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
 
-    src = {0,0, tw, th};
+    if(!r) r = core.em.add_entity(allz-CM_VEL);
+    src = {0,0, tw1, th1};
     tt = cTexture(4,0,1,src);
-    tp = cPos(4,(1.f*800-tw)/2,(1.f*600-th)/2,tw,th);
+    tp = cPos(4,(1.f*800-tw1)/2,(1.f*600-th1)/2,tw1,th1);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tp);
+
+    if(!r) r = core.em.add_entity(allz-CM_VEL);
+    src = {0,0, tw2, th2};
+    tt = cTexture(5,0,2,src);
+    tp = cPos(5,(1.f*800-tw2)/2,(1.f*600-th2)/2-th2,tw2,th2);
+    if(!r) r = core.em.set(tt);
+    if(!r) r = core.em.set(tp);
+
+
 
     if(!r) r = core.loop();
     // r = (r==-1)?0:r;

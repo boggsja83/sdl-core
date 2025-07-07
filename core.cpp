@@ -20,7 +20,7 @@ rt Core::loop(){
     uint64_t crt = lrt;	// current render time
 
     SDL_Window* temp_win = sdlw.windows[WINDOW_MAIN];
-    SDL_Renderer* temp_rend = sdlw.renderers[RENDERER_MAIN];
+    SDL_Renderer* temp_rend = sdlw.renderers[REND_MAIN];
 
     while(running){
 	cft = SDL_GetTicks64();
@@ -73,7 +73,7 @@ rt Core::update(float& accumulator){
 	if(r) return r;
 
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
-	r = ecs_ltf.update(em, FIXED_LOGIC_TS);
+	r = ecs_vel.update(em, FIXED_LOGIC_TS);
 	if(r) return r;
 
 	/**********************************************************************/

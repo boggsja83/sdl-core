@@ -41,7 +41,7 @@ rt SDL_Wrap::create_window(str title, i32 x, i32 y, i32 w, i32 h, ui32 flags){
 	return CREATE_WINDOW_FAIL;
     }
     windows.push_back(temp);
-    return OKAY;
+    return windows.size()-1;
 }
 
 rt SDL_Wrap::create_renderer(SDL_Window* win, i16 index, ui32 flags){
@@ -51,7 +51,7 @@ rt SDL_Wrap::create_renderer(SDL_Window* win, i16 index, ui32 flags){
 	return CREATE_RENDERER_FAIL;
     }
     renderers.push_back(temp);
-    return OKAY;
+    return renderers.size()-1;
 }
 
 rt SDL_Wrap::create_surface_from_img_load(str path){
@@ -81,41 +81,42 @@ rt SDL_Wrap::create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* su
 	return CREATE_TEXTURE_FAIL;
     }
     textures.push_back(temp);
-    return OKAY;
+    return textures.size()-1;
 }
 
 rt SDL_Wrap::create_texture_from_path(str path, SDL_Renderer* renderer){
     rt r = create_surface_from_img_load(path);
     if(r<0) return r;
 
-    if(renderer){
-	r = create_texture_from_surface(renderer, surfaces.back());
-    }
-    else{
-	r = create_texture_from_surface(renderers[RENDERER_MAIN], surfaces.back());
-    }
-
-    return r;
+    if(renderer) return create_texture_from_surface(renderer, surfaces[r]);
+    else return create_texture_from_surface(renderers[REND_MAIN], surfaces[r]); 
 }
 
-rt SDL_Wrap::create_chunk_from_load_wav(str path){
+rt SDL_Wrap::create_texture_from_text(TTF_Font* pfont, str ptxt, SDL_Color pcol, SDL_Renderer* prend){
+    rt r = create_surface_from_ttf(pfont, ptxt, pcol);
+    if(r<0) return r;
+
+    return create_texture_from_surface(prend, surfaces[r]);
+}
+
+rt SDL_Wrap::create_chunk_wav_from_path(str path){
     Mix_Chunk* temp = Mix_LoadWAV(path);
     if(!temp){
 	std::cerr << "LoadWAV failed. Mix_Errror: " << Mix_GetError() << std::endl;
 	return MIX_LOAD_WAV_FAIL;
     }
     chunks.push_back(temp);
-    return OKAY;
+    return chunks.size()-1;
 }
 
-rt SDL_Wrap::create_music_from_load_mus(str path){
+rt SDL_Wrap::create_music_from_path(str path){
     Mix_Music* temp = Mix_LoadMUS(path);
     if(!temp){
 	std::cerr << "LoadMUS failed. Mix_Error: " << Mix_GetError() << std::endl;
-	return MIX_LOAD_MP3_FAIL;
+	return MIX_LOAD_MUS_FAIL;
     }
     musics.push_back(temp);
-    return OKAY;
+    return musics.size()-1;
 }
 
 rt SDL_Wrap::play_channel(i16 pchan=-1, i16 pcid=-1, i16 ploop=0){

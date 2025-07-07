@@ -33,7 +33,7 @@ class Keyboard{
 	    inline void reset_array(T (&arr)[N], T val){ memset(arr, val, N*sizeof(T)); }
 
 	template<typename T, size_t N>
-	    inline void reset_array(T (&arr)[N]){ memset(arr, 0, N*sizeof(T)); }
+	    inline void reset_array(T (&arr)[N]){ memset(arr, 0, N*sizeof(T)); std::cerr << "N*sizeof(T)=" << (N*sizeof(T)) << std::endl; }
 
 	inline rt poll_events(){
 	    SDL_Event event;
@@ -112,10 +112,9 @@ class Keyboard{
 	}
 
 	inline float repeats(KB_ACTION pka){
-	    if(pka>=0 && pka<KB_NUM_ACTIONS){ 
+	    if(pka>=0 && pka<KB_NUM_ACTIONS) 
 		if(time_down[map[pka]]>time_up[map[pka]]) return (1.f*SDL_GetTicks64() - time_down[map[pka]]) / KB_THRESHOLD_PRESS;
 		else return 0;
-	    }
 	    else return 0;
 	}
 

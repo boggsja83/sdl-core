@@ -8,7 +8,7 @@
 
 typedef struct ECS{ virtual rt update(EntityManager& em, float dtf) = 0; } ECS;
 
-typedef struct ECSLogicTransform : ECS {
+typedef struct ECSvel : ECS {
     rt update(EntityManager& em, float dft) override {
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i] & (CM_POS|CM_VEL))==(CM_POS|CM_VEL)){
@@ -18,7 +18,22 @@ typedef struct ECSLogicTransform : ECS {
 	}
 	return OKAY;
     }
-} ECSLogicTransform;
+
+    //    rt update(EntityManager& em, float dft) override {
+    // i16 oid = -1;
+    // for(i16 i=0; i<em.ents.size(); ++i){ // only do this num-ents times (not vel size)
+    //     oid = em.vel[i].oid;
+    //     if(oid>=0){
+    // 	if((em.ents[oid] & (CM_POS|CM_VEL))==(CM_POS|CM_VEL)){
+    // 	    em.pos[oid].x = em.pos[oid].x + em.vel[oid].x * dft;
+    // 	    em.pos[oid].y = em.pos[oid].y + em.vel[oid].y * dft;
+    // 	} else return ECS_LACKS_COMP;
+    //     }
+    // }
+    //
+    // return OKAY;
+    //    }
+} ECSvel;
 
 typedef struct ECSRendTransform : ECS {
     rt update(EntityManager& em, float alpha) override {
@@ -51,7 +66,7 @@ typedef struct ECSRendTexture : ECS {
 
 		if(tri>=0 && tri<em.psdlw->renderers.size()) tr = em.psdlw->renderers[tri];	
 		else return INVALID_RENDERER;
-		
+
 		if(tti>=0 && tti<em.psdlw->textures.size()) tt = em.psdlw->textures[tti];
 		else return INVALID_TEXTURE;
 
@@ -70,6 +85,9 @@ typedef struct ECSRendTexture : ECS {
     }
 } ECSRendTexture;
 
+// i should rewrite this function so that it doesnt loop through
+// all of the entities. just work on the component vector irself
+// same for all functions in this file
 typedef struct ECSKB : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
 	KB_ACTION tka = KB_INVALID_ACTION;
@@ -85,9 +103,6 @@ typedef struct ECSKB : ECS {
 		    if(em.pkb->keystate[tsc]){
 			// key down actions
 			switch(tka){
-			    case KB_INVALID_ACTION:
-				std::cerr << "KB_NO_ACTION, somehow?" << std::endl;
-				break;
 			    case MOVE_N:
 				if(em.ents[o]&CM_VEL){ em.vel[o].y = -175.0f; }
 				break;
@@ -103,7 +118,8 @@ typedef struct ECSKB : ECS {
 			    case TEST_ACTION:
 				//need to experiment more with method a and method b and perhaps others 7-4-25
 				//method a
-				if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) em.psdlw->play_channel(-1, 0, 0);
+				// if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) if(!Mix_Playing(0)) em.psdlw->play_channel(0, 0, 0);
+				if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) em.psdlw->play_channel(0,0,0);
 
 				// method b
 				// tf = em.pkb->repeats(TEST_ACTION);

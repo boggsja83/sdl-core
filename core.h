@@ -17,7 +17,7 @@ class Core{
 	SDL_Wrap	    sdlw;
 	Keyboard	    kb; 
 	EntityManager	    em;
-	ECSLogicTransform   ecs_ltf;
+	ECSvel		    ecs_vel;
 	ECSRendTransform    ecs_rtf;
 	ECSRendTexture	    ecs_rtx;
 	ECSKB		    ecs_kb;
