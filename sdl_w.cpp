@@ -138,13 +138,14 @@ rt SDL_Wrap::play_music(i16 pmid=-1, i16 ploop=-1){
     return OKAY;
 }
 
-rt SDL_Wrap::open_font(str path, ui16 size){
-    font = TTF_OpenFont(path, size);
+rt SDL_Wrap::open_font(str path, ui16 pfontsz){
+    TTF_Font* font = TTF_OpenFont(path, pfontsz);
     if(!font){
 	std::cerr << "OpenFont failed. TTF_Error: " << TTF_GetError() << std::endl;
 	return TTF_OPEN_FAIL;
     }
-    return OKAY;
+    fonts.push_back(font);
+    return fonts.size()-1;
 }
 
 

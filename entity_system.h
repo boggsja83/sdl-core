@@ -8,7 +8,7 @@
 
 typedef struct ECS{ virtual rt update(EntityManager& em, float dtf) = 0; } ECS;
 
-typedef struct ECSvel : ECS {
+typedef struct ECSpos : ECS {
     rt update(EntityManager& em, float dft) override {
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i] & (CM_POS|CM_VEL))==(CM_POS|CM_VEL)){
@@ -33,9 +33,9 @@ typedef struct ECSvel : ECS {
     //
     // return OKAY;
     //    }
-} ECSvel;
+} ECSpos;
 
-typedef struct ECSRendTransform : ECS {
+typedef struct ECSrendpos : ECS {
     rt update(EntityManager& em, float alpha) override {
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i] & (CM_RENDPOS|CM_POS))==(CM_RENDPOS|CM_POS)){
@@ -53,9 +53,9 @@ typedef struct ECSRendTransform : ECS {
 	}
 	return OKAY;
     }
-} ECSRendTransform;
+} ECSrendpos;
 
-typedef struct ECSRendTexture : ECS {
+typedef struct ECStexture : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i]&(CM_TEXTURE|CM_RENDPOS))==(CM_TEXTURE|CM_RENDPOS)){
@@ -83,17 +83,18 @@ typedef struct ECSRendTexture : ECS {
 	}
 	return OKAY;
     }
-} ECSRendTexture;
+} ECStexture;
 
 // i should rewrite this function so that it doesnt loop through
 // all of the entities. just work on the component vector irself
 // same for all functions in this file
 // AckTUaLLY, there will always be less entites (or =) than components,
 // so loop through entities is better
-typedef struct ECSKB : ECS {
+typedef struct ECSkb : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
 	KB_ACTION tka = KB_INVALID_ACTION;
 	SDL_Scancode tsc = SDL_SCANCODE_UNKNOWN;
+
 	rt r = OKAY;
 	float tf = 0.f;
 
@@ -106,16 +107,20 @@ typedef struct ECSKB : ECS {
 			// key down actions
 			switch(tka){
 			    case MOVE_N:
-				if(em.ents[o]&CM_VEL){ em.vel[o].y = -175.0f; }
+				    if(em.pkb->keystate[em.pkb->map[MOVE_S]]) em.vel[o].y=0;
+				    else em.vel[o].y = -1.f*PLAYER_VEL;
 				break;
 			    case MOVE_S:
-				if(em.ents[o]&CM_VEL){ em.vel[o].y = 175.0f; }
+				    if(em.pkb->keystate[em.pkb->map[MOVE_N]]) em.vel[o].y=0;
+				    else em.vel[o].y = PLAYER_VEL;
 				break;
 			    case MOVE_E:
-				if(em.ents[o]&CM_VEL){ em.vel[o].x = 175.0f; }
+				    if(em.pkb->keystate[em.pkb->map[MOVE_W]]) em.vel[o].x=0;
+				    else em.vel[o].x = PLAYER_VEL;
 				break;
 			    case MOVE_W:
-				if(em.ents[o]&CM_VEL){ em.vel[o].x = -175.0f; }
+				    if(em.pkb->keystate[em.pkb->map[MOVE_E]]) em.vel[o].x=0;
+				    else em.vel[o].x = -1.f*PLAYER_VEL;
 				break;
 			    case TEST_ACTION:
 				//need to experiment more with method a and method b and perhaps others 7-4-25
@@ -129,8 +134,15 @@ typedef struct ECSKB : ECS {
 				// std::cerr<<"repeats: " << tf << std::endl;
 
 				break;
+			    case VOL_UP:
+				r = Mix_VolumeMusic(-1);				
+				std::cerr << "Volume Up: " << 100.f*Mix_VolumeMusic(r+1)/128.f << '%' << std::endl;    // accepts 0-128
+				break;
+			    case VOL_DN:
+				r = Mix_VolumeMusic(-1);				
+				std::cerr << "Volume Down: " << 100.f*Mix_VolumeMusic(r-1)/128.f << '%' << std::endl;    // accepts 0-128
+				break;
 			    default:
-				std::cerr << "No binding set for SDL_Scancode: " << tsc << std::endl; 
 				break;
 			}
 		    }
@@ -139,16 +151,16 @@ typedef struct ECSKB : ECS {
 			    // key not-down actions - not a "on key up action" function.
 			    // can only assume key is not pressed at this point
 			    case MOVE_N:
-				if(em.ents[o]&CM_VEL){ em.vel[o].y = (em.vel[o].y<0)?0:em.vel[o].y; }
+				em.vel[o].y = (em.vel[o].y<0)?0:em.vel[o].y;
 				break;
 			    case MOVE_S:
-				if(em.ents[o]&CM_VEL){ em.vel[o].y = (em.vel[o].y>0)?0:em.vel[o].y; }
+				em.vel[o].y = (em.vel[o].y>0)?0:em.vel[o].y;
 				break;
 			    case MOVE_E:
-				if(em.ents[o]&CM_VEL){ em.vel[o].x = (em.vel[o].x>0)?0:em.vel[o].x; }
+				em.vel[o].x = (em.vel[o].x>0)?0:em.vel[o].x;
 				break;
 			    case MOVE_W:
-				if(em.ents[o]&CM_VEL){ em.vel[o].x = (em.vel[o].x<0)?0:em.vel[o].x; }
+				em.vel[o].x = (em.vel[o].x<0)?0:em.vel[o].x;
 				break;
 			    case TEST_ACTION:
 				break;
@@ -163,6 +175,6 @@ typedef struct ECSKB : ECS {
 	}
 	return OKAY;
     }
-} ECSKB;
+} ECSkb;
 
 #endif

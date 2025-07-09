@@ -73,7 +73,7 @@ rt Core::update(float& accumulator){
 	if(r) return r;
 
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
-	r = ecs_vel.update(em, FIXED_LOGIC_TS);
+	r = ecs_pos.update(em, FIXED_LOGIC_TS);
 	if(r) return r;
 
 	/**********************************************************************/

@@ -17,10 +17,10 @@ class Core{
 	SDL_Wrap	    sdlw;
 	Keyboard	    kb; 
 	EntityManager	    em;
-	ECSvel		    ecs_vel;
-	ECSRendTransform    ecs_rtf;
-	ECSRendTexture	    ecs_rtx;
-	ECSKB		    ecs_kb;
+	ECSpos		    ecs_pos;
+	ECSrendpos	    ecs_rtf;
+	ECStexture	    ecs_rtx;
+	ECSkb		    ecs_kb;
     public:
 	int64_t	    STATUS_INT64;
 	str	    STATUS_STRING;

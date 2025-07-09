@@ -28,7 +28,8 @@ class SDL_Wrap{
 	std::vector<SDL_Texture*>   textures;
 	std::vector<Mix_Music*>	    musics;
 	std::vector<Mix_Chunk*>	    chunks;
-	TTF_Font*		    font;
+	std::vector<TTF_Font*>	    fonts;
+	// TTF_Font*		    font;
 
     public:
 	SDL_Wrap(){
@@ -38,11 +39,16 @@ class SDL_Wrap{
 	    textures.clear();
 	    musics.clear();
 	    chunks.clear();
-	    font = nullptr;
+	    fonts.clear();
+	    // font = nullptr;
 	}
 
 	~SDL_Wrap(){
-	    rt r = chunks.size();
+	    rt r = fonts.size();
+	    std::cerr << "Deleting " << r << " fonts" << std::endl;
+	    for(i16 i=0; i < r; ++i){ TTF_CloseFont(fonts[i]); }
+
+	    r = chunks.size();
 	    std::cerr << "Deleting " << r << " chunks" << std::endl;
 	    for(i16 i=0; i < r; ++i){ Mix_FreeChunk(chunks[i]); }
 
@@ -66,7 +72,7 @@ class SDL_Wrap{
 	    std::cerr << "Deleting " << r << " windows" << std::endl;
 	    for(i16 i=0; i < r; ++i){ SDL_DestroyWindow(windows[i]); }
 
-	    TTF_CloseFont(font);
+	    // TTF_CloseFont(font);
 	    TTF_Quit();
 	    Mix_CloseAudio();
 	    IMG_Quit();
@@ -88,7 +94,7 @@ class SDL_Wrap{
 	rt play_music(i16 pmid, i16 ploop);
 	rt play_channel(i16 pchan, i16 pcid, i16 ploop);
 
-	rt open_font(str path, ui16 size);
+	rt open_font(str path, ui16 pfontsz);
 };
 
 #endif

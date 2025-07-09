@@ -34,16 +34,19 @@ int main(int argc, char** argv){
     if(!r) r = core.sdlw.create_chunk_wav_from_path("sound2.wav");
     if(!r) r = core.sdlw.create_music_from_path("background.mp3");
     
-    std::cerr << "Previous Volume: " << 100.f*Mix_VolumeMusic(64)/128.f << "% | Current Volume: " << 100.f*Mix_VolumeMusic(-1)/128.f << '%' << std::endl;    // accepts 0-128
+    std::cerr << "Previous Volume: " << 100.f*Mix_VolumeMusic(00)/128.f << "% | Current Volume: " << 100.f*Mix_VolumeMusic(-1)/128.f << '%' << std::endl;    // accepts 0-128
     if(!r) r = core.sdlw.play_music(0,-1); 
 
     if(!r) r = core.sdlw.open_font("BigBlue437-Regular.ttf", 24);
-    // if(!r) r = core.sdlw.open_font("BigBlueTerm437NerdFont-Regular.ttf", 24);
-    if(!r) r = core.sdlw.create_surface_from_ttf(core.sdlw.font,"abcdefghijklmnopqrstuvwxyz",SDL_Color({0,100,150,255}));
-    if(r>=0) { tw1=core.sdlw.surfaces[r]->w; th1=core.sdlw.surfaces[r]->h; }
-    if(r>=0) r = core.sdlw.create_texture_from_surface(core.sdlw.renderers[REND_MAIN], core.sdlw.surfaces[r]);
-    if(r>=0) r = core.sdlw.create_texture_from_text(core.sdlw.font,"ABCDEFGHIJKLMNOPQRSTUVWXYZ",SDL_Color({0,255,0,255}),core.sdlw.renderers[REND_MAIN]);
-    if(r>=0) tw2 = core.sdlw.surfaces[r]->w; th2 = core.sdlw.surfaces[r]->h;
+
+    //text shadow
+    if(r>=0) r = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],"abcdefghijklmnopqrstuvwxyz",SDL_Color({0,0,255,255}),core.sdlw.renderers[REND_MAIN]);
+    if(r>=0) { tw1 = core.sdlw.surfaces[r]->w; th1 = core.sdlw.surfaces[r]->h; }
+
+    //foreground text
+    if(r>=0) r = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],"abcdefghijklmnopqrstuvwxyz",SDL_Color({255,255,255,255}),core.sdlw.renderers[REND_MAIN]);
+    if(r>=0) { tw2 = core.sdlw.surfaces[r]->w; th2 = core.sdlw.surfaces[r]->h; }
+
     r=r>0?0:r;
 
     SDL_Rect src;
@@ -74,6 +77,8 @@ int main(int argc, char** argv){
     tk.acts.push_back(MOVE_E);
     tk.acts.push_back(MOVE_W);
     tk.acts.push_back(TEST_ACTION);
+    tk.acts.push_back(VOL_UP);
+    tk.acts.push_back(VOL_DN);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tv);
     if(!r) r = core.em.set(tp);
@@ -106,18 +111,20 @@ int main(int argc, char** argv){
     if(!r) r = core.em.add_entity(allz-CM_VEL);
     src = {0,0, tw1, th1};
     tt = cTexture(4,0,1,src);
-    tp = cPos(4,(1.f*800-tw1)/2,(1.f*600-th1)/2,tw1,th1);
+    tp = cPos(4,(1.f*800-tw1)/2+1,(1.f*600-th1)/2+1,tw1,th1);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tp);
 
     if(!r) r = core.em.add_entity(allz-CM_VEL);
     src = {0,0, tw2, th2};
     tt = cTexture(5,0,2,src);
-    tp = cPos(5,(1.f*800-tw2)/2,(1.f*600-th2)/2-th2,tw2,th2);
+    tp = cPos(5,(1.f*800-tw2)/2,(1.f*600-th2)/2,tw2,th2);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tp);
 
-
+	//    for(ui32 i=0; i<1000; ++i){
+	// if(!r) r = core.em.add_entity(CM_NULL);
+	//    }
 
     if(!r) r = core.loop();
     // r = (r==-1)?0:r;

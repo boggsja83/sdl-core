@@ -24,8 +24,8 @@ typedef enum {
 
 typedef enum {
     KS_MEMSET_FAIL =	    -100,
-    KM_MEMSET_FAIL =	    -200,
-    RP_MEMSET_FAIL =	    -300
+    KM_MEMSET_FAIL =	    -125,
+    RP_MEMSET_FAIL =	    -150
 	// INVALID_ACTION =	    -400
 } KB_CODES;
 
@@ -36,6 +36,8 @@ typedef enum {
     MOVE_E =		    3,
     MOVE_W =		    4,
     TEST_ACTION =	    5,
+    VOL_UP =		    6,
+    VOL_DN =		    7,
     KB_NUM_ACTIONS =	    10
 } KB_ACTION;
 
@@ -57,14 +59,14 @@ typedef enum {
     INVALID_RENDERER =	    -233,
     INVALID_CHUNK =	    -234,
     INVALID_MUSIC =	    -235,
-    PLAY_CHANNEL_FAIL =	    -300,
-    PLAY_MUSIC_FAIL =	    -301
+    PLAY_CHANNEL_FAIL =	    -275,
+    PLAY_MUSIC_FAIL =	    -276
 } SDL_WRAP_CODES;
 
 typedef enum {
-    ECS_INVALID_COMP =	    -300,
-    ECS_INVALID_ID =	    -301,
-    ECS_LACKS_COMP =	    -302
+    ECS_INVALID_COMP =	    -400,
+    ECS_INVALID_ID =	    -401,
+    ECS_LACKS_COMP =	    -402
 } ECS_CODES;
 
 typedef enum {

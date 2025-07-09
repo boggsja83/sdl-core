@@ -83,6 +83,12 @@ class Keyboard{
 		    case TEST_ACTION:
 			map[i] = SDL_SCANCODE_SPACE;
 			break;
+		    case VOL_UP:
+			map[i] = SDL_SCANCODE_KP_PLUS;  
+			break;
+		    case VOL_DN:
+			map[i] = SDL_SCANCODE_KP_MINUS;
+			break;
 		    default:
 			map[i] = SDL_SCANCODE_UNKNOWN;
 			break;
