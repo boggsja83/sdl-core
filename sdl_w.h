@@ -1,6 +1,3 @@
-
-//  My SDL2 wrapper class
-
 #ifndef SDL_W
 #define SDL_W
 
@@ -72,7 +69,6 @@ class SDL_Wrap{
 	    std::cerr << "Deleting " << r << " windows" << std::endl;
 	    for(i16 i=0; i < r; ++i){ SDL_DestroyWindow(windows[i]); }
 
-	    // TTF_CloseFont(font);
 	    TTF_Quit();
 	    Mix_CloseAudio();
 	    IMG_Quit();
@@ -86,6 +82,7 @@ class SDL_Wrap{
 	rt create_texture_from_path(str path, SDL_Renderer* prend);
 	rt create_texture_from_text(TTF_Font* pfont, str ptxt, SDL_Color pcol, SDL_Renderer* prend);
 	rt create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface);
+	rt create_surface(i32 pw, i32 ph, i32 pdepth=32, ui32 prmask=0xFF000000, ui32 pgmask=0x00FF0000, ui32 pbmask=0x0000FF00, ui32 pamask=0x000000FF);
 	rt create_surface_from_img_load(str path);
 	rt create_surface_from_ttf(TTF_Font* pfont, str ptxt, SDL_Color pcol);
 	rt create_chunk_wav_from_path(str path);

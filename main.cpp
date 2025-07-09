@@ -4,6 +4,7 @@
 #include "types.h"
 
 #include <SDL_error.h>
+#include <SDL_mixer.h>
 #include <SDL_video.h>
 
 // dropped make build system
@@ -34,7 +35,7 @@ int main(int argc, char** argv){
     if(!r) r = core.sdlw.create_chunk_wav_from_path("sound2.wav");
     if(!r) r = core.sdlw.create_music_from_path("background.mp3");
     
-    std::cerr << "Previous Volume: " << 100.f*Mix_VolumeMusic(00)/128.f << "% | Current Volume: " << 100.f*Mix_VolumeMusic(-1)/128.f << '%' << std::endl;    // accepts 0-128
+    if(!r) Mix_VolumeMusic(0);
     if(!r) r = core.sdlw.play_music(0,-1); 
 
     if(!r) r = core.sdlw.open_font("BigBlue437-Regular.ttf", 24);
@@ -46,6 +47,11 @@ int main(int argc, char** argv){
     //foreground text
     if(r>=0) r = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],"abcdefghijklmnopqrstuvwxyz",SDL_Color({255,255,255,255}),core.sdlw.renderers[REND_MAIN]);
     if(r>=0) { tw2 = core.sdlw.surfaces[r]->w; th2 = core.sdlw.surfaces[r]->h; }
+
+
+    //semi-trans surface test
+    if(r>=0) r = core.sdlw.create_surface(DEF_WIN_W,DEF_WIN_H);
+    if(r>=0) r = core.sdlw.create_texture_from_surface(core.sdlw.renderers[REND_MAIN],core.sdlw.surfaces[r]);
 
     r=r>0?0:r;
 
@@ -116,9 +122,17 @@ int main(int argc, char** argv){
     if(!r) r = core.em.set(tp);
 
     if(!r) r = core.em.add_entity(allz-CM_VEL);
-    src = {0,0, tw2, th2};
+    // src = {0,0, tw2, th2};
+    src = {9*tw2/26,0, tw2/26, th2};
     tt = cTexture(5,0,2,src);
-    tp = cPos(5,(1.f*800-tw2)/2,(1.f*600-th2)/2,tw2,th2);
+    tp = cPos(5,(1.f*800-tw2)/2,(1.f*600-th2)/2,tw2/26.f,th2);
+    if(!r) r = core.em.set(tt);
+    if(!r) r = core.em.set(tp);
+
+    if(!r) r = core.em.add_entity(CM_POS|CM_RENDPOS|CM_TEXTURE);
+    src = {0,0,DEF_WIN_W,DEF_WIN_H};
+    tt = cTexture(6,0,3,src);
+    tp = cPos(6,0,0,DEF_WIN_W,DEF_WIN_H);
     if(!r) r = core.em.set(tt);
     if(!r) r = core.em.set(tp);
 
@@ -129,6 +143,8 @@ int main(int argc, char** argv){
     if(!r) r = core.loop();
     // r = (r==-1)?0:r;
 
+    std::cerr << "Total Logic Frames: " << core.LFRAMES << std::endl;
+    std::cerr << "Total Render Frames: " << core.RFRAMES << std::endl;
     std::cerr << "*** Exit Code: " << r << " ***" << std::endl;
 
     return r;

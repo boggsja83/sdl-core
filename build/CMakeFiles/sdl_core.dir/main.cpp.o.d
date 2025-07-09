@@ -1,6 +1,7 @@
 CMakeFiles/sdl_core.dir/main.cpp.o: \
  /home/sl1m/programming/source/sdl_core/main.cpp \
  /usr/include/stdc-predef.h /home/sl1m/programming/source/sdl_core/core.h \
+ /home/sl1m/programming/source/sdl_core/types.h \
  /usr/include/c++/13/cstdint \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -22,7 +23,6 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /home/sl1m/programming/source/sdl_core/types.h \
  /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
@@ -320,4 +320,4 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_scancode.h \
  /home/sl1m/programming/source/sdl_core/entity_system.h \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_error.h \
- /usr/include/SDL2/SDL_video.h
+ /usr/include/SDL2/SDL_mixer.h /usr/include/SDL2/SDL_video.h

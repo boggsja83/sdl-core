@@ -313,4 +313,4 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: \
  /usr/include/c++/13/cstdint \
  /home/sl1m/programming/source/sdl_core/settings.h \
  /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_error.h \
- /usr/include/SDL2/SDL_ttf.h
+ /usr/include/SDL2/SDL_blendmode.h /usr/include/SDL2/SDL_ttf.h

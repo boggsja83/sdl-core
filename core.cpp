@@ -78,6 +78,7 @@ rt Core::update(float& accumulator){
 
 	/**********************************************************************/
 	accumulator -= FIXED_LOGIC_TS;
+	++LFRAMES;
     }
 
     // clamp accumulator - added 6/22/25 may delete needs testing
@@ -95,15 +96,16 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
-    r = ecs_rtf.update(em, alpha);
+    r = ecs_rendpos.update(em, alpha);
     if(r) return r;
 
     em.psdlw = &sdlw;
-    r = ecs_rtx.update(em);
+    r = ecs_texture.update(em);
     if(r) return r;
     /**************************************************************************/
 
     SDL_RenderPresent(renderer);
+    ++RFRAMES;
 
     return OKAY;
 }

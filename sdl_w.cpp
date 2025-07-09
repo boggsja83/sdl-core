@@ -8,6 +8,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_stdinc.h>
+#include <SDL_blendmode.h>
 #include <SDL_ttf.h>
 
 rt SDL_Wrap::init(){
@@ -54,6 +55,20 @@ rt SDL_Wrap::create_renderer(SDL_Window* win, i16 index, ui32 flags){
     return renderers.size()-1;
 }
 
+rt SDL_Wrap::create_surface(i32 pw, i32 ph, i32 pdepth, ui32 prmask, ui32 pgmask, ui32 pbmask, ui32 pamask){
+    SDL_Surface* temp = SDL_CreateRGBSurface(0, pw, ph, pdepth, prmask, pgmask, pbmask, pamask);
+    if(!temp){
+	std::cerr << "CreateSurface failed. SDL_Error: " << SDL_GetError() << std::endl;
+	return CREATE_SURFACE_FAIL;
+    }
+    SDL_SetSurfaceBlendMode(temp, SDL_BLENDMODE_BLEND);
+    // delete - doing just for funz
+    SDL_FillRect(temp, NULL, SDL_MapRGBA(temp->format, 255, 255, 0, 64));
+    //
+    surfaces.push_back(temp);
+    return surfaces.size()-1;
+}
+
 rt SDL_Wrap::create_surface_from_img_load(str path){
     SDL_Surface* temp = IMG_Load(path);
     if(!temp){
@@ -95,7 +110,6 @@ rt SDL_Wrap::create_texture_from_path(str path, SDL_Renderer* renderer){
 rt SDL_Wrap::create_texture_from_text(TTF_Font* pfont, str ptxt, SDL_Color pcol, SDL_Renderer* prend){
     rt r = create_surface_from_ttf(pfont, ptxt, pcol);
     if(r<0) return r;
-
     return create_texture_from_surface(prend, surfaces[r]);
 }
 
@@ -134,7 +148,6 @@ rt SDL_Wrap::play_music(i16 pmid=-1, i16 ploop=-1){
 	std::cerr << "PlayMusic failed. Mix_Error: " << Mix_GetError() << std::endl;
 	return PLAY_MUSIC_FAIL;
     }
-
     return OKAY;
 }
 

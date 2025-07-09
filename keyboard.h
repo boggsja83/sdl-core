@@ -4,7 +4,6 @@
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_scancode.h>
 #include <SDL_timer.h>
-#include <iostream>
 
 #include "settings.h"
 #include "types.h"
@@ -23,7 +22,6 @@ class Keyboard{
     public:
 	bool		keystate[SDL_NUM_SCANCODES];
 	SDL_Scancode	map[KB_NUM_ACTIONS];
-	// i16		rpts[SDL_NUM_SCANCODES];
 	ui64		time_down[SDL_NUM_SCANCODES];
 	ui64		time_up[SDL_NUM_SCANCODES];
 
@@ -33,8 +31,8 @@ class Keyboard{
 	    inline void reset_array(T (&arr)[N], T val){ memset(arr, val, N*sizeof(T)); }
 
 	template<typename T, size_t N>
-	    inline void reset_array(T (&arr)[N]){ memset(arr, 0, N*sizeof(T)); std::cerr << "N*sizeof(T)=" << (N*sizeof(T)) << std::endl; }
-
+	    inline void reset_array(T (&arr)[N]){ memset(arr, 0, N*sizeof(T)); }
+	
 	inline rt poll_events(){
 	    SDL_Event event;
 	    SDL_Scancode tcode = SDL_SCANCODE_UNKNOWN;
@@ -48,13 +46,11 @@ class Keyboard{
 			keystate[tcode] = true;
 			if(!is_held(tcode)){
 			    time_down[tcode] = SDL_GetTicks64();
-			    // std::cerr<<"set down time\n";
 			}
 			break;
 		    case SDL_KEYUP:
 			keystate[tcode] = false;
 			time_up[tcode] = SDL_GetTicks64();
-			// std::cerr<<"key held for " << (time_up[tcode] - time_down[tcode]) << "ms\n";
 			break;
 		    default:
 			break;

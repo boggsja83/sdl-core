@@ -107,20 +107,20 @@ typedef struct ECSkb : ECS {
 			// key down actions
 			switch(tka){
 			    case MOVE_N:
-				    if(em.pkb->keystate[em.pkb->map[MOVE_S]]) em.vel[o].y=0;
-				    else em.vel[o].y = -1.f*PLAYER_VEL;
+				if(em.pkb->keystate[em.pkb->map[MOVE_S]]) em.vel[o].y=0;
+				else em.vel[o].y = -1.f*PLAYER_VEL;
 				break;
 			    case MOVE_S:
-				    if(em.pkb->keystate[em.pkb->map[MOVE_N]]) em.vel[o].y=0;
-				    else em.vel[o].y = PLAYER_VEL;
+				if(em.pkb->keystate[em.pkb->map[MOVE_N]]) em.vel[o].y=0;
+				else em.vel[o].y = PLAYER_VEL;
 				break;
 			    case MOVE_E:
-				    if(em.pkb->keystate[em.pkb->map[MOVE_W]]) em.vel[o].x=0;
-				    else em.vel[o].x = PLAYER_VEL;
+				if(em.pkb->keystate[em.pkb->map[MOVE_W]]) em.vel[o].x=0;
+				else em.vel[o].x = PLAYER_VEL;
 				break;
 			    case MOVE_W:
-				    if(em.pkb->keystate[em.pkb->map[MOVE_E]]) em.vel[o].x=0;
-				    else em.vel[o].x = -1.f*PLAYER_VEL;
+				if(em.pkb->keystate[em.pkb->map[MOVE_E]]) em.vel[o].x=0;
+				else em.vel[o].x = -1.f*PLAYER_VEL;
 				break;
 			    case TEST_ACTION:
 				//need to experiment more with method a and method b and perhaps others 7-4-25
@@ -136,11 +136,13 @@ typedef struct ECSkb : ECS {
 				break;
 			    case VOL_UP:
 				r = Mix_VolumeMusic(-1);				
-				std::cerr << "Volume Up: " << 100.f*Mix_VolumeMusic(r+1)/128.f << '%' << std::endl;    // accepts 0-128
+				// std::cerr << "Volume Up: " << 100.f*Mix_VolumeMusic(r+1)/128.f << '%' << std::endl;    // accepts 0-128
+				Mix_VolumeMusic(r+1);
 				break;
 			    case VOL_DN:
 				r = Mix_VolumeMusic(-1);				
-				std::cerr << "Volume Down: " << 100.f*Mix_VolumeMusic(r-1)/128.f << '%' << std::endl;    // accepts 0-128
+				// std::cerr << "Volume Down: " << 100.f*Mix_VolumeMusic(r-1)/128.f << '%' << std::endl;    // accepts 0-128
+				Mix_VolumeMusic(r-1);
 				break;
 			    default:
 				break;

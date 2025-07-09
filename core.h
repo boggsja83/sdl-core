@@ -1,8 +1,6 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include <cstdint>
-
 #include "types.h"
 #include "sdl_w.h"
 #include "keyboard.h"
@@ -11,19 +9,21 @@
 
 class Core{
     public:
-	Core(){}
+	Core():LFRAMES(0),RFRAMES(0){}
 	~Core(){}
     public:
 	SDL_Wrap	    sdlw;
 	Keyboard	    kb; 
 	EntityManager	    em;
 	ECSpos		    ecs_pos;
-	ECSrendpos	    ecs_rtf;
-	ECStexture	    ecs_rtx;
+	ECSrendpos	    ecs_rendpos;
+	ECStexture	    ecs_texture;
 	ECSkb		    ecs_kb;
     public:
-	int64_t	    STATUS_INT64;
-	str	    STATUS_STRING;
+	// i64	    STATUS_INT64;
+	// str	    STATUS_STRING;
+	ui64	    LFRAMES;
+	ui64	    RFRAMES;
     public:
 	rt loop();
 	rt input();

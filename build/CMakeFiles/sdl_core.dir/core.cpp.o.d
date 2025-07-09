@@ -116,8 +116,8 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /usr/include/SDL2/SDL_blendmode.h /usr/include/SDL2/SDL_scancode.h \
  /usr/include/SDL2/SDL_timer.h \
  /home/sl1m/programming/source/sdl_core/core.h \
- /usr/include/c++/13/cstdint \
  /home/sl1m/programming/source/sdl_core/types.h \
+ /usr/include/c++/13/cstdint \
  /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_assert.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
