@@ -33,7 +33,7 @@ rt EntityManager::add_entity(ui64 comp_mask){
 	kb[temp_id] = cKB();
     }
 
-    return OKAY;
+    return ents.size()-1;
 }
 
 rt EntityManager::set(EC& pec){

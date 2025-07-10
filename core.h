@@ -9,7 +9,7 @@
 
 class Core{
     public:
-	Core():LFRAMES(0),RFRAMES(0){}
+	Core():LFRAMES(0),RFRAMES(0),START(0){}
 	~Core(){}
     public:
 	SDL_Wrap	    sdlw;
@@ -24,6 +24,7 @@ class Core{
 	// str	    STATUS_STRING;
 	ui64	    LFRAMES;
 	ui64	    RFRAMES;
+	ui64	    START;
     public:
 	rt loop();
 	rt input();

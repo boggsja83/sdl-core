@@ -11,6 +11,8 @@
 #include <SDL_blendmode.h>
 #include <SDL_ttf.h>
 
+#include <cstring>
+
 rt SDL_Wrap::init(){
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){
 	std::cerr << "SDL could not initialize. SDL_Error: " << SDL_GetError() << std::endl;
@@ -133,7 +135,7 @@ rt SDL_Wrap::create_music_from_path(str path){
     return musics.size()-1;
 }
 
-rt SDL_Wrap::play_channel(i16 pchan=-1, i16 pcid=-1, i16 ploop=0){
+rt SDL_Wrap::play_channel(i16 pchan, i16 pcid, i16 ploop){
     if(pcid<0 || pcid>=chunks.size()){ return INVALID_CHUNK; }
     if(Mix_PlayChannel(pchan, chunks[pcid], ploop)<0){
 	std::cerr << "PlayChannel failed. Mix_Error: " << Mix_GetError() << std::endl;
@@ -142,7 +144,7 @@ rt SDL_Wrap::play_channel(i16 pchan=-1, i16 pcid=-1, i16 ploop=0){
     return OKAY;
 }
 
-rt SDL_Wrap::play_music(i16 pmid=-1, i16 ploop=-1){
+rt SDL_Wrap::play_music(i16 pmid, i16 ploop){
     if(pmid<0 || pmid>=musics.size()){ return INVALID_MUSIC; }
     if(Mix_PlayMusic(musics[pmid], ploop) < 0){
 	std::cerr << "PlayMusic failed. Mix_Error: " << Mix_GetError() << std::endl;
@@ -161,4 +163,29 @@ rt SDL_Wrap::open_font(str path, ui16 pfontsz){
     return fonts.size()-1;
 }
 
+rt SDL_Wrap::display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst){
+    // 95 chars long
+    // !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    ui16 sz = strlen(pstr);
+
+    ui16 tdw = pdst.w/sz;
+    ui16 tdh = pdst.h;
+
+    ui16 tsw = psrc.w/sz;
+    ui16 tsh = psrc.h;
+
+    ui16 offset = 0;
+
+    SDL_Rect src;
+    SDL_Rect dst;
+
+    for(ui16 i=0; i<sz; ++i){
+	offset = pstr[i]-32;
+	src = { psrc.x+offset*tsw, psrc.y, tsw, tsh };
+	dst = { pdst.x+offset*tdw, pdst.y, tdw, tdh };
+	SDL_RenderCopy(prend,palphabet,&src,&pdst);	
+    }
+
+    return OKAY;
+}
 

@@ -1280,6 +1280,7 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
+  /usr/include/c++/13/cstring \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
@@ -1530,6 +1531,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xsavesintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
+
+/usr/include/c++/13/cstring:
 
 /home/sl1m/programming/source/sdl_core/sdl_w.cpp:
 

@@ -88,10 +88,11 @@ class SDL_Wrap{
 	rt create_chunk_wav_from_path(str path);
 	rt create_music_from_path(str path);
 
-	rt play_music(i16 pmid, i16 ploop);
-	rt play_channel(i16 pchan, i16 pcid, i16 ploop);
+	rt play_music(i16 pmid=-1, i16 ploop=-1);
+	rt play_channel(i16 pchan=-1, i16 pcid=-1, i16 ploop=0);
 
 	rt open_font(str path, ui16 pfontsz);
+	rt display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst);
 };
 
 #endif

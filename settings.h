@@ -26,12 +26,12 @@ constexpr uint64_t KB_THRESHOLD_PRESS = 25;	//milliseconds
 // default window settings
 constexpr int16_t DEF_WIN_W = 800;
 constexpr int16_t DEF_WIN_H = 600;
-constexpr uint8_t DEF_R = 255;
-constexpr uint8_t DEF_G = 255;
-constexpr uint8_t DEF_B = 255;
-// constexpr uint8_t DEF_R = 80;
-// constexpr uint8_t DEF_G = 90;
-// constexpr uint8_t DEF_B = 231;
+// constexpr uint8_t DEF_R = 255;
+// constexpr uint8_t DEF_G = 255;
+// constexpr uint8_t DEF_B = 255;
+constexpr uint8_t DEF_R = 80;
+constexpr uint8_t DEF_G = 90;
+constexpr uint8_t DEF_B = 231;
 constexpr uint8_t DEF_A = SDL_ALPHA_OPAQUE;
 
 constexpr float PLAYER_VEL = 250.f;
