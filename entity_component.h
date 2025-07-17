@@ -51,12 +51,16 @@ typedef struct cRendPos : EC{
 typedef struct cVel : EC{
     float x;
     float y;
+    float const_x;
+    float const_y;
 
-    cVel(i16 pid=-1, float px=0.f, float py=0.f){
+    cVel(i16 pid=-1, float px=0.f, float py=0.f, float pcx=0.f, float pcy=0.f){
 	oid = pid;
 	cm = CM_VEL;
 	x = px;
 	y = py;
+	const_x = pcx;
+	const_y = pcy;
     }
 } cVel;
 

@@ -26,7 +26,6 @@ class SDL_Wrap{
 	std::vector<Mix_Music*>	    musics;
 	std::vector<Mix_Chunk*>	    chunks;
 	std::vector<TTF_Font*>	    fonts;
-	// TTF_Font*		    font;
 
     public:
 	SDL_Wrap(){

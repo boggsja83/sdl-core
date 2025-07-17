@@ -14,6 +14,7 @@ class Keyboard{
 	    reset_array(keystate, false);
 	    reset_array(time_down,ui64(0));
 	    reset_array(time_up);
+	    reset_array(first_press);
 	    set_default_map();
 	}
 
@@ -22,6 +23,7 @@ class Keyboard{
     public:
 	bool		keystate[SDL_NUM_SCANCODES];
 	SDL_Scancode	map[KB_NUM_ACTIONS];
+	bool		first_press[SDL_NUM_SCANCODES];
 	ui64		time_down[SDL_NUM_SCANCODES];
 	ui64		time_up[SDL_NUM_SCANCODES];
 
@@ -44,16 +46,20 @@ class Keyboard{
 			return QUIT;
 		    case SDL_KEYDOWN:
 			keystate[tcode] = true;
-			if(!is_held(tcode)){
+			// if(!is_held(tcode)){
+			if(time_down[tcode]<time_up[tcode]){
 			    time_down[tcode] = SDL_GetTicks64();
+			    first_press[tcode] = true;
 			}
-			break;
+			// else first_press[tcode] = false;
+		    break;
 		    case SDL_KEYUP:
 			keystate[tcode] = false;
 			time_up[tcode] = SDL_GetTicks64();
-			break;
+			first_press[tcode] = false;
+		    break;
 		    default:
-			break;
+		    break;
 		}
 	    }
 	    return OKAY;
@@ -63,31 +69,31 @@ class Keyboard{
 	    reset_array(map, SDL_SCANCODE_UNKNOWN);
 
 	    for(i16 i=0; i<KB_NUM_ACTIONS; ++i){
-		switch(i){
+	        switch(i){
 		    case MOVE_N:
-			map[i] = SDL_SCANCODE_W;
-			break;
+		        map[i] = SDL_SCANCODE_W;
+		    break;
 		    case MOVE_S:
-			map[i] = SDL_SCANCODE_S;
-			break;
+		        map[i] = SDL_SCANCODE_S;
+		    break;
 		    case MOVE_E:
-			map[i] = SDL_SCANCODE_D;
-			break;
+		        map[i] = SDL_SCANCODE_D;
+		    break;
 		    case MOVE_W:
-			map[i] = SDL_SCANCODE_A;
-			break;
+		        map[i] = SDL_SCANCODE_A;
+		    break;
 		    case TEST_ACTION:
 			map[i] = SDL_SCANCODE_SPACE;
-			break;
+		    break;
 		    case VOL_UP:
 			map[i] = SDL_SCANCODE_KP_PLUS;  
-			break;
+		    break;
 		    case VOL_DN:
 			map[i] = SDL_SCANCODE_KP_MINUS;
-			break;
+		    break;
 		    default:
 			map[i] = SDL_SCANCODE_UNKNOWN;
-			break;
+		    break;
 		}
 	    }
 	    return OKAY;
@@ -115,19 +121,19 @@ class Keyboard{
 
 	inline float repeats(KB_ACTION pka){
 	    if(pka>=0 && pka<KB_NUM_ACTIONS) 
-		if(time_down[map[pka]]>time_up[map[pka]]) return (1.f*SDL_GetTicks64() - time_down[map[pka]]) / KB_THRESHOLD_PRESS;
-		else return 0;
+	        if(time_down[map[pka]]>time_up[map[pka]]) return (1.f*SDL_GetTicks64() - time_down[map[pka]]) / KB_THRESHOLD_PRESS;
+	        else return 0;
 	    else return 0;
 	}
 
-	// inline rt get_action_repeats(KB_ACTION pact){
-	//     if(pact>=0 && pact<KB_NUM_ACTIONS) return rpts[map[pact]];
-	//     return KB_INVALID_ACTION;
-	// }
+	    // inline rt get_action_repeats(KB_ACTION pact){
+	    //     if(pact>=0 && pact<KB_NUM_ACTIONS) return rpts[map[pact]];
+	    //     return KB_INVALID_ACTION;
+	    // }
 
-	// inline rt get_key_repeats(SDL_Scancode psc){
-	//     return rpts[psc];
-	// }
+	    // inline rt get_key_repeats(SDL_Scancode psc){
+	    //     return rpts[psc];
+	    // }
 };
 
 #endif

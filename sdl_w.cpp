@@ -171,7 +171,8 @@ rt SDL_Wrap::display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_
     ui16 tdw = pdst.w/sz;
     ui16 tdh = pdst.h;
 
-    ui16 tsw = psrc.w/sz;
+    ui16 tsw = psrc.w/95;
+    // ui16 tsw = psrc.w/sz;
     ui16 tsh = psrc.h;
 
     ui16 offset = 0;
@@ -181,9 +182,10 @@ rt SDL_Wrap::display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_
 
     for(ui16 i=0; i<sz; ++i){
 	offset = pstr[i]-32;
-	src = { psrc.x+offset*tsw, psrc.y, tsw, tsh };
-	dst = { pdst.x+offset*tdw, pdst.y, tdw, tdh };
-	SDL_RenderCopy(prend,palphabet,&src,&pdst);	
+	//src.w is f8ed up
+	src = { psrc.x+tsw*offset, psrc.y, tsw, tsh };
+	dst = { pdst.x+tdw*i, pdst.y, tdw, tdh };
+	SDL_RenderCopy(prend,palphabet,&src,&dst);	
     }
 
     return OKAY;

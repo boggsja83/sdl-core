@@ -14,10 +14,10 @@ rt Core::loop(){
     float accumulator = 0.0f;
     float alpha = 0.0f;
     float dft = 0.0f;	// delta frame time
-    uint64_t lft = SDL_GetTicks64();	// last frame time
-    uint64_t cft = lft;	// current frame time
-    uint64_t lrt = SDL_GetTicks64();	// last render time
-    uint64_t crt = lrt;	// current render time
+    ui64 lft = SDL_GetTicks64();	// last frame time
+    ui64 cft = lft;	// current frame time
+    ui64 lrt = SDL_GetTicks64();	// last render time
+    ui64 crt = lrt;	// current render time
 
     SDL_Window* temp_win = sdlw.windows[WINDOW_MAIN];
     SDL_Renderer* temp_rend = sdlw.renderers[REND_MAIN];
@@ -49,12 +49,9 @@ rt Core::loop(){
 
 rt Core::input(){
     rt r = kb.poll_events();
-    if(r) return r;
-    /**************************************************************************/
-    // HANDLE CONTEXTS
-
-    /**************************************************************************/
-    return OKAY;
+    return r;
+    // if(r) return r;
+    // return OKAY;
 }
 
 rt Core::update(float& accumulator){
@@ -67,7 +64,7 @@ rt Core::update(float& accumulator){
 	if(kb.keystate[SDL_SCANCODE_CAPSLOCK]) return QUIT;
 	if(kb.keystate[SDL_SCANCODE_Q]) return QUIT;
 	/**********************************************************************/
-
+	// UPDATE GAME LOGIC (FROM KEYSTATE)
 	em.pkb = &kb;
 	r = ecs_kb.update(em, FIXED_LOGIC_TS);
 	if(r) return r;
@@ -96,16 +93,35 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
-    r = ecs_rendpos.update(em, alpha);
-    if(r) return r;
+    if(!r) r = ecs_rendpos.update(em, alpha);
 
     em.psdlw = &sdlw;
-    r = ecs_texture.update(em);
-    if(r) return r;
+    if(!r) r = ecs_texture.update(em);
     /**************************************************************************/
+
+    ///////
+    SDL_Rect src, dst;
+    ui16 tw1=0, tw2=0, th1=0, th2=0;
+    str tstr = "core 0.1";
+    ui16 sz = strlen(tstr);
+    ///////
+    ///////////
+    tw1 = sdlw.surfaces[1]->w;
+    th1 = sdlw.surfaces[1]->h;
+    tw2 = tw1/95;
+    src = {0,0,tw1,th1};
+    dst = {0,0,tw2*sz,th1};
+    sdlw.display_text(
+	    tstr,
+	    sdlw.textures[1],
+	    src,
+	    renderer,
+	    dst
+	    );
+    //////////
 
     SDL_RenderPresent(renderer);
     ++RFRAMES;
 
-    return OKAY;
+    return r;
 }

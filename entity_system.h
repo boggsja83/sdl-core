@@ -125,14 +125,20 @@ typedef struct ECSkb : ECS {
 			    case TEST_ACTION:
 				//need to experiment more with method a and method b and perhaps others 7-4-25
 				//method a
-				// if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) if(!Mix_Playing(0)) em.psdlw->play_channel(0, 0, 0);
-				if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) em.psdlw->play_channel(0,0,0);
+				//if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) if(!Mix_Playing(0)) em.psdlw->play_channel(0, 0, 0);
+				//if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) em.psdlw->play_channel(0,0,0);
 
 				// method b
 				// tf = em.pkb->repeats(TEST_ACTION);
 				// if(tf<1.f){ em.psdlw->play_channel(-1, 0, 0); }
 				// std::cerr<<"repeats: " << tf << std::endl;
-
+				
+				// method c
+				if(em.pkb->first_press[tsc]){
+				    //em.psdlw->play_channel(0,0,0);
+				    em.psdlw->play_channel(-1,0,0);
+				    em.pkb->first_press[tsc]=false;
+				}
 				break;
 			    case VOL_UP:
 				r = Mix_VolumeMusic(-1);				
