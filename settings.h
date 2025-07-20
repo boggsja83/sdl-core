@@ -9,17 +9,18 @@ constexpr uint8_t WINDOW_MAIN = 0;
 constexpr uint8_t REND_MAIN = 0;
 
 // loop settings
-// constexpr float FIXED_LOGIC_TS = 1.0f / 45.f; // ~22.22ms
-constexpr float FIXED_LOGIC_TS = 1.0f / 60.f; // ~16.67ms
+constexpr float FIXED_INPUT_TS = 1.0f / 500.f; //high-precision considered 1ms (1/1000.f)
+constexpr float FIXED_RENDER_TS = 1.0f / 144.f;
+constexpr float FIXED_LOGIC_TS = 1.0f / 45.f; // ~22.22ms
+// constexpr float FIXED_LOGIC_TS = 1.0f / 60.f; // ~16.67ms
 constexpr float DFT_CAP = FIXED_LOGIC_TS * 5.f; //0.1f; // 100ms. maybe change this in terms of FIXED_TS
 				// i.e. max number of steps to fall behind
-constexpr float FIXED_RENDER_TS = 1.0f / 144.0f;
 
 constexpr uint64_t KB_THRESHOLD_PRESS = 25;	//milliseconds
 
 // default window settings
-constexpr int16_t DEF_WIN_W = 800;
-constexpr int16_t DEF_WIN_H = 600;
+constexpr int16_t DEF_WIN_W = 1920;//800;
+constexpr int16_t DEF_WIN_H = 1080;//600;
 constexpr uint8_t DEF_R = 80;
 constexpr uint8_t DEF_G = 90;
 constexpr uint8_t DEF_B = 231;

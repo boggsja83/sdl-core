@@ -13,7 +13,7 @@ class Keyboard{
 	Keyboard(){
 	    reset_array(keystate, false);
 	    reset_array(time_down,ui64(0));
-	    reset_array(time_up);
+	    reset_array(time_up,ui64(1));
 	    reset_array(first_press);
 	    set_default_map();
 	}
@@ -46,7 +46,6 @@ class Keyboard{
 			return QUIT;
 		    case SDL_KEYDOWN:
 			keystate[tcode] = true;
-			// if(!is_held(tcode)){
 			if(time_down[tcode]<time_up[tcode]){
 			    time_down[tcode] = SDL_GetTicks64();
 			    first_press[tcode] = true;

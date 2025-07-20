@@ -65,7 +65,7 @@ rt SDL_Wrap::create_surface(i32 pw, i32 ph, i32 pdepth, ui32 prmask, ui32 pgmask
     }
     SDL_SetSurfaceBlendMode(temp, SDL_BLENDMODE_BLEND);
     // delete - doing just for funz
-    SDL_FillRect(temp, NULL, SDL_MapRGBA(temp->format, 255, 255, 0, 64));
+    // SDL_FillRect(temp, NULL, SDL_MapRGBA(temp->format, 255, 255, 0, 64));
     //
     surfaces.push_back(temp);
     return surfaces.size()-1;
@@ -89,6 +89,17 @@ rt SDL_Wrap::create_surface_from_ttf(TTF_Font* pfont, str ptxt, SDL_Color pcol){
     }
     surfaces.push_back(temp);
     return surfaces.size()-1;
+}
+
+rt SDL_Wrap::create_texture(SDL_Renderer* prend, ui32 pformat, i32 paccess, i32 pw, i32 ph){
+    SDL_Texture* temp = SDL_CreateTexture(prend, pformat, paccess, pw, ph);
+    if(!temp){
+	std::cerr << "CreateTextur failed. SDL_Error: " << SDL_GetError() << std::endl;
+	return CREATE_TEXTURE_FAIL;
+    }
+    SDL_SetTextureBlendMode(temp, SDL_BLENDMODE_BLEND);
+    textures.push_back(temp);
+    return textures.size()-1;
 }
 
 rt SDL_Wrap::create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface){
@@ -165,7 +176,7 @@ rt SDL_Wrap::open_font(str path, ui16 pfontsz){
 
 rt SDL_Wrap::display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst){
     // 95 chars long
-    // !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    // " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
     ui16 sz = strlen(pstr);
 
     ui16 tdw = pdst.w/sz;
@@ -182,7 +193,6 @@ rt SDL_Wrap::display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_
 
     for(ui16 i=0; i<sz; ++i){
 	offset = pstr[i]-32;
-	//src.w is f8ed up
 	src = { psrc.x+tsw*offset, psrc.y, tsw, tsh };
 	dst = { pdst.x+tdw*i, pdst.y, tdw, tdh };
 	SDL_RenderCopy(prend,palphabet,&src,&dst);	

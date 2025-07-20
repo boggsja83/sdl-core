@@ -23,20 +23,17 @@
 
 
 int main(int argc, char** argv){
-    // ui64 start = SDL_GetTicks64();
-
     Core core;
     rt r = core.sdlw.init();
     core.START = SDL_GetTicks64();
 
-    // str alphabet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
     ui16 tw1 = 0, tw2 = 0;
     ui16 th1 = 0, th2 = 0;
     ui16 text_layer = 0;
+    ui16 fade_layer = 0;
 
-    if(r>=0) r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DEF_WIN_W, DEF_WIN_H, SDL_WINDOW_VULKAN);
+    if(r>=0) r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DEF_WIN_W, DEF_WIN_H, SDL_WINDOW_VULKAN|SDL_WINDOW_FULLSCREEN_DESKTOP);
     if(r>=0) r = core.sdlw.create_renderer(core.sdlw.windows[WINDOW_MAIN], -1, SDL_RENDERER_ACCELERATED);
-    if(r>=0) r = SDL_SetRenderDrawColor(core.sdlw.renderers[REND_MAIN], DEF_R, DEF_G, DEF_B, DEF_A);
 
     if(r>=0) r = core.sdlw.create_texture_from_path("bg.jpg", core.sdlw.renderers[REND_MAIN]);
     if(r>=0) r = core.sdlw.create_chunk_wav_from_path("sound2.wav");
@@ -49,6 +46,8 @@ int main(int argc, char** argv){
 
     if(r>=0) text_layer = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],ALPHABET,SDL_Color({255,255,255,255}),core.sdlw.renderers[REND_MAIN]);
     if(r>=0) { tw1 = core.sdlw.surfaces[text_layer]->w; th1 = core.sdlw.surfaces[text_layer]->h; }
+
+    if(r>=0) fade_layer = core.sdlw.create_texture(core.sdlw.renderers[REND_MAIN],SDL_PIXELFORMAT_RGBA8888,SDL_TEXTUREACCESS_TARGET,DEF_WIN_W,DEF_WIN_H);
 
     //text shadow
 
@@ -73,19 +72,19 @@ int main(int argc, char** argv){
 
     if(r>=0) r = core.em.add_entity(allz);
     src = {0,0,756,568};
-    tt = cTexture(0,0,0,src);
-    tv = cVel(0, 50.f, -50.f);
-    tp = cPos(0, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
+    tt = cTexture(r,0,0,src);
+    tv = cVel(r, 50.f, -50.f);
+    tp = cPos(r, 0.f, 0.f, DEF_WIN_W, DEF_WIN_H);
     if(r>=0) r = core.em.set(tt);
     if(r>=0) r = core.em.set(tv);
     if(r>=0) r = core.em.set(tp);
 
     if(r>=0) r = core.em.add_entity(allz | CM_KB);
     src = {0,0,756,568};
-    tt = cTexture(1,0,0,src);
-    tv = cVel(1, 0.f, 0.f);
-    tp = cPos(1, 0.f, 0.f, 50, 75);
-    tk = cKB(1);
+    tt = cTexture(r,0,0,src);
+    tv = cVel(r, 0.f, 0.f);
+    tp = cPos(r, 0.f, 0.f, 50, 75);
+    tk = cKB(r);
     tk.acts.push_back(MOVE_N);
     tk.acts.push_back(MOVE_S);
     tk.acts.push_back(MOVE_E);
@@ -100,10 +99,10 @@ int main(int argc, char** argv){
 
     if(r>=0) r = core.em.add_entity(allz | CM_KB);
     src = {0,0, 200, 400};
-    tt = cTexture(2,0,0,src);
-    tv = cVel(2, -15.f, -15.f);
-    tp = cPos(2, 800-150.f, 600-150.f, 151, 151);
-    tk = cKB(2);
+    tt = cTexture(r,0,0,src);
+    tv = cVel(r, -15.f, -15.f);
+    tp = cPos(r, 800-150.f, 600-150.f, 151, 151);
+    tk = cKB(r);
     tk.acts.push_back(MOVE_S);
     tk.acts.push_back(MOVE_E);
     // tk.acts.push_back(MOVE_W);
@@ -116,8 +115,8 @@ int main(int argc, char** argv){
     if(r>=0) r = core.em.add_entity(allz);
     src = {0,0, 300, 500};
     tt = cTexture(3,0,0,src);
-    tv = cVel(3, -25.f, 25.f);
-    tp = cPos(3, 800.f, 000.f, 25, 35);
+    tv = cVel(r, -25.f, 25.f);
+    tp = cPos(r, 800.f, 000.f, 25, 35);
     if(r>=0) r = core.em.set(tt);
     if(r>=0) r = core.em.set(tv);
     if(r>=0) r = core.em.set(tp);
@@ -137,23 +136,24 @@ int main(int argc, char** argv){
     if(r>=0) r = core.em.set(tp);
     if(r>=0) r = core.em.set(tk);
 
-    //    for(ui32 i=0; i<500; ++i){
-    // //if(r>=0) r = core.em.add_entity(CM_NULL);
-    // if(r>=0) r = core.em.add_entity(allz);
-    // src = {0,0, 300, 500};
-    // tt = cTexture(4+i,0,0,src);
-    // tv = cVel(4+i, -25.f+i, 25.f-i);
-    // tp = cPos(4+i, 800.f, 000.f, 25, 35);
-    // if(r>=0) r = core.em.set(tt);
-    // if(r>=0) r = core.em.set(tv);
-    // if(r>=0) r = core.em.set(tp);
-    //    }
+	//    for(ui32 i=0; i<500; ++i){
+	// //if(r>=0) r = core.em.add_entity(CM_NULL);
+	// if(r>=0) r = core.em.add_entity(allz);
+	// src = {0,0, 300, 500};
+	// tt = cTexture(r,0,0,src);
+	// tv = cVel(r, -25.f+i, 25.f-i);
+	// tp = cPos(r, 800.f, 000.f, 25, 35);
+	// if(r>=0) r = core.em.set(tt);
+	// if(r>=0) r = core.em.set(tv);
+	// if(r>=0) r = core.em.set(tp);
+	//    }
 
     if(r>=0) r = core.loop();
 
     ui64 elapsed = SDL_GetTicks64() - core.START;
 
     std::cerr << "Total Runtime: "<< elapsed/1000.f << " seconds" << std::endl;
+    std::cerr << "Total Input Frames: " << core.IFRAMES << "\t" << "Total IFPS: " << core.IFRAMES/(elapsed/1000.f) << std::endl;
     std::cerr << "Total Logic Frames: " << core.LFRAMES << "\t" << "Total LFPS: " << core.LFRAMES/(elapsed/1000.f) << std::endl;
     std::cerr << "Total Render Frames: " << core.RFRAMES << "\t" << "Total RFPS: " << core.RFRAMES/(elapsed/1000.f) << std::endl;
     std::cerr << "*** Exit Code: " << r << " ***" << std::endl;

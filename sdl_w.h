@@ -49,6 +49,7 @@ class SDL_Wrap{
 	    for(i16 i=0; i < r; ++i){ Mix_FreeChunk(chunks[i]); }
 
 	    r = musics.size();
+
 	    std::cerr << "Deleting " << r << " musics" << std::endl;
 	    for(i16 i=0; i < r; ++i){ Mix_FreeMusic(musics[i]); }
 
@@ -77,6 +78,7 @@ class SDL_Wrap{
 
 	rt init();
 	rt create_window(str title, i32 x, i32 y, i32 w, i32 h, ui32 flags);
+	rt create_texture(SDL_Renderer* prend, ui32 pformat, i32 paccess, i32 pw, i32 ph);
 	rt create_renderer(SDL_Window* win, i16 index, ui32 flags);
 	rt create_texture_from_path(str path, SDL_Renderer* prend);
 	rt create_texture_from_text(TTF_Font* pfont, str ptxt, SDL_Color pcol, SDL_Renderer* prend);

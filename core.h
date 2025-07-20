@@ -6,10 +6,12 @@
 #include "keyboard.h"
 #include "entity_manager.h"
 #include "entity_system.h"
+#include <SDL_pixels.h>
 
 class Core{
     public:
-	Core():LFRAMES(0),RFRAMES(0),START(0){}
+	Core():IFRAMES(0),LFRAMES(0),RFRAMES(0),START(0),
+	    FADE_ALPHA(SDL_ALPHA_OPAQUE),FADE_DO(true){}
 	~Core(){}
     public:
 	SDL_Wrap	    sdlw;
@@ -22,9 +24,13 @@ class Core{
     public:
 	// i64	    STATUS_INT64;
 	// str	    STATUS_STRING;
+	ui64	    IFRAMES;
 	ui64	    LFRAMES;
 	ui64	    RFRAMES;
 	ui64	    START;
+	// used for daing test doesnt necessarily need to be here
+	float	    FADE_ALPHA;
+	bool	    FADE_DO;
     public:
 	rt loop();
 	rt input();

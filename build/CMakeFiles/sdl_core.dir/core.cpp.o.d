@@ -320,4 +320,4 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_scancode.h \
  /home/sl1m/programming/source/sdl_core/entity_system.h \
- /usr/include/SDL2/SDL_render.h
+ /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_pixels.h

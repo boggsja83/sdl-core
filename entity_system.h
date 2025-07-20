@@ -18,21 +18,6 @@ typedef struct ECSpos : ECS {
 	}
 	return OKAY;
     }
-
-    //    rt update(EntityManager& em, float dft) override {
-    // i16 oid = -1;
-    // for(i16 i=0; i<em.ents.size(); ++i){ // only do this num-ents times (not vel size)
-    //     oid = em.vel[i].oid;
-    //     if(oid>=0){
-    // 	if((em.ents[oid] & (CM_POS|CM_VEL))==(CM_POS|CM_VEL)){
-    // 	    em.pos[oid].x = em.pos[oid].x + em.vel[oid].x * dft;
-    // 	    em.pos[oid].y = em.pos[oid].y + em.vel[oid].y * dft;
-    // 	} else return ECS_LACKS_COMP;
-    //     }
-    // }
-    //
-    // return OKAY;
-    //    }
 } ECSpos;
 
 typedef struct ECSrendpos : ECS {
@@ -105,6 +90,7 @@ typedef struct ECSkb : ECS {
 		    tsc = em.pkb->map[tka];
 		    if(em.pkb->keystate[tsc]){
 			// key down actions
+			// assumes entity has CM_VEL, may error check this in future
 			switch(tka){
 			    case MOVE_N:
 				if(em.pkb->keystate[em.pkb->map[MOVE_S]]) em.vel[o].y=0;
@@ -142,12 +128,10 @@ typedef struct ECSkb : ECS {
 				break;
 			    case VOL_UP:
 				r = Mix_VolumeMusic(-1);				
-				// std::cerr << "Volume Up: " << 100.f*Mix_VolumeMusic(r+1)/128.f << '%' << std::endl;    // accepts 0-128
 				Mix_VolumeMusic(r+1);
 				break;
 			    case VOL_DN:
 				r = Mix_VolumeMusic(-1);				
-				// std::cerr << "Volume Down: " << 100.f*Mix_VolumeMusic(r-1)/128.f << '%' << std::endl;    // accepts 0-128
 				Mix_VolumeMusic(r-1);
 				break;
 			    default:
@@ -176,8 +160,8 @@ typedef struct ECSkb : ECS {
 				break;
 			}
 		    }
-		    tka = KB_INVALID_ACTION;
-		    tsc = SDL_SCANCODE_UNKNOWN;
+		    // tka = KB_INVALID_ACTION;
+		    // tsc = SDL_SCANCODE_UNKNOWN;
 		}
 	    }
 	}
