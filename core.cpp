@@ -62,8 +62,6 @@ rt Core::input(){
     rt r = kb.poll_events();
     ++IFRAMES;
     return r;
-    // if(r) return r;
-    // return OKAY;
 }
 
 rt Core::update(float& accumulator){
@@ -89,11 +87,6 @@ rt Core::update(float& accumulator){
 	accumulator -= FIXED_LOGIC_TS;
 	++LFRAMES;
     }
-
-    // clamp accumulator - added 6/22/25 may delete needs testing
-    //  decided this is just redundant to loop logic
-    //if(accumulator < 0.0f) accumulator = 0.0f;
-    //if(accumulator > FIXED_LOGIC_TS) accumulator = FIXED_LOGIC_TS;
 
     return OKAY;
 }
@@ -123,7 +116,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     tw2 = tw1/95;
     src = {0,0,tw1,th1};
     dst = {DEF_WIN_W-tw2*sz,DEF_WIN_H-th1,tw2*sz,th1};
-    sdlw.display_text(
+    sdlw.render_text(
 	    tstr,
 	    sdlw.textures[1],
 	    src,
@@ -154,3 +147,4 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 
     return r;
 }
+

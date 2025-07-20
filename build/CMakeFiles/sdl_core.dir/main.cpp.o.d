@@ -1,6 +1,7 @@
 CMakeFiles/sdl_core.dir/main.cpp.o: \
  /home/sl1m/programming/source/sdl_core/main.cpp \
  /usr/include/stdc-predef.h /home/sl1m/programming/source/sdl_core/core.h \
+ /home/sl1m/programming/source/sdl_core/config.h \
  /home/sl1m/programming/source/sdl_core/types.h \
  /usr/include/c++/13/cstdint \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \

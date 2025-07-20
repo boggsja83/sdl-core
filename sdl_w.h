@@ -36,7 +36,6 @@ class SDL_Wrap{
 	    musics.clear();
 	    chunks.clear();
 	    fonts.clear();
-	    // font = nullptr;
 	}
 
 	~SDL_Wrap(){
@@ -49,7 +48,6 @@ class SDL_Wrap{
 	    for(i16 i=0; i < r; ++i){ Mix_FreeChunk(chunks[i]); }
 
 	    r = musics.size();
-
 	    std::cerr << "Deleting " << r << " musics" << std::endl;
 	    for(i16 i=0; i < r; ++i){ Mix_FreeMusic(musics[i]); }
 
@@ -73,19 +71,24 @@ class SDL_Wrap{
 	    Mix_CloseAudio();
 	    IMG_Quit();
 	    SDL_Quit();
+
 	    std::cerr << "All systems killed and memory released." << std::endl;
 	}
 
+    public:
 	rt init();
 	rt create_window(str title, i32 x, i32 y, i32 w, i32 h, ui32 flags);
-	rt create_texture(SDL_Renderer* prend, ui32 pformat, i32 paccess, i32 pw, i32 ph);
 	rt create_renderer(SDL_Window* win, i16 index, ui32 flags);
+
+	rt create_texture(SDL_Renderer* prend, ui32 pformat, i32 paccess, i32 pw, i32 ph);
 	rt create_texture_from_path(str path, SDL_Renderer* prend);
 	rt create_texture_from_text(TTF_Font* pfont, str ptxt, SDL_Color pcol, SDL_Renderer* prend);
 	rt create_texture_from_surface(SDL_Renderer* renderer, SDL_Surface* surface);
+
 	rt create_surface(i32 pw, i32 ph, i32 pdepth=32, ui32 prmask=0xFF000000, ui32 pgmask=0x00FF0000, ui32 pbmask=0x0000FF00, ui32 pamask=0x000000FF);
 	rt create_surface_from_img_load(str path);
 	rt create_surface_from_ttf(TTF_Font* pfont, str ptxt, SDL_Color pcol);
+
 	rt create_chunk_wav_from_path(str path);
 	rt create_music_from_path(str path);
 
@@ -93,7 +96,9 @@ class SDL_Wrap{
 	rt play_channel(i16 pchan=-1, i16 pcid=-1, i16 ploop=0);
 
 	rt open_font(str path, ui16 pfontsz);
-	rt display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst);
+	rt render_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst);
+
+	rt render_fill_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8 pg, ui8 pb, ui8 pa);
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 CMakeFiles/sdl_core.dir/core.cpp.o
  /home/sl1m/programming/source/sdl_core/core.cpp
+ /home/sl1m/programming/source/sdl_core/config.h
  /home/sl1m/programming/source/sdl_core/core.h
  /home/sl1m/programming/source/sdl_core/entity_component.h
  /home/sl1m/programming/source/sdl_core/entity_manager.h
@@ -771,6 +772,7 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o
 
 CMakeFiles/sdl_core.dir/main.cpp.o
  /home/sl1m/programming/source/sdl_core/main.cpp
+ /home/sl1m/programming/source/sdl_core/config.h
  /home/sl1m/programming/source/sdl_core/core.h
  /home/sl1m/programming/source/sdl_core/entity_component.h
  /home/sl1m/programming/source/sdl_core/entity_manager.h

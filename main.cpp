@@ -83,7 +83,7 @@ int main(int argc, char** argv){
     src = {0,0,756,568};
     tt = cTexture(r,0,0,src);
     tv = cVel(r, 0.f, 0.f);
-    tp = cPos(r, 0.f, 0.f, 50, 75);
+    tp = cPos(r, 0.f, 0.f, 50.f, 75.f);
     tk = cKB(r);
     tk.acts.push_back(MOVE_N);
     tk.acts.push_back(MOVE_S);
@@ -101,7 +101,7 @@ int main(int argc, char** argv){
     src = {0,0, 200, 400};
     tt = cTexture(r,0,0,src);
     tv = cVel(r, -15.f, -15.f);
-    tp = cPos(r, 800-150.f, 600-150.f, 151, 151);
+    tp = cPos(r, 800.f-150.f, 600.f-150.f, 151.f, 151.f);
     tk = cKB(r);
     tk.acts.push_back(MOVE_S);
     tk.acts.push_back(MOVE_E);
@@ -116,7 +116,7 @@ int main(int argc, char** argv){
     src = {0,0, 300, 500};
     tt = cTexture(3,0,0,src);
     tv = cVel(r, -25.f, 25.f);
-    tp = cPos(r, 800.f, 000.f, 25, 35);
+    tp = cPos(r, 800.f, 000.f, 25.f, 35.f);
     if(r>=0) r = core.em.set(tt);
     if(r>=0) r = core.em.set(tv);
     if(r>=0) r = core.em.set(tp);
@@ -160,6 +160,7 @@ int main(int argc, char** argv){
 
     // for (ui8 c=32; c<127; ++c) std::cerr << c;
     std::cerr << "alphabet count: " << strlen(ALPHABET) << std::endl;
+    std::cerr << "KB_NUM_ACTIONS: " << KB_NUM_ACTIONS << std::endl;
 
     return r;
 }

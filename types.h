@@ -38,7 +38,7 @@ typedef enum {
     TEST_ACTION =	    5,
     VOL_UP =		    6,
     VOL_DN =		    7,
-    KB_NUM_ACTIONS =	    10
+    KB_NUM_ACTIONS// =	    10
 } KB_ACTION;
 
 typedef enum {

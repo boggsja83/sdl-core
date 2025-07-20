@@ -1,6 +1,7 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include "config.h"
 #include "types.h"
 #include "sdl_w.h"
 #include "keyboard.h"
@@ -14,6 +15,7 @@ class Core{
 	    FADE_ALPHA(SDL_ALPHA_OPAQUE),FADE_DO(true){}
 	~Core(){}
     public:
+	Config		    conf;
 	SDL_Wrap	    sdlw;
 	Keyboard	    kb; 
 	EntityManager	    em;
@@ -28,7 +30,7 @@ class Core{
 	ui64	    LFRAMES;
 	ui64	    RFRAMES;
 	ui64	    START;
-	// used for daing test doesnt necessarily need to be here
+	// used for doing test doesnt necessarily need to be here
 	float	    FADE_ALPHA;
 	bool	    FADE_DO;
     public:

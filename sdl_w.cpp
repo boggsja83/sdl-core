@@ -75,7 +75,7 @@ rt SDL_Wrap::create_surface_from_img_load(str path){
     SDL_Surface* temp = IMG_Load(path);
     if(!temp){
 	std::cerr << "IMG_Load failed. IMG_Error: " << IMG_GetError() << std::endl;
-    	return IMG_LOAD_FAIL;
+	return IMG_LOAD_FAIL;
     }
     surfaces.push_back(temp);
     return surfaces.size()-1;
@@ -174,16 +174,16 @@ rt SDL_Wrap::open_font(str path, ui16 pfontsz){
     return fonts.size()-1;
 }
 
-rt SDL_Wrap::display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst){
+rt SDL_Wrap::render_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst){
+    // ALPHABET = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
     // 95 chars long
-    // " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+
     ui16 sz = strlen(pstr);
 
     ui16 tdw = pdst.w/sz;
     ui16 tdh = pdst.h;
 
     ui16 tsw = psrc.w/95;
-    // ui16 tsw = psrc.w/sz;
     ui16 tsh = psrc.h;
 
     ui16 offset = 0;
@@ -200,4 +200,28 @@ rt SDL_Wrap::display_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_
 
     return OKAY;
 }
+
+rt SDL_Wrap::render_fill_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8 pg, ui8 pb, ui8 pa){
+    SDL_Color tc;
+    rt r = OKAY;
+
+    r = SDL_GetRenderDrawColor(prend,&tc.r,&tc.g,&tc.b,&tc.a);
+
+    if(r>=0) r = SDL_SetRenderDrawColor(prend, pr, pg, pb, pa);
+    else { std::cerr << "GetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+
+    if(r>=0) r = SDL_RenderFillRect(prend,prect);
+    else { std::cerr << "SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+
+    if(r>=0) r = SDL_SetRenderDrawColor(prend, tc.r, tc.g, tc.b, tc.a);
+    else { std::cerr << "RenderFillRect failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+
+    if(r<0) std::cerr << "SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl;
+
+    return r; 
+}
+
+
+
+
 
