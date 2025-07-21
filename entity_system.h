@@ -4,7 +4,7 @@
 #include <SDL_render.h>
 #include "entity_manager.h"
 #include "types.h"
-#include "settings.h"
+//#include "settings.h"
 
 typedef struct ECS{ virtual rt update(EntityManager& em, float dtf) = 0; } ECS;
 
@@ -12,8 +12,8 @@ typedef struct ECSpos : ECS {
     rt update(EntityManager& em, float dft) override {
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i] & (CM_POS|CM_VEL))==(CM_POS|CM_VEL)){
-		em.pos[i].x = em.pos[i].x + em.vel[i].x * dft;
-		em.pos[i].y = em.pos[i].y + em.vel[i].y * dft;
+		em.pos[i].x = em.pos[i].x + em.vel[i].mov_x * dft;
+		em.pos[i].y = em.pos[i].y + em.vel[i].mov_y * dft;
 	    }
 	}
 	return OKAY;
@@ -25,8 +25,8 @@ typedef struct ECSrendpos : ECS {
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i] & (CM_RENDPOS|CM_POS))==(CM_RENDPOS|CM_POS)){
 		if(em.ents[i] & CM_VEL){
-		    em.rendpos[i].x = em.pos[i].x + em.vel[i].x * alpha * FIXED_LOGIC_TS;
-		    em.rendpos[i].y = em.pos[i].y + em.vel[i].y * alpha * FIXED_LOGIC_TS;
+		    em.rendpos[i].x = em.pos[i].x + em.vel[i].mov_x * alpha * em.conf_ptr->logic_ts;
+		    em.rendpos[i].y = em.pos[i].y + em.vel[i].mov_y * alpha * em.conf_ptr->logic_ts;
 		}
 		else{
 		    em.rendpos[i].x = em.pos[i].x;
@@ -44,18 +44,18 @@ typedef struct ECStexture : ECS {
     rt update(EntityManager& em, float alpha=0.f) override {
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i]&(CM_TEXTURE|CM_RENDPOS))==(CM_TEXTURE|CM_RENDPOS)){
-		SDL_Renderer* tr = nullptr;
-		SDL_Texture* tt = nullptr;
-		i16 tri = em.texture[i].rend_i;
-		i16 tti = em.texture[i].text_i;
+		SDL_Renderer* tr = em.texture[i].rend;
+		SDL_Texture* tt = em.texture[i].texture;
+		// i16 tri = em.texture[i].rend;
+		// i16 tti = em.texture[i].texture;
 
-		if(tri>=0 && tri<em.psdlw->renderers.size()) tr = em.psdlw->renderers[tri];	
-		else return INVALID_RENDERER;
+		// if(tri>=0 && tri<em.psdlw->renderers.size()) tr = em.psdlw->renderers[tri];	
+		// else return INVALID_RENDERER;
 
-		if(tti>=0 && tti<em.psdlw->textures.size()) tt = em.psdlw->textures[tti];
-		else return INVALID_TEXTURE;
+		// if(tti>=0 && tti<em.psdlw->textures.size()) tt = em.psdlw->textures[tti];
+		// else return INVALID_TEXTURE;
 
-		SDL_Rect* src = &em.texture[i].src;
+		SDL_Rect src = em.texture[i].src;
 		SDL_Rect dst = { 
 		    static_cast<i32>(em.rendpos[i].x),
 		    static_cast<i32>(em.rendpos[i].y),
@@ -63,7 +63,7 @@ typedef struct ECStexture : ECS {
 		    static_cast<i32>(em.rendpos[i].h) 
 		};
 
-		SDL_RenderCopy(tr, tt, src, &dst);
+		SDL_RenderCopy(tr, tt, &src, &dst);
 	    }
 	}
 	return OKAY;
@@ -83,30 +83,32 @@ typedef struct ECSkb : ECS {
 	rt r = OKAY;
 	float tf = 0.f;
 
+	float PLAYER_VEL = 250.f;	
+
 	for(i16 o=0; o<em.ents.size(); ++o){
 	    if(em.ents[o] & CM_KB){
 		for(i16 i=0; i<em.kb[o].acts.size(); ++i){
 		    tka = em.kb[o].acts[i];
-		    tsc = em.pkb->map[tka];
-		    if(em.pkb->keystate[tsc]){
+		    tsc = em.kb_ptr->map[tka];
+		    if(em.kb_ptr->keystate[tsc]){
 			// key down actions
 			// assumes entity has CM_VEL, may error check this in future
 			switch(tka){
 			    case MOVE_N:
-				if(em.pkb->keystate[em.pkb->map[MOVE_S]]) em.vel[o].y=0;
-				else em.vel[o].y = -1.f*PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_S]]) em.vel[o].mov_y=0;
+				else em.vel[o].mov_y = -1.f*PLAYER_VEL;
 				break;
 			    case MOVE_S:
-				if(em.pkb->keystate[em.pkb->map[MOVE_N]]) em.vel[o].y=0;
-				else em.vel[o].y = PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_N]]) em.vel[o].mov_y=0;
+				else em.vel[o].mov_y = PLAYER_VEL;
 				break;
 			    case MOVE_E:
-				if(em.pkb->keystate[em.pkb->map[MOVE_W]]) em.vel[o].x=0;
-				else em.vel[o].x = PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_W]]) em.vel[o].mov_x=0;
+				else em.vel[o].mov_x = PLAYER_VEL;
 				break;
 			    case MOVE_W:
-				if(em.pkb->keystate[em.pkb->map[MOVE_E]]) em.vel[o].x=0;
-				else em.vel[o].x = -1.f*PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_E]]) em.vel[o].mov_x=0;
+				else em.vel[o].mov_x = -1.f*PLAYER_VEL;
 				break;
 			    case TEST_ACTION:
 				//need to experiment more with method a and method b and perhaps others 7-4-25
@@ -120,10 +122,10 @@ typedef struct ECSkb : ECS {
 				// std::cerr<<"repeats: " << tf << std::endl;
 				
 				// method c
-				if(em.pkb->first_press[tsc]){
+				if(em.kb_ptr->first_press[tsc]){
 				    //em.psdlw->play_channel(0,0,0);
-				    em.psdlw->play_channel(-1,0,0);
-				    em.pkb->first_press[tsc]=false;
+				    em.sdlw_ptr->play_channel(-1,0,0);
+				    em.kb_ptr->first_press[tsc]=false;
 				}
 				break;
 			    case VOL_UP:
@@ -143,16 +145,16 @@ typedef struct ECSkb : ECS {
 			    // key not-down actions - not a "on key up action" function.
 			    // can only assume key is not pressed at this point
 			    case MOVE_N:
-				em.vel[o].y = (em.vel[o].y<0)?0:em.vel[o].y;
+				em.vel[o].mov_y = (em.vel[o].mov_y<0)?0:em.vel[o].mov_y;
 				break;
 			    case MOVE_S:
-				em.vel[o].y = (em.vel[o].y>0)?0:em.vel[o].y;
+				em.vel[o].mov_y = (em.vel[o].mov_y>0)?0:em.vel[o].mov_y;
 				break;
 			    case MOVE_E:
-				em.vel[o].x = (em.vel[o].x>0)?0:em.vel[o].x;
+				em.vel[o].mov_x = (em.vel[o].mov_x>0)?0:em.vel[o].mov_x;
 				break;
 			    case MOVE_W:
-				em.vel[o].x = (em.vel[o].x<0)?0:em.vel[o].x;
+				em.vel[o].mov_x = (em.vel[o].mov_x<0)?0:em.vel[o].mov_x;
 				break;
 			    case TEST_ACTION:
 				break;

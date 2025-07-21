@@ -1,6 +1,7 @@
 #ifndef ENTITY_MANAGER_H
 #define ENTITY_MANAGER_H
 
+#include "config.h"
 #include "entity_component.h"
 #include "keyboard.h"
 #include "types.h"
@@ -20,8 +21,9 @@ class EntityManager{
 	    texture.resize(s);
 	    kb.resize(s);
 
-	    psdlw = nullptr;
-	    pkb = nullptr;
+	    sdlw_ptr = nullptr;
+	    kb_ptr = nullptr;
+	    conf_ptr = nullptr;
 	}
 
     public:
@@ -51,8 +53,9 @@ class EntityManager{
 	std::vector<cKB>	kb;
 
     public:
-	SDL_Wrap*   psdlw;
-	Keyboard*   pkb;
+	SDL_Wrap*   sdlw_ptr;
+	Keyboard*   kb_ptr;
+	Config*	    conf_ptr;
 
     public:
 	rt set(EC& pec);

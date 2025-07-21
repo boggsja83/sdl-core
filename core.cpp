@@ -5,7 +5,7 @@
 #include <SDL2/SDL_timer.h>
 
 #include "core.h"
-#include "settings.h"
+//#include "settings.h"
 
 rt Core::loop(){
     rt r = OKAY;
@@ -21,18 +21,15 @@ rt Core::loop(){
     ui64 lit = SDL_GetTicks64();	// last input time
     ui64 cit = lit;			// current input time
 
-    SDL_Window* temp_win = sdlw.windows[WINDOW_MAIN];
-    SDL_Renderer* temp_rend = sdlw.renderers[REND_MAIN];
-
     while(running){
 	cft = SDL_GetTicks64();
 	dft = (cft - lft)/1000.f; // convert to seconds
 	lft = cft;
-	dft = dft<DFT_CAP?dft:DFT_CAP; // dont let dft grow unchecked if system
+	dft = dft<conf.dft_cap?dft:conf.dft_cap; // dont let dft grow unchecked if system
 				       // bogged down
 	// INPUT
 	cit = SDL_GetTicks64();
-	if((cit-lit)/1000.f>=FIXED_INPUT_TS){
+	if((cit-lit)/1000.f>=conf.input_ts){
 	    r = input();
 	    if(r==QUIT) running = false;
 	    else if(r<0) return r;
@@ -47,10 +44,10 @@ rt Core::loop(){
 
 	// RENDER
 	crt = SDL_GetTicks64();
-	if((crt-lrt)/1000.0f>=FIXED_RENDER_TS){
-	    alpha = accumulator / FIXED_LOGIC_TS; // the progress through current
+	if((crt-lrt)/1000.0f>=conf.rend_ts){
+	    alpha = accumulator / conf.logic_ts; // the progress through current
 						  // time step
-	    r = render(temp_rend, alpha);
+	    r = render(conf.rend, alpha);
 	    if(r<0) return r;
 	    lrt = crt;
 	}
@@ -67,7 +64,7 @@ rt Core::input(){
 rt Core::update(float& accumulator){
     rt r = OKAY;
 
-    while(accumulator >= FIXED_LOGIC_TS){
+    while(accumulator >= conf.logic_ts){
 	/**********************************************************************/
 	// eventually handle exits through contexts
 	if(kb.keystate[SDL_SCANCODE_ESCAPE]) return QUIT;
@@ -75,16 +72,16 @@ rt Core::update(float& accumulator){
 	if(kb.keystate[SDL_SCANCODE_Q]) return QUIT;
 	/**********************************************************************/
 	// UPDATE GAME LOGIC (FROM KEYSTATE)
-	em.pkb = &kb;
-	r = ecs_kb.update(em, FIXED_LOGIC_TS);
+	// em.pkb = &kb;
+	r = ecs_kb.update(em, conf.logic_ts);
 	if(r) return r;
 
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
-	r = ecs_pos.update(em, FIXED_LOGIC_TS);
+	r = ecs_pos.update(em, conf.logic_ts);
 	if(r) return r;
 
 	/**********************************************************************/
-	accumulator -= FIXED_LOGIC_TS;
+	accumulator -= conf.logic_ts;
 	++LFRAMES;
     }
 
@@ -94,14 +91,14 @@ rt Core::update(float& accumulator){
 rt Core::render(SDL_Renderer* renderer, float& alpha){
     rt r = OKAY;
 
-    SDL_SetRenderDrawColor(sdlw.renderers[REND_MAIN], DEF_R, DEF_G, DEF_B, DEF_A);
+    SDL_SetRenderDrawColor(conf.rend, conf.red, conf.green, conf.blue, conf.alpha);
     SDL_RenderClear(renderer);
 
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
     if(r>=0) r = ecs_rendpos.update(em, alpha);
 
-    em.psdlw = &sdlw;
+    // em.psdlw = &sdlw;
     if(r>=0) r = ecs_texture.update(em);
     /**************************************************************************/
 
@@ -115,7 +112,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     th1 = sdlw.surfaces[1]->h;
     tw2 = tw1/95;
     src = {0,0,tw1,th1};
-    dst = {DEF_WIN_W-tw2*sz,DEF_WIN_H-th1,tw2*sz,th1};
+    dst = {conf.win_w-tw2*sz,conf.win_h-th1,tw2*sz,th1};
     sdlw.render_text(
 	    tstr,
 	    sdlw.textures[1],

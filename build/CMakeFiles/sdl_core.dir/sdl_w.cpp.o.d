@@ -310,8 +310,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
  /home/sl1m/programming/source/sdl_core/types.h \
- /usr/include/c++/13/cstdint \
- /home/sl1m/programming/source/sdl_core/settings.h \
- /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_error.h \
+ /usr/include/c++/13/cstdint /usr/include/SDL2/SDL_error.h \
  /usr/include/SDL2/SDL_blendmode.h /usr/include/SDL2/SDL_ttf.h \
  /usr/include/c++/13/cstring

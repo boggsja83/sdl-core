@@ -5,7 +5,8 @@
 #include <SDL2/SDL_scancode.h>
 #include <SDL_timer.h>
 
-#include "settings.h"
+//#include "settings.h"
+#include "config.h"
 #include "types.h"
 
 class Keyboard{
@@ -16,6 +17,7 @@ class Keyboard{
 	    reset_array(time_up,ui64(1));
 	    reset_array(first_press);
 	    set_default_map();
+	    conf_ptr = nullptr;
 	}
 
 	~Keyboard(){}
@@ -26,6 +28,7 @@ class Keyboard{
 	bool		first_press[SDL_NUM_SCANCODES];
 	ui64		time_down[SDL_NUM_SCANCODES];
 	ui64		time_up[SDL_NUM_SCANCODES];
+	Config*		conf_ptr;
 
     public:
 
@@ -120,7 +123,7 @@ class Keyboard{
 
 	inline float repeats(KB_ACTION pka){
 	    if(pka>=0 && pka<KB_NUM_ACTIONS) 
-	        if(time_down[map[pka]]>time_up[map[pka]]) return (1.f*SDL_GetTicks64() - time_down[map[pka]]) / KB_THRESHOLD_PRESS;
+	        if(time_down[map[pka]]>time_up[map[pka]]) return (1.f*SDL_GetTicks64() - time_down[map[pka]]) / conf_ptr->kb_press_threshold;
 	        else return 0;
 	    else return 0;
 	}

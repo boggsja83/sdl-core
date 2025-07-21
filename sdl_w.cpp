@@ -1,5 +1,5 @@
 #include "sdl_w.h"
-#include "settings.h"
+//#include "settings.h"
 #include "types.h"
 
 #include <SDL2/SDL.h>
@@ -117,7 +117,8 @@ rt SDL_Wrap::create_texture_from_path(str path, SDL_Renderer* renderer){
     if(r<0) return r;
 
     if(renderer) return create_texture_from_surface(renderer, surfaces[r]);
-    else return create_texture_from_surface(renderers[REND_MAIN], surfaces[r]); 
+    // else return create_texture_from_surface(renderers[REND_MAIN], surfaces[r]); 
+    else return INVALID_RENDERER;
 }
 
 rt SDL_Wrap::create_texture_from_text(TTF_Font* pfont, str ptxt, SDL_Color pcol, SDL_Renderer* prend){

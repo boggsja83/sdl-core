@@ -9,7 +9,6 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /home/sl1m/programming/source/sdl_core/entity_system.h \
   /home/sl1m/programming/source/sdl_core/keyboard.h \
   /home/sl1m/programming/source/sdl_core/sdl_w.h \
-  /home/sl1m/programming/source/sdl_core/settings.h \
   /home/sl1m/programming/source/sdl_core/types.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -387,11 +386,11 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_core/entity_manager.cpp \
+  /home/sl1m/programming/source/sdl_core/config.h \
   /home/sl1m/programming/source/sdl_core/entity_component.h \
   /home/sl1m/programming/source/sdl_core/entity_manager.h \
   /home/sl1m/programming/source/sdl_core/keyboard.h \
   /home/sl1m/programming/source/sdl_core/sdl_w.h \
-  /home/sl1m/programming/source/sdl_core/settings.h \
   /home/sl1m/programming/source/sdl_core/types.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -776,7 +775,6 @@ CMakeFiles/sdl_core.dir/main.cpp.o: /home/sl1m/programming/source/sdl_core/main.
   /home/sl1m/programming/source/sdl_core/entity_system.h \
   /home/sl1m/programming/source/sdl_core/keyboard.h \
   /home/sl1m/programming/source/sdl_core/sdl_w.h \
-  /home/sl1m/programming/source/sdl_core/settings.h \
   /home/sl1m/programming/source/sdl_core/types.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -1155,7 +1153,6 @@ CMakeFiles/sdl_core.dir/main.cpp.o: /home/sl1m/programming/source/sdl_core/main.
 
 CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_w.cpp \
   /home/sl1m/programming/source/sdl_core/sdl_w.h \
-  /home/sl1m/programming/source/sdl_core/settings.h \
   /home/sl1m/programming/source/sdl_core/types.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -1636,6 +1633,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bitalgintrin.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bf16intrin.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx5124vnniwintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx2intrin.h:
@@ -1836,6 +1835,14 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
+/usr/include/c++/13/cctype:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/13/ext/atomicity.h:
+
+/usr/include/c++/13/tr1/gamma.tcc:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/ia32intrin.h:
 
 /usr/include/SDL2/SDL_video.h:
@@ -1843,6 +1850,16 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/SDL2/SDL_joystick.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
+
+/usr/include/c++/13/bits/char_traits.h:
+
+/home/sl1m/programming/source/sdl_core/types.h:
+
+/usr/include/SDL2/SDL_touch.h:
 
 /usr/include/c++/13/tr1/legendre_function.tcc:
 
@@ -1882,6 +1899,14 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/SDL2/SDL_gamecontroller.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/rdseedintrin.h:
+
+/usr/include/SDL2/SDL_config.h:
+
 /usr/include/c++/13/bits/invoke.h:
 
 /usr/include/SDL2/SDL_pixels.h:
@@ -1894,6 +1919,10 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h:
+
+/usr/include/SDL2/SDL_mouse.h:
+
 /usr/include/SDL2/SDL_cpuinfo.h:
 
 /usr/include/c++/13/bits/functional_hash.h:
@@ -1904,19 +1933,15 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/SDL2/SDL_main.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/rdseedintrin.h:
+/home/sl1m/programming/source/sdl_core/sdl_w.h:
 
-/usr/include/SDL2/SDL_config.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/pconfigintrin.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
 
-/usr/include/SDL2/SDL_gamecontroller.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h:
-
-/usr/include/SDL2/SDL_mouse.h:
-
-/usr/include/SDL2/SDL_audio.h:
+/home/sl1m/programming/source/sdl_core/entity_manager.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/wbnoinvdintrin.h:
 
@@ -1934,25 +1959,7 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/SDL2/SDL_atomic.h:
 
-/home/sl1m/programming/source/sdl_core/sdl_w.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/pconfigintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
-
-/usr/include/SDL2/SDL_timer.h:
-
-/home/sl1m/programming/source/sdl_core/entity_component.h:
-
-/usr/include/c++/13/clocale:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h:
-
-/home/sl1m/programming/source/sdl_core/entity_manager.h:
+/usr/include/SDL2/SDL_audio.h:
 
 /usr/include/SDL2/SDL_keycode.h:
 
@@ -1990,31 +1997,9 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/SDL2/SDL_misc.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bf16intrin.h:
-
-/home/sl1m/programming/source/sdl_core/settings.h:
-
-/usr/include/c++/13/bits/stl_construct.h:
-
-/usr/include/SDL2/SDL_filesystem.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/smmintrin.h:
-
-/usr/include/SDL2/SDL_platform.h:
-
 /usr/include/SDL2/SDL_assert.h:
 
 /usr/include/stdlib.h:
-
-/usr/include/SDL2/SDL_joystick.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
-
-/usr/include/c++/13/bits/char_traits.h:
-
-/home/sl1m/programming/source/sdl_core/types.h:
-
-/usr/include/SDL2/SDL_touch.h:
 
 /usr/include/SDL2/SDL_loadso.h:
 
@@ -2031,6 +2016,14 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/SDL2/SDL_metal.h:
 
 /usr/include/c++/13/bits/cxxabi_forced.h:
+
+/usr/include/c++/13/bits/stl_construct.h:
+
+/usr/include/SDL2/SDL_filesystem.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/smmintrin.h:
+
+/usr/include/SDL2/SDL_platform.h:
 
 /usr/include/SDL2/SDL_blendmode.h:
 
@@ -2070,13 +2063,15 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/SDL2/SDL_system.h:
 
-/usr/include/c++/13/cctype:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fintrin.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
-/usr/include/c++/13/ext/atomicity.h:
+/usr/include/SDL2/SDL_timer.h:
 
-/usr/include/c++/13/tr1/gamma.tcc:
+/home/sl1m/programming/source/sdl_core/entity_component.h:
+
+/usr/include/c++/13/clocale:
 
 /usr/include/c++/13/cerrno:
 
@@ -2126,12 +2121,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/inttypes.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
-/usr/include/c++/13/bits/stl_iterator.h:
-
-/usr/include/c++/13/ext/numeric_traits.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fp16intrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
@@ -2167,10 +2156,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/c++/13/string:
-
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
-/usr/include/c++/13/string_view:
 
 /usr/include/features-time64.h:
 
@@ -2252,6 +2237,12 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
+/usr/include/c++/13/bits/stl_iterator.h:
+
+/usr/include/c++/13/ext/numeric_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
@@ -2259,6 +2250,10 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/c++/13/string_view:
+
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 

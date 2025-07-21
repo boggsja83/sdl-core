@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include <SDL_rect.h>
+#include <SDL_render.h>
 #include <SDL_scancode.h>
 #include <vector>
 
@@ -49,31 +50,35 @@ typedef struct cRendPos : EC{
 } cRendPos;
 
 typedef struct cVel : EC{
-    float x;
-    float y;
+    float mov_x;
+    float mov_y;
     float const_x;
     float const_y;
+    float cur_x;
+    float cur_y;
 
-    cVel(i16 pid=-1, float px=0.f, float py=0.f, float pcx=0.f, float pcy=0.f){
+    cVel(i16 pid=-1,float pmov_x=0.f, float pmov_y=0.f,float pconst_x=0.f, float pconst_y=0.f,float pcur_x=0.f, float pcur_y=0.f){
 	oid = pid;
 	cm = CM_VEL;
-	x = px;
-	y = py;
-	const_x = pcx;
-	const_y = pcy;
+	cur_x = pcur_x;
+	cur_y = pcur_y;
+	mov_x = pmov_x;
+	mov_y = pmov_y;
+	const_x = pconst_x;
+	const_y = pconst_y;
     }
 } cVel;
 
 typedef struct cTexture : EC {
-    i16 rend_i;
-    i16 text_i;
+    SDL_Renderer* rend;
+    SDL_Texture* texture;
     SDL_Rect src;
 
-    cTexture(i16 pid=-1, i16 prend_i=-1, i16 ptext_i=-1, SDL_Rect psrc=SDL_Rect()){
+    cTexture(i16 pid=-1, SDL_Renderer* prend=nullptr, SDL_Texture* ptexture=nullptr, SDL_Rect psrc=SDL_Rect()){
 	oid = pid;
 	cm = CM_TEXTURE;
-	rend_i = prend_i;
-	text_i = ptext_i;
+	rend = prend;
+	texture = ptexture;
 	src = psrc;
     }
 } cTexture;

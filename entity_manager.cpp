@@ -1,6 +1,6 @@
 #include "entity_manager.h"
-#include "entity_component.h"
-#include "types.h"
+// #include "entity_component.h"
+// #include "types.h"
 
 rt EntityManager::add_entity(ui64 comp_mask){
 
@@ -60,14 +60,14 @@ rt EntityManager::set(EC& pec){
 		break;
 	    case  CM_VEL:
 		if(ents[pec.oid] & CM_VEL){
-		    vel[pec.oid].x = static_cast<cVel*>(&pec)->x;
-		    vel[pec.oid].y = static_cast<cVel*>(&pec)->y;
+		    vel[pec.oid].mov_x = static_cast<cVel*>(&pec)->mov_x;
+		    vel[pec.oid].mov_y = static_cast<cVel*>(&pec)->mov_y;
 		} else return ECS_LACKS_COMP;
 		break;
 	    case  CM_TEXTURE:
 		if(ents[pec.oid] & CM_TEXTURE){
-		    texture[pec.oid].rend_i = static_cast<cTexture*>(&pec)->rend_i;
-		    texture[pec.oid].text_i = static_cast<cTexture*>(&pec)->text_i;
+		    texture[pec.oid].rend = static_cast<cTexture*>(&pec)->rend;
+		    texture[pec.oid].texture = static_cast<cTexture*>(&pec)->texture;
 		    texture[pec.oid].src = static_cast<cTexture*>(&pec)->src;
 		}
 		else return ECS_LACKS_COMP;
