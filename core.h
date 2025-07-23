@@ -12,7 +12,7 @@
 class Core{
     public:
 	Core():IFRAMES(0),LFRAMES(0),RFRAMES(0),START(0),
-	    FADE_ALPHA(SDL_ALPHA_OPAQUE),FADE_DO(true){}
+	FADE_ALPHA(SDL_ALPHA_OPAQUE),FADE_DO(true){}
 	~Core(){}
     public:
 	Config		    conf;
@@ -33,6 +33,13 @@ class Core{
 	// used for doing test doesnt necessarily need to be here
 	float	    FADE_ALPHA;
 	bool	    FADE_DO;
+    public:
+	static i64  rand(i64 plow, i64 phi){
+	    std::random_device rd;
+	    std::mt19937 gen(rd());
+	    std::uniform_int_distribution<> dis(plow, phi);
+	    return dis(gen);
+	}
     public:
 	rt loop();
 	rt input();

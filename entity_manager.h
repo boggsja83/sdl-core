@@ -32,6 +32,7 @@ class EntityManager{
 
     public:
 	rt add_entity(ui64 comp_mask);
+
 	//TODO:
 	//rt del_entity(i16 id);
 	inline rt add_comp(i16 pid, CM_MASK pcmp){

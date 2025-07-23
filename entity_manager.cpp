@@ -62,6 +62,10 @@ rt EntityManager::set(EC& pec){
 		if(ents[pec.oid] & CM_VEL){
 		    vel[pec.oid].mov_x = static_cast<cVel*>(&pec)->mov_x;
 		    vel[pec.oid].mov_y = static_cast<cVel*>(&pec)->mov_y;
+		    vel[pec.oid].const_x = static_cast<cVel*>(&pec)->const_x;
+		    vel[pec.oid].const_y = static_cast<cVel*>(&pec)->const_y;
+		    vel[pec.oid].cur_x = static_cast<cVel*>(&pec)->cur_x;
+		    vel[pec.oid].cur_y = static_cast<cVel*>(&pec)->cur_y;
 		} else return ECS_LACKS_COMP;
 		break;
 	    case  CM_TEXTURE:

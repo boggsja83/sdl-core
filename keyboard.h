@@ -48,17 +48,16 @@ class Keyboard{
 		    case SDL_QUIT:
 			return QUIT;
 		    case SDL_KEYDOWN:
-			keystate[tcode] = true;
 			if(time_down[tcode]<time_up[tcode]){
 			    time_down[tcode] = SDL_GetTicks64();
 			    first_press[tcode] = true;
 			}
-			// else first_press[tcode] = false;
+			keystate[tcode] = true;
 		    break;
 		    case SDL_KEYUP:
-			keystate[tcode] = false;
 			time_up[tcode] = SDL_GetTicks64();
 			first_press[tcode] = false;
+			keystate[tcode] = false;
 		    break;
 		    default:
 		    break;

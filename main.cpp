@@ -73,10 +73,10 @@ int main(int argc, char** argv){
 
     SDL_Rect src;
     SDL_Rect dst;
-    cTexture tt;
-    cVel tv;
-    cPos tp;
-    cKB tk;
+    cTexture tct;
+    cVel tcv;
+    cPos tcp;
+    cKB tck;
 
     SDL_Texture* temp_text = core.sdlw.textures[main_text];
 
@@ -84,81 +84,88 @@ int main(int argc, char** argv){
 
     if(r>=0) r = core.em.add_entity(allz);
     src = {0,0,756,568};
-    tt = cTexture(r,core.conf.rend,temp_text,src);
-    tv = cVel(r, 50.f, -50.f);
-    tp = cPos(r, 0.f, 0.f, core.conf.win_w, core.conf.win_h);
-    if(r>=0) r = core.em.set(tt);
-    if(r>=0) r = core.em.set(tv);
-    if(r>=0) r = core.em.set(tp);
+    tct = cTexture(r,core.conf.rend,temp_text,src);
+    tcv = cVel(r, 0.f,0.f,50.f,-50.f);
+    tcp = cPos(r, 0.f, 0.f, core.conf.win_w, core.conf.win_h);
+    if(r>=0) r = core.em.set(tct);
+    if(r>=0) r = core.em.set(tcv);
+    if(r>=0) r = core.em.set(tcp);
 
     if(r>=0) r = core.em.add_entity(allz | CM_KB);
     src = {0,0,756,568};
-    tt = cTexture(r,core.conf.rend,temp_text,src);
-    tv = cVel(r, 0.f, 0.f);
-    tp = cPos(r, 0.f, 0.f, 50.f, 75.f);
-    tk = cKB(r);
-    tk.acts.push_back(MOVE_N);
-    tk.acts.push_back(MOVE_S);
-    tk.acts.push_back(MOVE_E);
-    tk.acts.push_back(MOVE_W);
-    tk.acts.push_back(TEST_ACTION);
-    tk.acts.push_back(VOL_UP);
-    tk.acts.push_back(VOL_DN);
-    if(r>=0) r = core.em.set(tt);
-    if(r>=0) r = core.em.set(tv);
-    if(r>=0) r = core.em.set(tp);
-    if(r>=0) r = core.em.set(tk);
+    tct = cTexture(r,core.conf.rend,temp_text,src);
+    tcv = cVel(r, 0.f, 0.f, 150.f,150.f);
+    tcp = cPos(r, 0.f, 0.f, 50.f, 75.f);
+    tck = cKB(r);
+    tck.acts.push_back(MOVE_N);
+    tck.acts.push_back(MOVE_S);
+    tck.acts.push_back(MOVE_E);
+    tck.acts.push_back(MOVE_W);
+    tck.acts.push_back(TEST_ACTION);
+    tck.acts.push_back(VOL_UP);
+    tck.acts.push_back(VOL_DN);
+    if(r>=0) r = core.em.set(tct);
+    if(r>=0) r = core.em.set(tcv);
+    if(r>=0) r = core.em.set(tcp);
+    if(r>=0) r = core.em.set(tck);
 
     if(r>=0) r = core.em.add_entity(allz | CM_KB);
     src = {0,0, 200, 400};
-    tt = cTexture(r,core.conf.rend,temp_text,src);
-    tv = cVel(r, -15.f, -15.f);
-    tp = cPos(r, 800.f-150.f, 600.f-150.f, 151.f, 151.f);
-    tk = cKB(r);
-    tk.acts.push_back(MOVE_S);
-    tk.acts.push_back(MOVE_E);
-    tk.acts.push_back(MOVE_W);
-    tk.acts.push_back(MOVE_N);
-    if(r>=0) r = core.em.set(tt);
-    if(r>=0) r = core.em.set(tv);
-    if(r>=0) r = core.em.set(tp);
-    if(r>=0) r = core.em.set(tk);
+    tct = cTexture(r,core.conf.rend,temp_text,src);
+    tcv = cVel(r, 15.f, 15.f);
+    tcp = cPos(r, 800.f-150.f, 600.f-150.f, 151.f, 151.f);
+    tck = cKB(r);
+    tck.acts.push_back(MOVE_S);
+    tck.acts.push_back(MOVE_E);
+    tck.acts.push_back(MOVE_W);
+    tck.acts.push_back(MOVE_N);
+    if(r>=0) r = core.em.set(tct);
+    if(r>=0) r = core.em.set(tcv);
+    if(r>=0) r = core.em.set(tcp);
+    if(r>=0) r = core.em.set(tck);
 
     if(r>=0) r = core.em.add_entity(allz);
     src = {0,0, 300, 500};
-    tt = cTexture(r,core.conf.rend,temp_text,src);
-    tv = cVel(r, -25.f, 25.f);
-    tp = cPos(r, 800.f, 000.f, 25.f, 35.f);
-    if(r>=0) r = core.em.set(tt);
-    if(r>=0) r = core.em.set(tv);
-    if(r>=0) r = core.em.set(tp);
+    tct = cTexture(r,core.conf.rend,temp_text,src);
+    tcv = cVel(r, 25.f, 25.f, 25.f,25.f);
+    tcp = cPos(r, 800.f, 000.f, 25.f, 35.f);
+    if(r>=0) r = core.em.set(tct);
+    if(r>=0) r = core.em.set(tcv);
+    if(r>=0) r = core.em.set(tcp);
 
     if(r>=0) r = core.em.add_entity(CM_POS|CM_TEXTURE|CM_RENDPOS|CM_KB|CM_VEL);
     src = {0,0,tw1,th1};
-    tt = cTexture(r,core.conf.rend,core.sdlw.textures[text_layer],src);
-    tp = cPos(r, (core.conf.win_w-tw1)/2.f,(core.conf.win_h-th1)/2.f,tw1,th1);
-    tk = cKB(r);
-    tk.acts.push_back(MOVE_N);
-    tk.acts.push_back(MOVE_S);
-    tk.acts.push_back(MOVE_E);
-    tk.acts.push_back(MOVE_W);
-    tv = cVel(r, 200.f,00.f);
-    if(r>=0) r = core.em.set(tv);
-    if(r>=0) r = core.em.set(tt);
-    if(r>=0) r = core.em.set(tp);
-    if(r>=0) r = core.em.set(tk);
+    tct = cTexture(r,core.conf.rend,core.sdlw.textures[text_layer],src);
+    tcp = cPos(r, (core.conf.win_w-tw1)/2.f,(core.conf.win_h-th1)/2.f,tw1,th1);
+    tcv = cVel(r, 200.f,0.f,100.f,0.f);
+    tck = cKB(r);
+    tck.acts.push_back(MOVE_N);
+    tck.acts.push_back(MOVE_S);
+    tck.acts.push_back(MOVE_E);
+    tck.acts.push_back(MOVE_W);
+    if(r>=0) r = core.em.set(tcv);
+    if(r>=0) r = core.em.set(tct);
+    if(r>=0) r = core.em.set(tcp);
+    if(r>=0) r = core.em.set(tck);
 
-	//    for(ui32 i=0; i<500; ++i){
-	// //if(r>=0) r = core.em.add_entity(CM_NULL);
-	// if(r>=0) r = core.em.add_entity(allz);
-	// src = {0,0, 300, 500};
-	// tt = cTexture(r,0,0,src);
-	// tv = cVel(r, -25.f+i, 25.f-i);
-	// tp = cPos(r, 800.f, 000.f, 25, 35);
-	// if(r>=0) r = core.em.set(tt);
-	// if(r>=0) r = core.em.set(tv);
-	// if(r>=0) r = core.em.set(tp);
-	//    }
+	   for(ui32 i=0; i<10000; ++i){
+	//if(r>=0) r = core.em.add_entity(CM_NULL);
+	if(r>=0) r = core.em.add_entity(allz|CM_KB);
+	src = {0,0, 300, 500};
+	tct = cTexture(r,core.conf.rend,temp_text,src);
+	tcv = cVel(r, Core::rand(-250,250),Core::rand(-250,250),Core::rand(-250,250), Core::rand(-250,250));
+	// tcv = cVel(r, 0.f,0.f,-25.f+i, 25.f-i);
+	tcp = cPos(r, (core.conf.win_w-25)/2.f, (core.conf.win_h-35)/2.f, 25, 35);
+	tck = cKB(r);
+	tck.acts.push_back(MOVE_N);
+	tck.acts.push_back(MOVE_S);
+	tck.acts.push_back(MOVE_E);
+	tck.acts.push_back(MOVE_W);
+	if(r>=0) r = core.em.set(tct);
+	if(r>=0) r = core.em.set(tcv);
+	if(r>=0) r = core.em.set(tcp);
+	if(r>=0) r = core.em.set(tck);
+	   }
 
     core.START = SDL_GetTicks64();
 
@@ -170,9 +177,9 @@ int main(int argc, char** argv){
     std::cerr << "Total Input Frames: " << core.IFRAMES << "\t" << "Total IFPS: " << core.IFRAMES/(elapsed/1000.f) << std::endl;
     std::cerr << "Total Logic Frames: " << core.LFRAMES << "\t" << "Total LFPS: " << core.LFRAMES/(elapsed/1000.f) << std::endl;
     std::cerr << "Total Render Frames: " << core.RFRAMES << "\t" << "Total RFPS: " << core.RFRAMES/(elapsed/1000.f) << std::endl;
+    std::cerr << "Total Entities: " << core.em.ents.size() << std::endl;
     std::cerr << "*** Exit Code: " << r << " ***" << std::endl;
 
-    // for (ui8 c=32; c<127; ++c) std::cerr << c;
     std::cerr << "alphabet count: " << strlen(core.conf.alphabet) << std::endl;
     std::cerr << "KB_NUM_ACTIONS: " << KB_NUM_ACTIONS << std::endl;
 

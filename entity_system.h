@@ -10,10 +10,21 @@ typedef struct ECS{ virtual rt update(EntityManager& em, float dtf) = 0; } ECS;
 
 typedef struct ECSpos : ECS {
     rt update(EntityManager& em, float dft) override {
+	float	tx = 0.f;
+	float	ty = 0.f;
+	cVel	tcv;
+
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i] & (CM_POS|CM_VEL))==(CM_POS|CM_VEL)){
-		em.pos[i].x = em.pos[i].x + em.vel[i].mov_x * dft;
-		em.pos[i].y = em.pos[i].y + em.vel[i].mov_y * dft;
+		tcv = em.vel[i];
+		tx = tcv.const_x;
+		ty = tcv.const_y;
+		
+		if(tcv.cur_x) tx = tcv.cur_x;
+		if(tcv.cur_y) ty = tcv.cur_y;
+
+		em.pos[i].x = em.pos[i].x + tx * dft;
+		em.pos[i].y = em.pos[i].y + ty * dft;
 	    }
 	}
 	return OKAY;
@@ -22,11 +33,22 @@ typedef struct ECSpos : ECS {
 
 typedef struct ECSrendpos : ECS {
     rt update(EntityManager& em, float alpha) override {
+	float	tx = 0.f;
+	float	ty = 0.f;
+	cVel	tv;
+
 	for(i16 i=0; i<em.ents.size(); ++i){
 	    if((em.ents[i] & (CM_RENDPOS|CM_POS))==(CM_RENDPOS|CM_POS)){
 		if(em.ents[i] & CM_VEL){
-		    em.rendpos[i].x = em.pos[i].x + em.vel[i].mov_x * alpha * em.conf_ptr->logic_ts;
-		    em.rendpos[i].y = em.pos[i].y + em.vel[i].mov_y * alpha * em.conf_ptr->logic_ts;
+		    tv = em.vel[i];
+		    tx = tv.const_x;
+		    ty = tv.const_y;
+
+		    if(tv.cur_x) tx = tv.cur_x;
+		    if(tv.cur_y) ty = tv.cur_y;
+
+		    em.rendpos[i].x = em.pos[i].x + tx * alpha * em.conf_ptr->logic_ts;
+		    em.rendpos[i].y = em.pos[i].y + ty * alpha * em.conf_ptr->logic_ts;
 		}
 		else{
 		    em.rendpos[i].x = em.pos[i].x;
@@ -81,9 +103,11 @@ typedef struct ECSkb : ECS {
 	SDL_Scancode tsc = SDL_SCANCODE_UNKNOWN;
 
 	rt r = OKAY;
-	float tf = 0.f;
+	// float tf = 0.f;
 
-	float PLAYER_VEL = 250.f;	
+	cVel tv;
+	float tx = 0.f;
+	float ty = 0.f;
 
 	for(i16 o=0; o<em.ents.size(); ++o){
 	    if(em.ents[o] & CM_KB){
@@ -95,35 +119,23 @@ typedef struct ECSkb : ECS {
 			// assumes entity has CM_VEL, may error check this in future
 			switch(tka){
 			    case MOVE_N:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_S]]) em.vel[o].mov_y=0;
-				else em.vel[o].mov_y = -1.f*PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_S]]) em.vel[o].cur_y=0;//em.vel[o].const_y;
+				else em.vel[o].cur_y = -1.f*em.vel[o].mov_y;
 				break;
 			    case MOVE_S:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_N]]) em.vel[o].mov_y=0;
-				else em.vel[o].mov_y = PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_N]]) em.vel[o].cur_y=0;//em.vel[o].const_y;
+				else em.vel[o].cur_y = em.vel[o].mov_y;
 				break;
 			    case MOVE_E:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_W]]) em.vel[o].mov_x=0;
-				else em.vel[o].mov_x = PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_W]]) em.vel[o].cur_x=0;//em.vel[o].const_x;
+				else em.vel[o].cur_x = em.vel[o].mov_x;
 				break;
 			    case MOVE_W:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_E]]) em.vel[o].mov_x=0;
-				else em.vel[o].mov_x = -1.f*PLAYER_VEL;
+				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_E]]) em.vel[o].cur_x=0;//em.vel[o].const_x;
+				else em.vel[o].cur_x = -1.f*em.vel[o].mov_x;
 				break;
 			    case TEST_ACTION:
-				//need to experiment more with method a and method b and perhaps others 7-4-25
-				//method a
-				//if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) if(!Mix_Playing(0)) em.psdlw->play_channel(0, 0, 0);
-				//if(em.pkb->is_held(TEST_ACTION)<KB_THRESHOLD_PRESS) em.psdlw->play_channel(0,0,0);
-
-				// method b
-				// tf = em.pkb->repeats(TEST_ACTION);
-				// if(tf<1.f){ em.psdlw->play_channel(-1, 0, 0); }
-				// std::cerr<<"repeats: " << tf << std::endl;
-				
-				// method c
 				if(em.kb_ptr->first_press[tsc]){
-				    //em.psdlw->play_channel(0,0,0);
 				    em.sdlw_ptr->play_channel(-1,0,0);
 				    em.kb_ptr->first_press[tsc]=false;
 				}
@@ -145,16 +157,16 @@ typedef struct ECSkb : ECS {
 			    // key not-down actions - not a "on key up action" function.
 			    // can only assume key is not pressed at this point
 			    case MOVE_N:
-				em.vel[o].mov_y = (em.vel[o].mov_y<0)?0:em.vel[o].mov_y;
+				if(em.vel[o].cur_y<0) em.vel[o].cur_y=0;
 				break;
 			    case MOVE_S:
-				em.vel[o].mov_y = (em.vel[o].mov_y>0)?0:em.vel[o].mov_y;
+				if(em.vel[o].cur_y>0) em.vel[o].cur_y=0;
 				break;
 			    case MOVE_E:
-				em.vel[o].mov_x = (em.vel[o].mov_x>0)?0:em.vel[o].mov_x;
+				if(em.vel[o].cur_x>0) em.vel[o].cur_x=0;
 				break;
 			    case MOVE_W:
-				em.vel[o].mov_x = (em.vel[o].mov_x<0)?0:em.vel[o].mov_x;
+				if(em.vel[o].cur_x<0) em.vel[o].cur_x=0;
 				break;
 			    case TEST_ACTION:
 				break;
@@ -162,11 +174,9 @@ typedef struct ECSkb : ECS {
 				break;
 			}
 		    }
-		    // tka = KB_INVALID_ACTION;
-		    // tsc = SDL_SCANCODE_UNKNOWN;
-		}
-	    }
-	}
+		} // for kb acts size
+	    } // if ent has kb
+	} // for ents in list 
 	return OKAY;
     }
 } ECSkb;

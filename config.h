@@ -4,6 +4,7 @@
 #include <SDL_pixels.h>
 #include <SDL_render.h>
 #include <SDL_video.h>
+#include <random>
 
 #include "types.h"
 
@@ -54,11 +55,11 @@ typedef struct Config {
 	blue	    = 231;
 	alpha	    = SDL_ALPHA_OPAQUE;
 
-	input_ts	    = 1.0f / 500.f;
-	logic_ts	    = 1.0f / 45.f;
+	input_ts    = 1.0f / 500.f;
+	logic_ts    = 1.0f / 45.f;
 	rend_ts	    = 1.0f / 144.f;
 
-	dft_cap     = logic_ts * 5.f;
+	dft_cap     = logic_ts * 3.f;
 	kb_press_threshold = 25;
 
 	alphabet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";

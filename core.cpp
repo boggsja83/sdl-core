@@ -74,11 +74,11 @@ rt Core::update(float& accumulator){
 	// UPDATE GAME LOGIC (FROM KEYSTATE)
 	// em.pkb = &kb;
 	r = ecs_kb.update(em, conf.logic_ts);
-	if(r) return r;
+	if(r<0) return r;
 
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
 	r = ecs_pos.update(em, conf.logic_ts);
-	if(r) return r;
+	if(r<0) return r;
 
 	/**********************************************************************/
 	accumulator -= conf.logic_ts;
