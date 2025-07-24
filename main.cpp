@@ -148,13 +148,11 @@ int main(int argc, char** argv){
     if(r>=0) r = core.em.set(tcp);
     if(r>=0) r = core.em.set(tck);
 
-	   for(ui32 i=0; i<10000; ++i){
-	//if(r>=0) r = core.em.add_entity(CM_NULL);
+    for(ui32 i=0; i<30000; ++i){
 	if(r>=0) r = core.em.add_entity(allz|CM_KB);
 	src = {0,0, 300, 500};
 	tct = cTexture(r,core.conf.rend,temp_text,src);
 	tcv = cVel(r, Core::rand(-250,250),Core::rand(-250,250),Core::rand(-250,250), Core::rand(-250,250));
-	// tcv = cVel(r, 0.f,0.f,-25.f+i, 25.f-i);
 	tcp = cPos(r, (core.conf.win_w-25)/2.f, (core.conf.win_h-35)/2.f, 25, 35);
 	tck = cKB(r);
 	tck.acts.push_back(MOVE_N);
@@ -165,7 +163,7 @@ int main(int argc, char** argv){
 	if(r>=0) r = core.em.set(tcv);
 	if(r>=0) r = core.em.set(tcp);
 	if(r>=0) r = core.em.set(tck);
-	   }
+    }
 
     core.START = SDL_GetTicks64();
 
@@ -180,8 +178,8 @@ int main(int argc, char** argv){
     std::cerr << "Total Entities: " << core.em.ents.size() << std::endl;
     std::cerr << "*** Exit Code: " << r << " ***" << std::endl;
 
-    std::cerr << "alphabet count: " << strlen(core.conf.alphabet) << std::endl;
-    std::cerr << "KB_NUM_ACTIONS: " << KB_NUM_ACTIONS << std::endl;
+    // std::cerr << "alphabet count: " << strlen(core.conf.alphabet) << std::endl;
+    // std::cerr << "KB_NUM_ACTIONS: " << KB_NUM_ACTIONS << std::endl;
 
     return r;
 }
