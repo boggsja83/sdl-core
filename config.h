@@ -1,26 +1,9 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <SDL_pixels.h>
-#include <SDL_render.h>
-#include <SDL_video.h>
-#include <random>
+#include <SDL2/SDL.h>
 
 #include "types.h"
-
-// typedef int8_t	i8;
-// typedef int16_t i16;
-// typedef int32_t i32;
-// typedef int64_t i64;
-//
-// typedef uint8_t	 ui8;
-// typedef uint16_t ui16;
-// typedef uint32_t ui32;
-// typedef uint64_t ui64;
-//
-// typedef const char* str;
-//
-// typedef i16 rt;
 
 typedef struct Config {
     SDL_Window*	    win;
@@ -43,6 +26,8 @@ typedef struct Config {
 
     str		    alphabet;
 
+    bool	    show_cursor;
+
     Config(){
 	win	    = nullptr;
 	rend	    = nullptr;
@@ -55,14 +40,17 @@ typedef struct Config {
 	blue	    = 231;
 	alpha	    = SDL_ALPHA_OPAQUE;
 
-	input_ts    = 1.0f / 500.f;
+	input_ts    = 1.0f / 500.f; // 1000 would be considered high-precision (1ms)
 	logic_ts    = 1.0f / 45.f;
 	rend_ts	    = 1.0f / 144.f;
+	// rend_ts	    = 1.0f/60.f;
 
 	dft_cap     = logic_ts * 3.f;
 	kb_press_threshold = 25;
 
 	alphabet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+
+	show_cursor = false;
     }
 
 } Config;

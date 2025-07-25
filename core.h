@@ -1,13 +1,14 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include <random>
+
 #include "config.h"
 #include "types.h"
 #include "sdl_w.h"
 #include "keyboard.h"
 #include "entity_manager.h"
 #include "entity_system.h"
-#include <SDL_pixels.h>
 
 class Core{
     public:

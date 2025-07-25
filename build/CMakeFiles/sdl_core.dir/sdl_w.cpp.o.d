@@ -228,9 +228,7 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_mixer.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_ttf.h /usr/include/SDL2/SDL_render.h \
- /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_surface.h \
- /usr/include/SDL2/SDL_video.h /usr/include/c++/13/vector \
+ /usr/include/SDL2/SDL_ttf.h /usr/include/c++/13/vector \
  /usr/include/c++/13/bits/allocator.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
  /usr/include/c++/13/bits/new_allocator.h /usr/include/c++/13/new \
@@ -308,8 +306,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc \
+ /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/cstring \
  /home/sl1m/programming/source/sdl_core/types.h \
- /usr/include/c++/13/cstdint /usr/include/SDL2/SDL_error.h \
- /usr/include/SDL2/SDL_blendmode.h /usr/include/SDL2/SDL_ttf.h \
- /usr/include/c++/13/cstring
+ /usr/include/c++/13/cstdint

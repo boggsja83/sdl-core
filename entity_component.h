@@ -1,11 +1,10 @@
 #ifndef ENTITY_COMPONENT_H
 #define ENTITY_COMPONENT_H
 
-#include "types.h"
-#include <SDL_rect.h>
-#include <SDL_render.h>
-#include <SDL_scancode.h>
+#include <SDL2/SDL.h>
 #include <vector>
+
+#include "types.h"
 
 typedef struct EC {
     i16 oid;

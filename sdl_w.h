@@ -6,14 +6,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_stdinc.h>
-
-#include <SDL2/SDL_surface.h>
-#include <SDL2/SDL_video.h>
-
 #include <vector>
 #include <iostream>
+#include <cstring>
 
 #include "types.h"
 

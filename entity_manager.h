@@ -1,12 +1,13 @@
 #ifndef ENTITY_MANAGER_H
 #define ENTITY_MANAGER_H
 
+#include <vector>
+
 #include "config.h"
 #include "entity_component.h"
 #include "keyboard.h"
 #include "types.h"
 #include "sdl_w.h"
-#include <vector>
 
 class EntityManager{
 

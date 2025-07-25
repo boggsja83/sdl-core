@@ -1,10 +1,9 @@
 #ifndef ENTITY_SYSTEM_H
 #define ENTITY_SYSTEM_H
 
-#include <SDL_render.h>
+#include <SDL2/SDL.h>
+
 #include "entity_manager.h"
-#include "types.h"
-//#include "settings.h"
 
 typedef struct ECS{ virtual rt update(EntityManager& em, float dtf) = 0; } ECS;
 
@@ -19,7 +18,7 @@ typedef struct ECSpos : ECS {
 		tcv = em.vel[i];
 		tx = tcv.const_x;
 		ty = tcv.const_y;
-		
+
 		if(tcv.cur_x) tx = tcv.cur_x;
 		if(tcv.cur_y) ty = tcv.cur_y;
 
@@ -68,15 +67,6 @@ typedef struct ECStexture : ECS {
 	    if((em.ents[i]&(CM_TEXTURE|CM_RENDPOS))==(CM_TEXTURE|CM_RENDPOS)){
 		SDL_Renderer* tr = em.texture[i].rend;
 		SDL_Texture* tt = em.texture[i].texture;
-		// i16 tri = em.texture[i].rend;
-		// i16 tti = em.texture[i].texture;
-
-		// if(tri>=0 && tri<em.psdlw->renderers.size()) tr = em.psdlw->renderers[tri];	
-		// else return INVALID_RENDERER;
-
-		// if(tti>=0 && tti<em.psdlw->textures.size()) tt = em.psdlw->textures[tti];
-		// else return INVALID_TEXTURE;
-
 		SDL_Rect src = em.texture[i].src;
 		SDL_Rect dst = { 
 		    static_cast<i32>(em.rendpos[i].x),
@@ -103,7 +93,6 @@ typedef struct ECSkb : ECS {
 	SDL_Scancode tsc = SDL_SCANCODE_UNKNOWN;
 
 	rt r = OKAY;
-	// float tf = 0.f;
 
 	cVel tv;
 	float tx = 0.f;
@@ -116,24 +105,28 @@ typedef struct ECSkb : ECS {
 		    tsc = em.kb_ptr->map[tka];
 		    if(em.kb_ptr->keystate[tsc]){
 			// key down actions
-			// assumes entity has CM_VEL, may error check this in future
+			if(em.ents[o] & CM_VEL){
+			    switch(tka){
+				case MOVE_N:
+				    if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_S]]) em.vel[o].cur_y=0;
+				    else em.vel[o].cur_y = -1.f*em.vel[o].mov_y;
+				    break;
+				case MOVE_S:
+				    if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_N]]) em.vel[o].cur_y=0;
+				    else em.vel[o].cur_y = em.vel[o].mov_y;
+				    break;
+				case MOVE_E:
+				    if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_W]]) em.vel[o].cur_x=0;
+				    else em.vel[o].cur_x = em.vel[o].mov_x;
+				    break;
+				case MOVE_W:
+				    if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_E]]) em.vel[o].cur_x=0;
+				    else em.vel[o].cur_x = -1.f*em.vel[o].mov_x;
+				    break;
+				default:;
+			    }
+			}
 			switch(tka){
-			    case MOVE_N:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_S]]) em.vel[o].cur_y=0;//em.vel[o].const_y;
-				else em.vel[o].cur_y = -1.f*em.vel[o].mov_y;
-				break;
-			    case MOVE_S:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_N]]) em.vel[o].cur_y=0;//em.vel[o].const_y;
-				else em.vel[o].cur_y = em.vel[o].mov_y;
-				break;
-			    case MOVE_E:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_W]]) em.vel[o].cur_x=0;//em.vel[o].const_x;
-				else em.vel[o].cur_x = em.vel[o].mov_x;
-				break;
-			    case MOVE_W:
-				if(em.kb_ptr->keystate[em.kb_ptr->map[MOVE_E]]) em.vel[o].cur_x=0;//em.vel[o].const_x;
-				else em.vel[o].cur_x = -1.f*em.vel[o].mov_x;
-				break;
 			    case TEST_ACTION:
 				if(em.kb_ptr->first_press[tsc]){
 				    em.sdlw_ptr->play_channel(-1,0,0);
@@ -148,35 +141,44 @@ typedef struct ECSkb : ECS {
 				r = Mix_VolumeMusic(-1);				
 				Mix_VolumeMusic(r-1);
 				break;
-			    default:
+			    case TOGGLE_CURSOR:
+				if(em.kb_ptr->first_press[tsc]){
+				    em.conf_ptr->show_cursor = !em.conf_ptr->show_cursor;
+				    em.kb_ptr->first_press[tsc]=false;
+				}
 				break;
+			    default:;
 			}
 		    }
 		    else{
+			// key not-down actions - not a "on key up action" function.
+			if(em.ents[o] & CM_VEL){
+			    switch(tka){
+				case MOVE_N:
+				    if(em.vel[o].cur_y<0) em.vel[o].cur_y=0;
+				    break;
+				case MOVE_S:
+				    if(em.vel[o].cur_y>0) em.vel[o].cur_y=0;
+				    break;
+				case MOVE_E:
+				    if(em.vel[o].cur_x>0) em.vel[o].cur_x=0;
+				    break;
+				case MOVE_W:
+				    if(em.vel[o].cur_x<0) em.vel[o].cur_x=0;
+				    break;
+				default:;
+			    }
+			}
 			switch(tka){
-			    // key not-down actions - not a "on key up action" function.
-			    // can only assume key is not pressed at this point
-			    case MOVE_N:
-				if(em.vel[o].cur_y<0) em.vel[o].cur_y=0;
-				break;
-			    case MOVE_S:
-				if(em.vel[o].cur_y>0) em.vel[o].cur_y=0;
-				break;
-			    case MOVE_E:
-				if(em.vel[o].cur_x>0) em.vel[o].cur_x=0;
-				break;
-			    case MOVE_W:
-				if(em.vel[o].cur_x<0) em.vel[o].cur_x=0;
-				break;
+			    // put any other key not-down actions needed here
 			    case TEST_ACTION:
 				break;
-			    default:
-				break;
+			    default:;
 			}
 		    }
-		} // for kb acts size
-	    } // if ent has kb
-	} // for ents in list 
+		}
+	    }
+	}
 	return OKAY;
     }
 } ECSkb;

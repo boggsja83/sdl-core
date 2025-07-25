@@ -1,18 +1,11 @@
-#include <SDL2/SDL_keycode.h>
-#include <SDL2/SDL_pixels.h>
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_scancode.h>
-#include <SDL2/SDL_timer.h>
-
 #include "core.h"
-//#include "settings.h"
 
 rt Core::loop(){
     rt r = OKAY;
     bool running = true; 
 
-    float accumulator = 0.0f;		// time accumulator
-    float alpha = 0.0f;			// progrss through current frame
+    float accumulator = 0.0f;		// ms time accumulator
+    float alpha = 0.0f;			// progress through current frame
     float dft = 0.0f;			// delta frame time
     ui64 lft = SDL_GetTicks64();	// last frame time
     ui64 cft = lft;			// current frame time
@@ -25,8 +18,8 @@ rt Core::loop(){
 	cft = SDL_GetTicks64();
 	dft = (cft - lft)/1000.f; // convert to seconds
 	lft = cft;
-	dft = dft<conf.dft_cap?dft:conf.dft_cap; // dont let dft grow unchecked if system
-				       // bogged down
+	dft = dft<conf.dft_cap?dft:conf.dft_cap; // dont let dft grow unchecked 
+						 // if system bogged down
 	// INPUT
 	cit = SDL_GetTicks64();
 	if((cit-lit)/1000.f>=conf.input_ts){
@@ -79,6 +72,8 @@ rt Core::update(float& accumulator){
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
 	r = ecs_pos.update(em, conf.logic_ts);
 	if(r<0) return r;
+
+	SDL_ShowCursor(conf.show_cursor);
 
 	/**********************************************************************/
 	accumulator -= conf.logic_ts;
