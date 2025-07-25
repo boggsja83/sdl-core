@@ -1,6 +1,10 @@
 #ifndef ENTITY_COMPONENT_H
 #define ENTITY_COMPONENT_H
 
+#ifndef SDL_MAIN_HANDLED
+#define SDL_MAIN_HANDLED
+#endif
+
 #include <SDL2/SDL.h>
 #include <vector>
 

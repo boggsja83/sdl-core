@@ -1,6 +1,10 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
+#ifndef SDL_MAIN_HANDLED
+#define SDL_MAIN_HANDLED
+#endif
+
 #include <SDL2/SDL.h>
 
 #include "config.h"

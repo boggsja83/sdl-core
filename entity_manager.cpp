@@ -1,6 +1,4 @@
 #include "entity_manager.h"
-// #include "entity_component.h"
-// #include "types.h"
 
 rt EntityManager::add_entity(ui64 comp_mask){
 
