@@ -13,10 +13,10 @@
 class Keyboard{
     public:
 	Keyboard(){
-	    reset_array(keystate, false);
-	    reset_array(time_down,ui64(0));
-	    reset_array(time_up,ui64(1));
+	    reset_array(keystate);
 	    reset_array(first_press);
+	    reset_array(time_down);
+	    reset_array(time_up,ui64(1));
 	    set_default_map();
 	    conf_ptr = nullptr;
 	}
@@ -24,15 +24,14 @@ class Keyboard{
 	~Keyboard(){}
 
     public:
-	bool		keystate[SDL_NUM_SCANCODES];
 	SDL_Scancode	map[KB_NUM_ACTIONS];
+	bool		keystate[SDL_NUM_SCANCODES];
 	bool		first_press[SDL_NUM_SCANCODES];
 	ui64		time_down[SDL_NUM_SCANCODES];
 	ui64		time_up[SDL_NUM_SCANCODES];
 	Config*		conf_ptr;
 
     public:
-
 	template<typename T, size_t N>
 	    inline void reset_array(T (&arr)[N], T val){ memset(arr, val, N*sizeof(T)); }
 
@@ -72,8 +71,7 @@ class Keyboard{
 			// 	break;
 			// }
 			// break;
-		    default:
-			break;
+		    default:;
 		}
 	    }
 	    return OKAY;
@@ -115,7 +113,6 @@ class Keyboard{
 	    }
 	    return OKAY;
 	}
-
 
 	// TODO
 	// need to test out considering KB_THRESHOLD_PRESS here to determine

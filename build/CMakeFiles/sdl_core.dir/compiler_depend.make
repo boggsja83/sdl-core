@@ -139,6 +139,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
+  /usr/include/c++/13/cstring \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
@@ -526,6 +527,7 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
+  /usr/include/c++/13/cstring \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
@@ -920,6 +922,7 @@ CMakeFiles/sdl_core.dir/main.cpp.o: /home/sl1m/programming/source/sdl_core/main.
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
+  /usr/include/c++/13/cstring \
   /usr/include/c++/13/ctime \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
@@ -1562,8 +1565,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 
-/usr/include/c++/13/cstring:
-
 /home/sl1m/programming/source/sdl_core/sdl_w.cpp:
 
 /usr/include/libintl.h:
@@ -1747,6 +1748,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/c++/13/bits/stringfwd.h:
 
@@ -2176,6 +2179,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/cstdlib:
 
+/usr/include/c++/13/cstring:
+
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
 /usr/include/c++/13/cwchar:
@@ -2377,5 +2382,3 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/sstream:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:

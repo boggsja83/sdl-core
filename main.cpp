@@ -1,6 +1,7 @@
 #include <iomanip>
 
 #include "core.h"
+#include "types.h"
 
 // dropped make build system
 // now using CMake to build 6-15-25
@@ -32,6 +33,11 @@ int main(int argc, char** argv){
     ui16 txt_layer = 0;
     ui16 fade_layer = 0;
 
+    ui8 cr = 255;
+    ui8 cg = 136;
+    ui8 cb = 0;
+    ui8 ca = SDL_ALPHA_OPAQUE;
+
     if(r>=0) r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, core.conf.win_w, core.conf.win_h, SDL_WINDOW_VULKAN|SDL_WINDOW_FULLSCREEN_DESKTOP);
     core.conf.win = core.sdlw.windows[r];
 
@@ -46,10 +52,12 @@ int main(int argc, char** argv){
     if(r>=0) r = core.sdlw.play_music(0,-1); 
 
     if(r>=0) r = core.sdlw.open_font("BigBlue437-Regular.ttf", 24);
-    if(r>=0) txt_layer = core.sdlw.create_texture_from_text(core.sdlw.fonts[r],core.conf.alphabet,SDL_Color({255,255,255,255}),core.conf.rend);
-    if(r>=0) { tw1 = core.sdlw.surfaces[txt_layer]->w; th1 = core.sdlw.surfaces[txt_layer]->h; }
+    if(r>=0) txt_layer = core.sdlw.create_texture_from_text(core.sdlw.fonts[r],core.conf.alphabet,SDL_Color({cr,cg,cb,ca}),core.conf.rend);
+    if(txt_layer>=0) { tw1 = core.sdlw.surfaces[txt_layer]->w; th1 = core.sdlw.surfaces[txt_layer]->h; }
 
-    if(r>=0) fade_layer = core.sdlw.create_texture(core.conf.rend,SDL_PIXELFORMAT_RGBA8888,SDL_TEXTUREACCESS_TARGET,core.conf.win_w,core.conf.win_h);
+    if(txt_layer>=0) fade_layer = core.sdlw.create_texture(core.conf.rend,SDL_PIXELFORMAT_RGBA8888,SDL_TEXTUREACCESS_TARGET,core.conf.win_w,core.conf.win_h);
+
+    r = fade_layer;
 
     //text shadow
 
@@ -74,6 +82,14 @@ int main(int argc, char** argv){
 
     ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
 
+    if(r>=0) r = core.em.add_entity(CM_KB);
+    tck = cKB(r);
+    tck.acts.push_back(TEST_ACTION);
+    tck.acts.push_back(VOL_UP);
+    tck.acts.push_back(VOL_DN);
+    tck.acts.push_back(TOGGLE_CURSOR);
+    if(r>=0) r = core.em.set(tck);
+
     if(r>=0) r = core.em.add_entity(allz);
     src = {0,0,core.sdlw.surfaces[main_layer]->w,core.sdlw.surfaces[main_layer]->h};
     tct = cTexture(r,core.conf.rend,temp_text,src);
@@ -93,10 +109,6 @@ int main(int argc, char** argv){
     tck.acts.push_back(MOVE_S);
     tck.acts.push_back(MOVE_E);
     tck.acts.push_back(MOVE_W);
-    tck.acts.push_back(TEST_ACTION);
-    tck.acts.push_back(VOL_UP);
-    tck.acts.push_back(VOL_DN);
-    tck.acts.push_back(TOGGLE_CURSOR);
     if(r>=0) r = core.em.set(tct);
     if(r>=0) r = core.em.set(tcv);
     if(r>=0) r = core.em.set(tcp);
@@ -158,7 +170,7 @@ int main(int argc, char** argv){
 	// if(r>=0) r = core.em.set(tck);
 	//    }
 
-    core.START = SDL_GetTicks64();
+    // core.START = SDL_GetTicks64();
 
     if(r>=0) r = core.loop();
 
@@ -168,15 +180,15 @@ int main(int argc, char** argv){
     float lfps = core.LFRAMES/(elapsed/1000.f);
     float rfps = core.RFRAMES/(elapsed/1000.f);
 
-    ui16 col_w = 8;
+    ui16 col_w = 6;
 
     std::cerr << std::fixed << std::setprecision(2) << std::left;
 
     std::cerr << "Total Runtime:  " << elapsed/1000.f << " seconds" << std::endl;
     std::cerr << "Total Entities: " << std::setw(col_w) << core.em.ents.size() << std::endl;
-    std::cerr << "Total Input Frames:  " << std::setw(col_w) << core.IFRAMES << "Total IFPS: " << ifps << std::endl;
-    std::cerr << "Total Logic Frames:  " << std::setw(col_w) <<core.LFRAMES << "Total LFPS: " << lfps << std::endl;
-    std::cerr << "Total Render Frames: " << std::setw(col_w) << core.RFRAMES << "Total RFPS: " << rfps << std::endl;
+    std::cerr << "Total Input Frames:  " << std::setw(col_w) << core.IFRAMES << " | Total IFPS: " << ifps << std::endl;
+    std::cerr << "Total Logic Frames:  " << std::setw(col_w) <<core.LFRAMES << " | Total LFPS: " << lfps << std::endl;
+    std::cerr << "Total Render Frames: " << std::setw(col_w) << core.RFRAMES << " | Total RFPS: " << rfps << std::endl;
 
     std::cerr << "Input Performance Rating:  " << ifps*core.conf.input_ts*100.f << '%' << std::endl;
     std::cerr << "Logic Performance Rating:  " << lfps*core.conf.logic_ts*100.f << '%' << std::endl;

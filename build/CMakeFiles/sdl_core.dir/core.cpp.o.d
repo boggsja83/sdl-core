@@ -320,4 +320,5 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /home/sl1m/programming/source/sdl_core/keyboard.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
- /home/sl1m/programming/source/sdl_core/entity_system.h
+ /home/sl1m/programming/source/sdl_core/entity_system.h \
+ /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_timer.h

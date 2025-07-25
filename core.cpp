@@ -1,4 +1,6 @@
 #include "core.h"
+#include <SDL_pixels.h>
+#include <SDL_timer.h>
 
 rt Core::loop(){
     rt r = OKAY;
@@ -13,6 +15,8 @@ rt Core::loop(){
     ui64 crt = lrt;			// current render time
     ui64 lit = SDL_GetTicks64();	// last input time
     ui64 cit = lit;			// current input time
+
+    START = SDL_GetTicks64();
 
     while(running){
 	cft = SDL_GetTicks64();
@@ -102,12 +106,15 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     ui16 tw1=0, tw2=0, th1=0, th2=0;
     str tstr = "core 0.1";
     ui16 sz = strlen(tstr);
-
+    ////////////
     tw1 = sdlw.surfaces[1]->w;
     th1 = sdlw.surfaces[1]->h;
-    tw2 = tw1/95;
+    tw2 = tw1/strlen(conf.alphabet);//95;
     src = {0,0,tw1,th1};
     dst = {conf.win_w-tw2*sz,conf.win_h-th1,tw2*sz,th1};
+
+    r = sdlw.render_fill_rect(conf.rend,&dst,19,144,0,SDL_ALPHA_OPAQUE);
+
     sdlw.render_text(
 	    tstr,
 	    sdlw.textures[1],
@@ -116,21 +123,19 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	    dst
 	    );
     ////////////
-
-    ////////////
     float fade_speed = 0.55f;
 
     if(FADE_DO){
 	if(FADE_ALPHA<0.f) FADE_ALPHA=0.f;
 	SDL_SetRenderTarget(sdlw.renderers[0],sdlw.textures[2]);
-	SDL_SetRenderDrawColor(sdlw.renderers[0], 0,0,0,255);
+	SDL_SetRenderDrawColor(sdlw.renderers[0], 255,0,0,255);
 	SDL_RenderClear(sdlw.renderers[0]);
 	SDL_SetRenderTarget(sdlw.renderers[0],nullptr);
 	SDL_SetTextureAlphaMod(sdlw.textures[2],FADE_ALPHA);
 	SDL_RenderCopy(sdlw.renderers[0],sdlw.textures[2],nullptr,nullptr);
 	if(FADE_ALPHA==0.f) FADE_DO = false;
 	FADE_ALPHA-=fade_speed;
-	//std::cerr << "FADE_ALPHA: " << FADE_ALPHA << std::endl;
+	std::cerr << "FADE_ALPHA: " << FADE_ALPHA << std::endl;
     }
     ////////////
 
