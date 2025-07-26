@@ -12,7 +12,7 @@
 
 class Core{
     public:
-	Core():/*GFRAMES(0),*/IFRAMES(0),LFRAMES(0),RFRAMES(0),START(0),
+	Core():/*GFRAMES(0),*///IFRAMES(0),LFRAMES(0),RFRAMES(0),START(0),
 	FADE_SPEED(1.25f),FADE_ALPHA(000.f){}
 	// FADE_ALPHA(SDL_ALPHA_OPAQUE),FADE_DO(true),FADE_SPEED(1.05f){}
 	~Core(){}
@@ -30,9 +30,9 @@ class Core{
 	// i64	    STATUS_INT64;
 	// str	    STATUS_STRING;
 	// ui64	    GFRAMES;
-	ui64	    IFRAMES;
-	ui64	    LFRAMES;
-	ui64	    RFRAMES;
+	//ui64	    IFRAMES;
+	//ui64	    LFRAMES;
+	//ui64	    RFRAMES;
 	ui64	    START;
 	// used for doing test doesnt necessarily need to be here
 	float	    FADE_ALPHA;

@@ -2,6 +2,7 @@
 #define TYPES_H
 
 #include <cstdint>
+#include <string>
 
 typedef int8_t	i8;
 typedef int16_t i16;
@@ -13,7 +14,7 @@ typedef uint16_t ui16;
 typedef uint32_t ui32;
 typedef uint64_t ui64;
 
-typedef const char* str;
+typedef std::string str;
 
 typedef i16 rt;
 
@@ -79,6 +80,13 @@ typedef enum {
     CM_FPS		    = 0b0001'0000,
     CM_KB		    = 0b0010'0000
 } CM_MASK;
+
+typedef enum {
+    FT_NONE		    = 0,
+    FT_INPUT		    = 1,
+    FT_LOGIC		    = 2,
+    FT_RENDER		    = 3
+} FRAME_TYPE;
 
 #endif
 

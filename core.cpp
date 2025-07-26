@@ -1,6 +1,7 @@
 #include "core.h"
 #include <SDL_pixels.h>
 #include <SDL_timer.h>
+#include <string>
 
 rt Core::loop(){
     rt r = OKAY;
@@ -55,7 +56,8 @@ rt Core::loop(){
 
 rt Core::input(){
     rt r = kb.poll_events();
-    ++IFRAMES;
+    // ++IFRAMES;
+    ++conf.iframes;
     return r;
 }
 
@@ -78,13 +80,16 @@ rt Core::update(float& accumulator){
 	r = ecs_pos.update(em, conf.logic_ts);
 	if(r<0) return r;
 
-	r = ecs_fps.update(em,0.f);
+	r = ecs_fps.update(em);
+	// r = ecs_fps.update(em,conf.rframes);
+	// r = ecs_fps.update(em,RFRAMES);
 
 	SDL_ShowCursor(conf.show_cursor);
 
 	/**********************************************************************/
 	accumulator -= conf.logic_ts;
-	++LFRAMES;
+	// ++LFRAMES;
+	++conf.lframes;
     }
 
     return OKAY;
@@ -107,12 +112,15 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     ////////////
     SDL_Rect src, dst;
     ui16 tw1=0, tw2=0, th1=0, th2=0;
-    str tstr = " core 0.1 ";
-    ui16 sz = strlen(tstr);
+    // str tstr = " core 0.1 ";
+    str tstr = "RFPS: " +  std::to_string((em.fps[0].last_fps*1000.f));
+
+    ui16 sz = tstr.size();
+    // ui16 sz = strlen(tstr);
     ////////////
     tw1 = sdlw.surfaces[1]->w;
     th1 = sdlw.surfaces[1]->h;
-    tw2 = tw1/strlen(conf.alphabet);//95;
+    tw2 = tw1/conf.alphabet.size();//95;
     src = {0,0,tw1,th1};
     dst = {conf.win_w-tw2*sz,conf.win_h-th1,tw2*sz,th1};
 
@@ -139,8 +147,9 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     ////////////
 
     SDL_RenderPresent(renderer);
-    ++RFRAMES;
-
+    // ++RFRAMES;
+    ++conf.rframes;
+   
     return r;
 }
 

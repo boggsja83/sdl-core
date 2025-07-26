@@ -1,6 +1,8 @@
 #ifndef ENTITY_SYSTEM_H
 #define ENTITY_SYSTEM_H
 
+#include "types.h"
+#include <SDL_timer.h>
 #ifndef SDL_MAIN_HANDLED
 #define SDL_MAIN_HANDLED
 #endif
@@ -9,7 +11,9 @@
 
 #include "entity_manager.h"
 
-typedef struct ECS{ virtual rt update(EntityManager& em, float dtf) = 0; } ECS;
+typedef struct ECS{
+    virtual rt update(EntityManager& em, float dtf) = 0;
+} ECS;
 
 typedef struct ECSpos : ECS {
     rt update(EntityManager& em, float dft) override {
@@ -188,14 +192,48 @@ typedef struct ECSkb : ECS {
 } ECSkb;
 
 typedef struct ECSfps : ECS{
-    rt update(EntityManager& em, float dtf){
-	// std::cerr << "Still need to implemenet ECSfps::update("<<dtf<<")" << std::endl;
-	if(!dtf){
-	    
+    rt update(EntityManager& em, float dft=0.f) override {
+	cFPS* tfps;
+	ui64 tframe = 0;
+	// ui64 now = SDL_GetTicks64();
+
+	for(i16 i=0;i<em.ents.size();++i){
+	    if(em.ents[i] & CM_FPS){
+		// now = SDL_GetTicks64();
+		tfps = &em.fps[i];
+		switch(tfps->frame_type){
+		    case FT_INPUT:
+			tframe = em.conf_ptr->iframes;
+			// std::cerr << "iframes: " << tframe << std::endl;
+			break;
+		    case FT_LOGIC:
+			tframe = em.conf_ptr->lframes;
+			break;
+		    case FT_RENDER:
+			tframe = em.conf_ptr->rframes;
+			break;
+		    case FT_NONE:
+			break;
+		    default:;
+		}
+
+		if(tfps->start_time<tfps->stop_time){
+		    tfps->start_time = SDL_GetTicks64();
+		    tfps->start_frame = tframe;
+		}
+		else if(SDL_GetTicks64()-tfps->start_time>=tfps->timespan){
+		    tfps->stop_time = SDL_GetTicks64();
+		    tfps->stop_frame = tframe;
+		    tfps->last_fps = 1.f*(tfps->stop_frame-tfps->start_frame)/(tfps->stop_time-tfps->start_time);
+		    //std::cerr << "Last FPS ("<<tfps->timespan<<"ms): " << tfps->last_fps*1000.f << std::endl;
+
+		}
+
+	    }
 	}
 
 	return OKAY;
     }
-} ECSfps;
+} ECSframefps;
 
 #endif

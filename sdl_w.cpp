@@ -28,7 +28,7 @@ rt SDL_Wrap::init(){
 }
 
 rt SDL_Wrap::create_window(str title, i32 x, i32 y, i32 w, i32 h, ui32 flags){
-    SDL_Window* temp = SDL_CreateWindow(title, x, y, w, h, flags);
+    SDL_Window* temp = SDL_CreateWindow(title.c_str(), x, y, w, h, flags);
     if(!temp){
 	std::cerr << "CreateWindow failed. SDL_Error: " << SDL_GetError() << std::endl;
 	return CREATE_WINDOW_FAIL;
@@ -63,7 +63,7 @@ rt SDL_Wrap::create_surface(i32 pw, i32 ph, i32 pdepth, ui32 prmask, ui32 pgmask
 }
 
 rt SDL_Wrap::create_surface_from_img_load(str path){
-    SDL_Surface* temp = IMG_Load(path);
+    SDL_Surface* temp = IMG_Load(path.c_str());
     if(!temp){
 	std::cerr << "IMG_Load failed. IMG_Error: " << IMG_GetError() << std::endl;
 	return IMG_LOAD_FAIL;
@@ -73,7 +73,7 @@ rt SDL_Wrap::create_surface_from_img_load(str path){
 }
 
 rt SDL_Wrap::create_surface_from_ttf(TTF_Font* pfont, str ptxt, SDL_Color pcol){
-    SDL_Surface* temp = TTF_RenderText_Solid(pfont, ptxt, pcol);
+    SDL_Surface* temp = TTF_RenderText_Solid(pfont, ptxt.c_str(), pcol);
     if(!temp){
 	std::cerr << "RenderText failed. TTF_Error: " << TTF_GetError() << std::endl;
 	return TTF_SURFACE_FAIL;
@@ -119,7 +119,7 @@ rt SDL_Wrap::create_texture_from_text(TTF_Font* pfont, str ptxt, SDL_Color pcol,
 }
 
 rt SDL_Wrap::create_chunk_wav_from_path(str path){
-    Mix_Chunk* temp = Mix_LoadWAV(path);
+    Mix_Chunk* temp = Mix_LoadWAV(path.c_str());
     if(!temp){
 	std::cerr << "LoadWAV failed. Mix_Errror: " << Mix_GetError() << std::endl;
 	return MIX_LOAD_WAV_FAIL;
@@ -129,7 +129,7 @@ rt SDL_Wrap::create_chunk_wav_from_path(str path){
 }
 
 rt SDL_Wrap::create_music_from_path(str path){
-    Mix_Music* temp = Mix_LoadMUS(path);
+    Mix_Music* temp = Mix_LoadMUS(path.c_str());
     if(!temp){
 	std::cerr << "LoadMUS failed. Mix_Error: " << Mix_GetError() << std::endl;
 	return MIX_LOAD_MUS_FAIL;
@@ -157,7 +157,7 @@ rt SDL_Wrap::play_music(i16 pmid, i16 ploop){
 }
 
 rt SDL_Wrap::open_font(str path, ui16 pfontsz){
-    TTF_Font* font = TTF_OpenFont(path, pfontsz);
+    TTF_Font* font = TTF_OpenFont(path.c_str(), pfontsz);
     if(!font){
 	std::cerr << "OpenFont failed. TTF_Error: " << TTF_GetError() << std::endl;
 	return TTF_OPEN_FAIL;
@@ -170,7 +170,7 @@ rt SDL_Wrap::render_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_R
     // ALPHABET = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
     // 95 chars long
 
-    ui16 sz = strlen(pstr);
+    ui16 sz = pstr.size();
 
     ui16 tdw = pdst.w/sz;
     ui16 tdh = pdst.h;

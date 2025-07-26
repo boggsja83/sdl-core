@@ -29,6 +29,7 @@ typedef struct cPos : EC{
     cPos(i16 pid=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
 	oid = pid;
 	cm = CM_POS;
+
 	x = px;
 	y = py;
 	w = pw;
@@ -45,6 +46,7 @@ typedef struct cRendPos : EC{
     cRendPos(i16 pid=-1, float px=-1.f, float py=-1.f, float pw=-1.f, float ph=-1.f){
 	oid = pid;
 	cm = CM_RENDPOS;
+
 	x = px;
 	y = py;
 	w = pw;
@@ -63,6 +65,7 @@ typedef struct cVel : EC{
     cVel(i16 pid=-1,float pmov_x=0.f, float pmov_y=0.f,float pconst_x=0.f, float pconst_y=0.f,float pcur_x=0.f, float pcur_y=0.f){
 	oid = pid;
 	cm = CM_VEL;
+
 	cur_x = pcur_x;
 	cur_y = pcur_y;
 	mov_x = pmov_x;
@@ -80,6 +83,7 @@ typedef struct cTexture : EC {
     cTexture(i16 pid=-1, SDL_Renderer* prend=nullptr, SDL_Texture* ptexture=nullptr, SDL_Rect psrc=SDL_Rect()){
 	oid = pid;
 	cm = CM_TEXTURE;
+
 	rend = prend;
 	texture = ptexture;
 	src = psrc;
@@ -98,23 +102,30 @@ typedef struct cKB : EC {
 } cKB;
 
 typedef struct cFPS : EC {
+    // milliseconds
     ui64 timespan;
+    float last_fps;
     ui64 start_time;
     ui64 stop_time;
     ui64 start_frame;
     ui64 stop_frame;
+    FRAME_TYPE frame_type;
 
-    cFPS(i16 pid=-1){
+    cFPS(i16 pid=-1,ui64 pts=0, FRAME_TYPE pft=FT_NONE,float plfps=0.f,ui64 pstrt=0,ui64 pstpt=1,ui64 pstrf=0,ui64 pstpf=0){
 	oid = pid;
 	cm = CM_FPS;
 
-	timespan = 0;
+	timespan = pts;
+	
+	last_fps = plfps;	
 
-	start_time = 0;
-	stop_time = 0;
+	start_time = pstrt;
+	stop_time = pstpt;
 
-	start_frame = 0;
-	stop_frame = 0;
+	start_frame = pstrf;
+	stop_frame = pstpf;
+
+	frame_type = pft;
     }
 } cFPS;
 

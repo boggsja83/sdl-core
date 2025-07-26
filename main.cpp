@@ -85,13 +85,14 @@ int main(int argc, char** argv){
     ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
 
     if(r>=0) r = core.em.add_entity(CM_KB|CM_FPS);
-    tcf = cFPS(r);
+    tcf = cFPS(r,500,FT_LOGIC);
     tck = cKB(r);
     tck.acts.push_back(TEST_ACTION);
     tck.acts.push_back(VOL_UP);
     tck.acts.push_back(VOL_DN);
     tck.acts.push_back(TOGGLE_CURSOR);
     if(r>=0) r = core.em.set(tck);
+    if(r>=0) r = core.em.set(tcf);
 
     if(r>=0) r = core.em.add_entity(allz);
     src = {0,0,core.sdlw.surfaces[main_layer]->w,core.sdlw.surfaces[main_layer]->h};
@@ -179,9 +180,9 @@ int main(int argc, char** argv){
 
     ui64 elapsed = SDL_GetTicks64() - core.START;
 
-    float ifps = core.IFRAMES/(elapsed/1000.f);
-    float lfps = core.LFRAMES/(elapsed/1000.f);
-    float rfps = core.RFRAMES/(elapsed/1000.f);
+    float ifps = core.conf.iframes/(elapsed/1000.f);
+    float lfps = core.conf.lframes/(elapsed/1000.f);
+    float rfps = core.conf.rframes/(elapsed/1000.f);
     // float gfps = core.GFRAMES/(elapsed/1000.f);
     ui16 col_w = 6;
 
@@ -189,9 +190,9 @@ int main(int argc, char** argv){
 
     std::cerr << "Total Runtime:  " << elapsed/1000.f << " seconds" << std::endl;
     std::cerr << "Total Entities: " << std::setw(col_w) << core.em.ents.size() << std::endl;
-    std::cerr << "Total Input Frames:  " << std::setw(col_w) << core.IFRAMES << " | Total IFPS: " << ifps << std::endl;
-    std::cerr << "Total Logic Frames:  " << std::setw(col_w) << core.LFRAMES << " | Total LFPS: " << lfps << std::endl;
-    std::cerr << "Total Render Frames: " << std::setw(col_w) << core.RFRAMES << " | Total RFPS: " << rfps << std::endl;
+    std::cerr << "Total Input Frames:  " << std::setw(col_w) << core.conf.iframes << " | Total IFPS: " << ifps << std::endl;
+    std::cerr << "Total Logic Frames:  " << std::setw(col_w) << core.conf.lframes << " | Total LFPS: " << lfps << std::endl;
+    std::cerr << "Total Render Frames: " << std::setw(col_w) << core.conf.rframes << " | Total RFPS: " << rfps << std::endl;
     // std::cerr << "Total Game Frames:   " << std::setw(col_w) << core.GFRAMES << " | Total GFPS: " << gfps << std::endl;
 
     std::cerr << "Input Performance Rating:  " << ifps*core.conf.input_ts*100.f << '%' << std::endl;
