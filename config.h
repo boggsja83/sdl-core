@@ -25,6 +25,8 @@ typedef struct Config {
     float 	    logic_ts;
     float 	    rend_ts;
 
+    float	    last_lframe;
+
     float 	    dft_cap;
     ui64	    kb_press_threshold;
 
@@ -48,6 +50,8 @@ typedef struct Config {
 	logic_ts    = 1.0f / 45.f;
 	rend_ts	    = 1.0f / 144.f;
 	// rend_ts	    = 1.0f/60.f;
+
+	last_lframe = 0.f;
 
 	dft_cap     = logic_ts * 3.f;
 	kb_press_threshold = 25;

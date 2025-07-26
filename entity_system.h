@@ -187,4 +187,15 @@ typedef struct ECSkb : ECS {
     }
 } ECSkb;
 
+typedef struct ECSfps : ECS{
+    rt update(EntityManager& em, float dtf){
+	// std::cerr << "Still need to implemenet ECSfps::update("<<dtf<<")" << std::endl;
+	if(!dtf){
+	    
+	}
+
+	return OKAY;
+    }
+} ECSfps;
+
 #endif

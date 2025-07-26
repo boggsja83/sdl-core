@@ -1,4 +1,7 @@
 #include "sdl_w.h"
+#include <SDL_blendmode.h>
+#include <SDL_error.h>
+#include <SDL_render.h>
 
 rt SDL_Wrap::init(){
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){
@@ -34,12 +37,13 @@ rt SDL_Wrap::create_window(str title, i32 x, i32 y, i32 w, i32 h, ui32 flags){
     return windows.size()-1;
 }
 
-rt SDL_Wrap::create_renderer(SDL_Window* win, i16 index, ui32 flags){
+rt SDL_Wrap::create_renderer(SDL_Window* win, i16 index, ui32 flags, SDL_BlendMode blend){
     SDL_Renderer* temp = SDL_CreateRenderer(win, index, flags);
     if(!temp){
 	std::cerr << "CreateRenderer failed. SDL_Error: " << SDL_GetError() << std::endl;
 	return CREATE_RENDERER_FAIL;
     }
+    SDL_SetRenderDrawBlendMode(temp, blend);
     renderers.push_back(temp);
     return renderers.size()-1;
 }
@@ -209,7 +213,20 @@ rt SDL_Wrap::render_fill_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr
     return r; 
 }
 
+rt SDL_Wrap::render_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8 pg, ui8 pb, ui8 pa){
+    rt r = OKAY;
+    
+    r = SDL_SetRenderDrawBlendMode(prend, SDL_BLENDMODE_BLEND);
+    if(r<0) { std::cerr<<"SetRenderDrawBlendMode failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
 
+    r = SDL_SetRenderDrawColor(prend,pr,pg,pb,pa);
+    if(r<0) { std::cerr<<"SDL_SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+
+    r = SDL_RenderDrawRect(prend,prect);
+    if(r<0) { std::cerr<<"SDL_RenderDrawRect failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+    
+    return r;
+}
 
 
 

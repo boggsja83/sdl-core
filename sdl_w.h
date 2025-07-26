@@ -1,6 +1,7 @@
 #ifndef SDL_W
 #define SDL_W
 
+#include <SDL_blendmode.h>
 #ifndef SDL_MAIN_HANDLED
 #define SDL_MAIN_HANDLED
 #endif
@@ -77,7 +78,7 @@ class SDL_Wrap{
     public:
 	rt init();
 	rt create_window(str title, i32 x, i32 y, i32 w, i32 h, ui32 flags);
-	rt create_renderer(SDL_Window* win, i16 index, ui32 flags);
+	rt create_renderer(SDL_Window* win, i16 index, ui32 flags, SDL_BlendMode blend=SDL_BLENDMODE_BLEND);
 
 	rt create_texture(SDL_Renderer* prend, ui32 pformat, i32 paccess, i32 pw, i32 ph);
 	rt create_texture_from_path(str path, SDL_Renderer* prend);
@@ -98,6 +99,7 @@ class SDL_Wrap{
 	rt render_text(str pstr, SDL_Texture* palphabet, SDL_Rect& psrc, SDL_Renderer* prend, SDL_Rect& pdst);
 
 	rt render_fill_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8 pg, ui8 pb, ui8 pa);
+	rt render_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8 pg, ui8 pb, ui8 pa);
 };
 
 #endif

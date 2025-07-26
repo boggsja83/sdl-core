@@ -28,7 +28,7 @@ set(HEADERS
     sdl_w.h
     core.h
     types.h
-    settings.h
+    config.h
     entity_component.h
     entity_manager.h
     entity_system.h

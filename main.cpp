@@ -1,6 +1,8 @@
+#include <SDL_video.h>
 #include <iomanip>
 
 #include "core.h"
+#include "entity_component.h"
 #include "types.h"
 
 // dropped make build system
@@ -12,7 +14,7 @@
 
 // build compile_commands.json for LSP to index definitions and declarations
 // that is, basically tell clang which header files match which cpp files. 
-// run in proj root. run when adding/deleting cpp files to project.
+// run in proj root. run when adding/deleting files to project.
 // add additions/deletions to CMakeLists.txt also
 // cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
@@ -77,12 +79,13 @@ int main(int argc, char** argv){
     cVel tcv;
     cPos tcp;
     cKB tck;
-
+    cFPS tcf;
     SDL_Texture* temp_text = core.sdlw.textures[main_layer];
 
     ui64 allz = (CM_POS|CM_RENDPOS|CM_VEL|CM_TEXTURE);
 
-    if(r>=0) r = core.em.add_entity(CM_KB);
+    if(r>=0) r = core.em.add_entity(CM_KB|CM_FPS);
+    tcf = cFPS(r);
     tck = cKB(r);
     tck.acts.push_back(TEST_ACTION);
     tck.acts.push_back(VOL_UP);
@@ -117,7 +120,7 @@ int main(int argc, char** argv){
     if(r>=0) r = core.em.add_entity(allz | CM_KB);
     src = {0,0, 200, 400};
     tct = cTexture(r,core.conf.rend,temp_text,src);
-    tcv = cVel(r, 15.f, 15.f);
+    tcv = cVel(r, 50.f, 50.f);
     tcp = cPos(r, 800.f-150.f, 600.f-150.f, 151.f, 151.f);
     tck = cKB(r);
     tck.acts.push_back(MOVE_S);
@@ -179,7 +182,7 @@ int main(int argc, char** argv){
     float ifps = core.IFRAMES/(elapsed/1000.f);
     float lfps = core.LFRAMES/(elapsed/1000.f);
     float rfps = core.RFRAMES/(elapsed/1000.f);
-
+    // float gfps = core.GFRAMES/(elapsed/1000.f);
     ui16 col_w = 6;
 
     std::cerr << std::fixed << std::setprecision(2) << std::left;
@@ -187,8 +190,9 @@ int main(int argc, char** argv){
     std::cerr << "Total Runtime:  " << elapsed/1000.f << " seconds" << std::endl;
     std::cerr << "Total Entities: " << std::setw(col_w) << core.em.ents.size() << std::endl;
     std::cerr << "Total Input Frames:  " << std::setw(col_w) << core.IFRAMES << " | Total IFPS: " << ifps << std::endl;
-    std::cerr << "Total Logic Frames:  " << std::setw(col_w) <<core.LFRAMES << " | Total LFPS: " << lfps << std::endl;
+    std::cerr << "Total Logic Frames:  " << std::setw(col_w) << core.LFRAMES << " | Total LFPS: " << lfps << std::endl;
     std::cerr << "Total Render Frames: " << std::setw(col_w) << core.RFRAMES << " | Total RFPS: " << rfps << std::endl;
+    // std::cerr << "Total Game Frames:   " << std::setw(col_w) << core.GFRAMES << " | Total GFPS: " << gfps << std::endl;
 
     std::cerr << "Input Performance Rating:  " << ifps*core.conf.input_ts*100.f << '%' << std::endl;
     std::cerr << "Logic Performance Rating:  " << lfps*core.conf.logic_ts*100.f << '%' << std::endl;
@@ -198,6 +202,9 @@ int main(int argc, char** argv){
 
     //std::cerr << "alphabet count: " << strlen(core.conf.alphabet) << std::endl; // should be 95
     //std::cerr << "KB_NUM_ACTIONS: " << KB_NUM_ACTIONS << std::endl;
+
+    // r = SDL_GetNumVideoDisplays();
+    // std::cerr << "Number of displays: " << r << std::endl;
 
     return r;
 }

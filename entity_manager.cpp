@@ -1,4 +1,5 @@
 #include "entity_manager.h"
+#include "types.h"
 
 rt EntityManager::add_entity(ui64 comp_mask){
 
@@ -6,29 +7,34 @@ rt EntityManager::add_entity(ui64 comp_mask){
 
     ents.push_back(comp_mask);
 
-    if(comp_mask &  CM_POS){
+    if(comp_mask & CM_POS){
 	if(pos.size() <= temp_id) { pos.resize(pos.size()*2+1); } // add 1 in case size is 0
 	pos[temp_id] = cPos();
     }
 
-    if(comp_mask &  CM_RENDPOS){
+    if(comp_mask & CM_RENDPOS){
 	if(rendpos.size() <= temp_id) { rendpos.resize(rendpos.size()*2+1); } // add 1 in case size is 0
 	rendpos[temp_id] = cRendPos();
     }
 
-    if(comp_mask &  CM_VEL){
+    if(comp_mask & CM_VEL){
 	if(vel.size() <= temp_id) { vel.resize(vel.size()*2+1); } // add 1 in case size is 0
 	vel[temp_id] = cVel();
     }
 
-    if(comp_mask &  CM_TEXTURE){
+    if(comp_mask & CM_TEXTURE){
 	if(texture.size() <= temp_id) { texture.resize(texture.size()*2+1); } // add 1 in case size is 0
 	texture[temp_id] = cTexture();
     }
 
-    if(comp_mask &  CM_KB){
+    if(comp_mask & CM_KB){
 	if(kb.size() <= temp_id) { kb.resize(kb.size()*2+1); } // add 1 in case size is 0
 	kb[temp_id] = cKB();
+    }
+
+    if(comp_mask & CM_FPS){
+	if(fps.size() <= temp_id) { fps.resize(fps.size()*2+1); } // add 1 in case size is 0
+	fps[temp_id] = cFPS();
     }
 
     return ents.size()-1;
@@ -80,6 +86,12 @@ rt EntityManager::set(EC& pec){
 		    for(i16 i=0; i<static_cast<cKB*>(&pec)->acts.size(); ++i){
 			kb[pec.oid].acts[i] = static_cast<cKB*>(&pec)->acts[i];
 		    }
+		}
+		else return ECS_LACKS_COMP;
+		break;
+	    case CM_FPS:
+		if(ents[pec.oid] & CM_FPS){
+		    std::cerr << "You still need to implemenet set(CM_FPS)" << std::endl;
 		}
 		else return ECS_LACKS_COMP;
 		break;

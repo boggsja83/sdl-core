@@ -21,6 +21,7 @@ class EntityManager{
 	    rendpos.resize(s);
 	    texture.resize(s);
 	    kb.resize(s);
+	    fps.resize(s);
 
 	    sdlw_ptr = nullptr;
 	    kb_ptr = nullptr;
@@ -36,15 +37,8 @@ class EntityManager{
 
 	//TODO:
 	//rt del_entity(i16 id);
-	inline rt add_comp(i16 pid, CM_MASK pcmp){
-	    if(pid>=0 && pid<ents.size()){
-		
-	    }
-	    else { return ECS_INVALID_ID; }
-	    return OKAY;
-	}
-
-	rt del_comp(i16 pid, CM_MASK pcmp);
+	// inline rt add_comp(i16 pid, CM_MASK pcmp);
+	// rt del_comp(i16 pid, CM_MASK pcmp);
 
     public:
 	std::vector<ui64>	ents;
@@ -53,6 +47,7 @@ class EntityManager{
 	std::vector<cRendPos>	rendpos;
 	std::vector<cTexture>	texture;
 	std::vector<cKB>	kb;
+	std::vector<cFPS>	fps;
 
     public:
 	SDL_Wrap*   sdlw_ptr;

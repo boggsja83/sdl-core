@@ -48,6 +48,7 @@ rt Core::loop(){
 	    if(r<0) return r;
 	    lrt = crt;
 	}
+	// ++GFRAMES;
     }
     return r;
 }
@@ -77,6 +78,8 @@ rt Core::update(float& accumulator){
 	r = ecs_pos.update(em, conf.logic_ts);
 	if(r<0) return r;
 
+	r = ecs_fps.update(em,0.f);
+
 	SDL_ShowCursor(conf.show_cursor);
 
 	/**********************************************************************/
@@ -104,7 +107,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     ////////////
     SDL_Rect src, dst;
     ui16 tw1=0, tw2=0, th1=0, th2=0;
-    str tstr = "core 0.1";
+    str tstr = " core 0.1 ";
     ui16 sz = strlen(tstr);
     ////////////
     tw1 = sdlw.surfaces[1]->w;
@@ -113,8 +116,19 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     src = {0,0,tw1,th1};
     dst = {conf.win_w-tw2*sz,conf.win_h-th1,tw2*sz,th1};
 
-    r = sdlw.render_fill_rect(conf.rend,&dst,19,144,0,SDL_ALPHA_OPAQUE);
+    if(FADE_ALPHA<=0.f){
+	FADE_SPEED *= -1.f;
+	FADE_ALPHA = 0.f;
+    }
+    else if(FADE_ALPHA>=255.f){
+	FADE_SPEED *= -1.f;
+	FADE_ALPHA = 255.f;
+    }
+    FADE_ALPHA -= FADE_SPEED;
 
+    r = sdlw.render_fill_rect(conf.rend,&dst,19,144,0,FADE_ALPHA);
+    if(r>=0) r = sdlw.render_rect(conf.rend,&dst,255,136,0,255-FADE_ALPHA);
+    
     sdlw.render_text(
 	    tstr,
 	    sdlw.textures[1],
@@ -122,21 +136,6 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	    renderer,
 	    dst
 	    );
-    ////////////
-    float fade_speed = 0.55f;
-
-    if(FADE_DO){
-	if(FADE_ALPHA<0.f) FADE_ALPHA=0.f;
-	SDL_SetRenderTarget(sdlw.renderers[0],sdlw.textures[2]);
-	SDL_SetRenderDrawColor(sdlw.renderers[0], 255,0,0,255);
-	SDL_RenderClear(sdlw.renderers[0]);
-	SDL_SetRenderTarget(sdlw.renderers[0],nullptr);
-	SDL_SetTextureAlphaMod(sdlw.textures[2],FADE_ALPHA);
-	SDL_RenderCopy(sdlw.renderers[0],sdlw.textures[2],nullptr,nullptr);
-	if(FADE_ALPHA==0.f) FADE_DO = false;
-	FADE_ALPHA-=fade_speed;
-	std::cerr << "FADE_ALPHA: " << FADE_ALPHA << std::endl;
-    }
     ////////////
 
     SDL_RenderPresent(renderer);

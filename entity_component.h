@@ -97,13 +97,26 @@ typedef struct cKB : EC {
     }
 } cKB;
 
-// typedef struct cTest: EC {
-//
-//     cTest(i16 pid=-1){
-// 	oid = pid;
-// 	cm = CM_TEST;
-//     }
-// } cTest;
+typedef struct cFPS : EC {
+    ui64 timespan;
+    ui64 start_time;
+    ui64 stop_time;
+    ui64 start_frame;
+    ui64 stop_frame;
+
+    cFPS(i16 pid=-1){
+	oid = pid;
+	cm = CM_FPS;
+
+	timespan = 0;
+
+	start_time = 0;
+	stop_time = 0;
+
+	start_frame = 0;
+	stop_frame = 0;
+    }
+} cFPS;
 
 #endif
 
