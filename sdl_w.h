@@ -1,7 +1,6 @@
 #ifndef SDL_W
 #define SDL_W
 
-#include <SDL_blendmode.h>
 #ifndef SDL_MAIN_HANDLED
 #define SDL_MAIN_HANDLED
 #endif

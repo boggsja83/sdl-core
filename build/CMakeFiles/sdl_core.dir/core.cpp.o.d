@@ -323,12 +323,10 @@ CMakeFiles/sdl_core.dir/core.cpp.o: \
  /usr/include/SDL2/SDL_misc.h \
  /home/sl1m/programming/source/sdl_core/types.h \
  /home/sl1m/programming/source/sdl_core/sdl_w.h \
- /usr/include/SDL2/SDL_blendmode.h /usr/include/SDL2/SDL_mixer.h \
- /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_ttf.h /usr/include/c++/13/iostream \
- /usr/include/c++/13/cstring \
+ /usr/include/SDL2/SDL_mixer.h /usr/include/SDL2/SDL_image.h \
+ /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_ttf.h \
+ /usr/include/c++/13/iostream /usr/include/c++/13/cstring \
  /home/sl1m/programming/source/sdl_core/keyboard.h \
  /home/sl1m/programming/source/sdl_core/entity_manager.h \
  /home/sl1m/programming/source/sdl_core/entity_component.h \
- /home/sl1m/programming/source/sdl_core/entity_system.h \
- /usr/include/SDL2/SDL_timer.h
+ /home/sl1m/programming/source/sdl_core/entity_system.h

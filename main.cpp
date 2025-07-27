@@ -1,5 +1,3 @@
-#include <SDL_pixels.h>
-#include <SDL_video.h>
 #include <iomanip>
 
 #include "core.h"
@@ -27,7 +25,6 @@ int main(int argc, char** argv){
     core.em.kb_ptr = &core.kb;
     core.em.sdlw_ptr = &core.sdlw;
     core.em.conf_ptr = &core.conf;
-
     core.kb.conf_ptr = &core.conf;
 
     if(r>=0) r = core.sdlw.create_window("sdl_core", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, core.conf.win_w, core.conf.win_h, SDL_WINDOW_VULKAN|SDL_WINDOW_FULLSCREEN_DESKTOP);
@@ -44,7 +41,8 @@ int main(int argc, char** argv){
 	core.conf.white_txt=core.sdlw.textures[core.conf.white_txt_i];
 	core.conf.black_txt=core.sdlw.textures[core.conf.black_txt_i];
     } 
-    // r = core.conf.black_txt_i;
+
+    r = core.conf.black_txt_i;
 
     cKB tck;
     cFPS tcf;

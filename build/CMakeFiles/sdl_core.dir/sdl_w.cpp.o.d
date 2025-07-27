@@ -1,15 +1,13 @@
 CMakeFiles/sdl_core.dir/sdl_w.cpp.o: \
  /home/sl1m/programming/source/sdl_core/sdl_w.cpp \
  /usr/include/stdc-predef.h \
- /home/sl1m/programming/source/sdl_core/sdl_w.h \
- /usr/include/SDL2/SDL_blendmode.h /usr/include/SDL2/begin_code.h \
- /usr/include/SDL2/close_code.h /usr/include/SDL2/SDL.h \
+ /home/sl1m/programming/source/sdl_core/sdl_w.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
- /usr/include/SDL2/SDL_platform.h \
- /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/features.h \
- /usr/include/features-time64.h \
+ /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
+ /usr/include/SDL2/close_code.h /usr/include/x86_64-linux-gnu/sys/types.h \
+ /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -311,5 +309,4 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: \
  /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/cstring \
  /home/sl1m/programming/source/sdl_core/types.h \
  /usr/include/c++/13/cstdint /usr/include/c++/13/sstream \
- /usr/include/c++/13/bits/sstream.tcc /usr/include/SDL2/SDL_error.h \
- /usr/include/SDL2/SDL_render.h
+ /usr/include/c++/13/bits/sstream.tcc

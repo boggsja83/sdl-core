@@ -1,7 +1,4 @@
 #include "sdl_w.h"
-#include <SDL_blendmode.h>
-#include <SDL_error.h>
-#include <SDL_render.h>
 
 rt SDL_Wrap::init(){
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){

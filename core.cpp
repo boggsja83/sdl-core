@@ -32,14 +32,12 @@ rt Core::loop(){
 	}
 	r = ecs_fps.update(em);
 
-
 	// UPDATE
 	accumulator += dft;
 	r = update(accumulator);
 	if(r==QUIT) running = false;
 	else if(r<0) return r;
 	r = ecs_fps.update(em);
-
 
 	// RENDER
 	crt = SDL_GetTicks64();
@@ -57,6 +55,7 @@ rt Core::loop(){
 
 rt Core::input(){
     rt r = kb.poll_events();
+    // if(r>=0) r = ecs_fps.update(em);
     ++conf.iframes;
     return r;
 }
@@ -85,10 +84,11 @@ rt Core::update(float& accumulator){
 
 	/**********************************************************************/
 	accumulator -= conf.logic_ts;
+	// if(r>=0) r = ecs_fps.update(em);
 	++conf.lframes;
     }
 
-    return OKAY;
+    return r;
 }
 
 rt Core::render(SDL_Renderer* renderer, float& alpha){
@@ -141,9 +141,9 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,0,0,0,FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,255,0,0,255-FADE_ALPHA);
 	rend_rct = {conf.win_w-tstr_w+2,conf.win_h-alpha_h+2,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.black_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.white_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
 
 	// draw ifps
 	ss.str("");
@@ -157,9 +157,9 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,0,0,255,255-FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,255,255,255,FADE_ALPHA);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.black_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.white_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
 	tstr_wl += tstr_w;
 
 	// draw lfps
@@ -174,9 +174,9 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,0,255,0,FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,255,255,0,255-FADE_ALPHA);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.black_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.white_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
 	tstr_wl += tstr_w;
 
 	// draw rfps
@@ -191,9 +191,9 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,255,0,0,255-FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,0,0,255,FADE_ALPHA);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.black_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
-	if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[conf.white_txt_i],alpha_rct,renderer,rend_rct);
+	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
 	tstr_wl += tstr_w;
 
 	// rend_rct = {1,conf.win_h-alpha_h,conf.win_w-tstr_wl,alpha_h};
@@ -215,6 +215,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     /**************************************************************************/
 
     SDL_RenderPresent(renderer);
+    // if(r>=0) r = ecs_fps.update(em);
     ++conf.rframes;
 
     return r;

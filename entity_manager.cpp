@@ -1,5 +1,4 @@
 #include "entity_manager.h"
-#include "types.h"
 
 rt EntityManager::add_entity(ui64 comp_mask){
 
@@ -117,6 +116,7 @@ rt EntityManager::set(EC& pec){
 		return ECS_INVALID_COMP;
 	}
     } else return ECS_INVALID_ID;
+
     return OKAY;
 }
 
