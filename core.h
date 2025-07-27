@@ -2,6 +2,7 @@
 #define CORE_H
 
 #include <random>
+#include <iomanip>
 
 #include "config.h"
 #include "types.h"

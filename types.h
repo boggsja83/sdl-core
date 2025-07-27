@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <string>
+#include <sstream>
 
 typedef int8_t	i8;
 typedef int16_t i16;
@@ -68,7 +69,8 @@ typedef enum {
 typedef enum {
     ECS_INVALID_COMP	    = -400,
     ECS_INVALID_ID	    = -401,
-    ECS_LACKS_COMP	    = -402
+    ECS_LACKS_COMP	    = -402,
+    ECS_COMP_MISSING_VALUE  = -403
 } ECS_CODES;
 
 typedef enum {
@@ -82,10 +84,10 @@ typedef enum {
 } CM_MASK;
 
 typedef enum {
-    FT_NONE		    = 0,
-    FT_INPUT		    = 1,
-    FT_LOGIC		    = 2,
-    FT_RENDER		    = 3
+    FT_INPUT		    = 0,
+    FT_LOGIC		    = 1,
+    FT_RENDER		    = 2,
+    FT_NONE		    = 3
 } FRAME_TYPE;
 
 #endif

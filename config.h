@@ -43,9 +43,9 @@ typedef struct Config {
 	win_w	    = 1920;
 	win_h	    = 1080;
 
-	red	    = 80;
-	green	    = 90;
-	blue	    = 231;
+	red	    = 86;
+	green	    = 169;
+	blue	    = 86;
 	alpha	    = SDL_ALPHA_OPAQUE;
 
 	input_ts    = 1.0f / 500.f; // 1000 would be considered high-precision (1ms)

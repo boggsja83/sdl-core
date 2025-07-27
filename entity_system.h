@@ -195,40 +195,38 @@ typedef struct ECSfps : ECS{
     rt update(EntityManager& em, float dft=0.f) override {
 	cFPS* tfps;
 	ui64 tframe = 0;
-	// ui64 now = SDL_GetTicks64();
 
-	for(i16 i=0;i<em.ents.size();++i){
-	    if(em.ents[i] & CM_FPS){
-		// now = SDL_GetTicks64();
-		tfps = &em.fps[i];
-		switch(tfps->frame_type){
-		    case FT_INPUT:
-			tframe = em.conf_ptr->iframes;
-			// std::cerr << "iframes: " << tframe << std::endl;
-			break;
-		    case FT_LOGIC:
-			tframe = em.conf_ptr->lframes;
-			break;
-		    case FT_RENDER:
-			tframe = em.conf_ptr->rframes;
-			break;
-		    case FT_NONE:
-			break;
-		    default:;
+	for(i16 o=0;o<em.ents.size();++o){
+	    if(em.ents[o] & CM_FPS){
+		tfps = &em.fps[o];
+
+		for(i16 i=0;i<tfps->counts.size();++i){
+		    if(!tfps->counts[i].timespan) return ECS_COMP_MISSING_VALUE;
+		    switch(tfps->counts[i].frame_type){
+			case FT_INPUT:
+			    tframe = em.conf_ptr->iframes;
+			    break;
+			case FT_LOGIC:
+			    tframe = em.conf_ptr->lframes;
+			    break;
+			case FT_RENDER:
+			    tframe = em.conf_ptr->rframes;
+			    break;
+			case FT_NONE:
+			default:
+			    return ECS_COMP_MISSING_VALUE;
+		    }
+
+		    if(tfps->counts[i].start_time<tfps->counts[i].stop_time){
+			tfps->counts[i].start_time = SDL_GetTicks64();
+			tfps->counts[i].start_frame = tframe;
+		    }
+		    else if(SDL_GetTicks64()-tfps->counts[i].start_time>=tfps->counts[i].timespan){
+			tfps->counts[i].stop_time = SDL_GetTicks64();
+			tfps->counts[i].stop_frame = tframe;
+			tfps->counts[i].last_fps = 1.f*(tfps->counts[i].stop_frame-tfps->counts[i].start_frame)/(tfps->counts[i].stop_time-tfps->counts[i].start_time);
+		    }
 		}
-
-		if(tfps->start_time<tfps->stop_time){
-		    tfps->start_time = SDL_GetTicks64();
-		    tfps->start_frame = tframe;
-		}
-		else if(SDL_GetTicks64()-tfps->start_time>=tfps->timespan){
-		    tfps->stop_time = SDL_GetTicks64();
-		    tfps->stop_frame = tframe;
-		    tfps->last_fps = 1.f*(tfps->stop_frame-tfps->start_frame)/(tfps->stop_time-tfps->start_time);
-		    //std::cerr << "Last FPS ("<<tfps->timespan<<"ms): " << tfps->last_fps*1000.f << std::endl;
-
-		}
-
 	    }
 	}
 

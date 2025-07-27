@@ -76,6 +76,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/c++/13/bits/basic_string.tcc \
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
+  /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
@@ -91,8 +92,11 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/c++/13/bits/istream.tcc \
   /usr/include/c++/13/bits/locale_classes.h \
   /usr/include/c++/13/bits/locale_classes.tcc \
+  /usr/include/c++/13/bits/locale_conv.h \
   /usr/include/c++/13/bits/locale_facets.h \
   /usr/include/c++/13/bits/locale_facets.tcc \
+  /usr/include/c++/13/bits/locale_facets_nonio.h \
+  /usr/include/c++/13/bits/locale_facets_nonio.tcc \
   /usr/include/c++/13/bits/localefwd.h \
   /usr/include/c++/13/bits/memory_resource.h \
   /usr/include/c++/13/bits/memoryfwd.h \
@@ -104,12 +108,14 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/c++/13/bits/postypes.h \
   /usr/include/c++/13/bits/predefined_ops.h \
   /usr/include/c++/13/bits/ptr_traits.h \
+  /usr/include/c++/13/bits/quoted_string.h \
   /usr/include/c++/13/bits/random.h \
   /usr/include/c++/13/bits/random.tcc \
   /usr/include/c++/13/bits/range_access.h \
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/specfun.h \
+  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
@@ -140,6 +146,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
   /usr/include/c++/13/cstring \
+  /usr/include/c++/13/ctime \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
@@ -151,11 +158,13 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/c++/13/ext/string_conversions.h \
   /usr/include/c++/13/ext/type_traits.h \
   /usr/include/c++/13/initializer_list \
+  /usr/include/c++/13/iomanip \
   /usr/include/c++/13/ios \
   /usr/include/c++/13/iosfwd \
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/locale \
   /usr/include/c++/13/math.h \
   /usr/include/c++/13/new \
   /usr/include/c++/13/numeric \
@@ -164,6 +173,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/c++/13/pstl/glue_numeric_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
   /usr/include/c++/13/random \
+  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/stdlib.h \
   /usr/include/c++/13/streambuf \
@@ -192,6 +202,7 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/inttypes.h \
+  /usr/include/libintl.h \
   /usr/include/linux/errno.h \
   /usr/include/locale.h \
   /usr/include/math.h \
@@ -288,8 +299,10 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -500,6 +513,7 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/specfun.h \
+  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
@@ -548,6 +562,7 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/stdlib.h \
   /usr/include/c++/13/streambuf \
@@ -1286,6 +1301,7 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/specfun.h \
+  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
@@ -1334,6 +1350,7 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/stdlib.h \
   /usr/include/c++/13/streambuf \
@@ -1567,20 +1584,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /home/sl1m/programming/source/sdl_core/sdl_w.cpp:
 
-/usr/include/libintl.h:
-
-/usr/include/c++/13/locale:
-
-/usr/include/c++/13/ctime:
-
-/usr/include/c++/13/bits/sstream.tcc:
-
-/usr/include/c++/13/bits/locale_facets_nonio.tcc:
-
-/usr/include/c++/13/bits/locale_facets_nonio.h:
-
-/usr/include/c++/13/bits/codecvt.h:
-
 /home/sl1m/programming/source/sdl_core/main.cpp:
 
 /home/sl1m/programming/source/sdl_core/entity_manager.cpp:
@@ -1639,10 +1642,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/cmpccxaddintrin.h:
 
-/usr/include/c++/13/bits/quoted_string.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/clwbintrin.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/clflushoptintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/cldemoteintrin.h:
@@ -1672,10 +1671,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fp16vlintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512dqintrin.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512cdintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bitalgintrin.h:
 
@@ -1708,6 +1703,10 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512cdintrin.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/emmintrin.h:
 
@@ -1751,7 +1750,23 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
-/usr/include/c++/13/bits/stringfwd.h:
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/clzerointrin.h:
 
@@ -1765,37 +1780,21 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/bits/allocator.h:
 
-/usr/include/SDL2/SDL_mixer.h:
-
 /usr/include/c++/13/bits/locale_facets.tcc:
 
 /usr/include/c++/13/bits/refwrap.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
 /usr/include/c++/13/system_error:
 
-/usr/include/c++/13/bits/stl_vector.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/clwbintrin.h:
 
-/usr/include/SDL2/SDL_error.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avxintrin.h:
-
-/usr/include/c++/13/bits/random.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx5124fmapsintrin.h:
-
-/usr/include/SDL2/SDL_main.h:
+/usr/include/c++/13/bits/quoted_string.h:
 
 /usr/include/c++/13/bits/predefined_ops.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/prfchwintrin.h:
 
 /usr/include/c++/13/iosfwd:
-
-/usr/include/c++/13/bits/uses_allocator.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
 /usr/include/c++/13/bits/ostream.tcc:
 
@@ -1813,6 +1812,14 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/bits/memoryfwd.h:
 
+/usr/include/c++/13/bits/uses_allocator.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/c++/13/bits/locale_facets_nonio.tcc:
+
+/usr/include/c++/13/bits/locale_facets_nonio.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/enqcmdintrin.h:
 
 /usr/include/wchar.h:
@@ -1828,6 +1835,10 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/bits/locale_conv.h:
 
 /usr/include/c++/13/bits/istream.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/c++/13/bits/charconv.h:
 
 /usr/include/c++/13/cstdio:
 
@@ -1847,17 +1858,25 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/bits/alloc_traits.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+/usr/include/c++/13/bits/stl_vector.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512erintrin.h:
+/usr/include/SDL2/SDL_error.h:
 
-/usr/include/c++/13/bits/streambuf.tcc:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avxintrin.h:
 
-/usr/include/c++/13/bits/specfun.h:
+/usr/include/c++/13/bits/random.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx5124fmapsintrin.h:
+
+/usr/include/SDL2/SDL_main.h:
+
+/usr/include/c++/13/bits/codecvt.h:
 
 /usr/include/c++/13/bits/basic_string.h:
 
 /usr/include/c++/13/tr1/poly_laguerre.tcc:
+
+/usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -1870,10 +1889,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/lib/gcc/x86_64-linux-gnu/13/include/shaintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
-
-/usr/include/c++/13/bits/uniform_int_dist.h:
-
-/usr/include/c++/13/bits/locale_classes.tcc:
 
 /usr/include/c++/13/bit:
 
@@ -1900,10 +1915,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/bits/postypes.h:
 
 /usr/include/SDL2/close_code.h:
-
-/usr/include/c++/13/bits/charconv.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/c++/13/iomanip:
 
@@ -1935,6 +1946,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/SDL2/SDL_clipboard.h:
 
+/usr/include/c++/13/locale:
+
 /usr/include/SDL2/SDL_hidapi.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
@@ -1946,16 +1959,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxvnniint8intrin.h:
 
 /usr/include/SDL2/SDL_haptic.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/c++/13/bits/string_view.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/SDL2/SDL_guid.h:
 
 /usr/include/c++/13/bits/stl_algobase.h:
 
@@ -2005,6 +2008,10 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/SDL2/SDL_endian.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
+
+/usr/include/c++/13/sstream:
+
 /home/sl1m/programming/source/sdl_core/sdl_w.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/pconfigintrin.h:
@@ -2024,14 +2031,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/SDL2/SDL_atomic.h:
 
 /usr/include/SDL2/SDL_audio.h:
-
-/usr/include/SDL2/SDL_keycode.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h:
-
-/usr/include/c++/13/ostream:
-
-/usr/include/c++/13/tr1/riemann_zeta.tcc:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxvnniintrin.h:
 
@@ -2069,13 +2068,19 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/SDL2/SDL_loadso.h:
 
+/usr/include/c++/13/bits/sstream.tcc:
+
+/usr/include/SDL2/SDL_mixer.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/SDL2/SDL_guid.h:
+
+/usr/include/c++/13/bits/string_view.tcc:
+
 /usr/include/SDL2/SDL_locale.h:
 
 /usr/include/c++/13/bits/localefwd.h:
-
-/usr/include/c++/13/bits/streambuf_iterator.h:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
 /usr/include/SDL2/SDL_messagebox.h:
 
@@ -2102,6 +2107,18 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/lib/gcc/x86_64-linux-gnu/13/include/smmintrin.h:
 
 /usr/include/SDL2/SDL_platform.h:
+
+/usr/include/SDL2/SDL_keycode.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/c++/13/bits/streambuf_iterator.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h:
+
+/usr/include/c++/13/ostream:
+
+/usr/include/c++/13/tr1/riemann_zeta.tcc:
 
 /usr/include/SDL2/SDL_blendmode.h:
 
@@ -2133,8 +2150,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
 /usr/include/SDL2/SDL_system.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fintrin.h:
@@ -2148,6 +2163,24 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /home/sl1m/programming/source/sdl_core/entity_component.h:
 
 /usr/include/c++/13/clocale:
+
+/usr/include/SDL2/begin_code.h:
+
+/usr/include/c++/13/cwctype:
+
+/usr/include/SDL2/SDL_version.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512erintrin.h:
+
+/usr/include/c++/13/bits/specfun.h:
+
+/usr/include/c++/13/bits/streambuf.tcc:
+
+/usr/include/c++/13/bits/stringfwd.h:
+
+/usr/include/c++/13/bits/locale_classes.tcc:
+
+/usr/include/c++/13/bits/uniform_int_dist.h:
 
 /usr/include/SDL2/SDL_rwops.h:
 
@@ -2181,15 +2214,11 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/cstring:
 
+/usr/include/c++/13/ctime:
+
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
 /usr/include/c++/13/cwchar:
-
-/usr/include/SDL2/begin_code.h:
-
-/usr/include/SDL2/SDL_version.h:
-
-/usr/include/c++/13/cwctype:
 
 /usr/include/c++/13/debug/assertions.h:
 
@@ -2351,8 +2380,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
 /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
@@ -2363,8 +2390,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
-
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
@@ -2374,11 +2399,3 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/bits/locale_classes.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/c++/13/sstream:
-
-/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:

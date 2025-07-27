@@ -101,31 +101,61 @@ typedef struct cKB : EC {
     }
 } cKB;
 
-typedef struct cFPS : EC {
-    // milliseconds
+typedef struct FPSdata {
     ui64 timespan;
-    float last_fps;
     ui64 start_time;
     ui64 stop_time;
     ui64 start_frame;
     ui64 stop_frame;
+    float last_fps;
     FRAME_TYPE frame_type;
 
-    cFPS(i16 pid=-1,ui64 pts=0, FRAME_TYPE pft=FT_NONE,float plfps=0.f,ui64 pstrt=0,ui64 pstpt=1,ui64 pstrf=0,ui64 pstpf=0){
+    FPSdata(ui64 pts=0,FRAME_TYPE pft=FT_NONE){
+	timespan=pts;
+	start_time=0;
+	stop_time=1;
+	start_frame=0;
+	stop_frame=0;
+	last_fps=0.f;
+	frame_type=pft;
+    }
+} FPSdata;
+
+typedef struct cFPS : EC {
+    // milliseconds
+    // std::vector<ui64> timespan;
+    // std::vector<float> last_fps;
+    // std::vector<ui64> start_time;
+    // std::vector<ui64> stop_time;
+    // std::vector<ui64> start_frame;
+    // std::vector<ui64> stop_frame;
+    // std::vector<FRAME_TYPE> frame_type;
+    std::vector<FPSdata> counts;
+
+    cFPS(i16 pid=-1){//,ui64 pts=0, FRAME_TYPE pft=FT_NONE,float plfps=0.f,ui64 pstrt=0,ui64 pstpt=1,ui64 pstrf=0,ui64 pstpf=0){
 	oid = pid;
 	cm = CM_FPS;
 
-	timespan = pts;
-	
-	last_fps = plfps;	
+	counts.clear();
+	// timespan = pts;
+	//
+	// last_fps = plfps;	
+	//
+	// start_time = pstrt;
+	// stop_time = pstpt;
+	//
+	// start_frame = pstrf;
+	// stop_frame = pstpf;
+	//
+	// frame_type = pft;
 
-	start_time = pstrt;
-	stop_time = pstpt;
-
-	start_frame = pstrf;
-	stop_frame = pstpf;
-
-	frame_type = pft;
+	// timespan.clear();
+	// last_fps.clear();
+	// start_time.clear();
+	// stop_time.clear();
+	// start_frame.clear();
+	// stop_frame.clear();
+	// frame_type.clear();
     }
 } cFPS;
 

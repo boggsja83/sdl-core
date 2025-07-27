@@ -91,13 +91,25 @@ rt EntityManager::set(EC& pec){
 		break;
 	    case CM_FPS:
 		if(ents[pec.oid] & CM_FPS){
-		    fps[pec.oid].timespan = static_cast<cFPS*>(&pec)->timespan;
-		    fps[pec.oid].last_fps = static_cast<cFPS*>(&pec)->last_fps;
-		    fps[pec.oid].start_time = static_cast<cFPS*>(&pec)->start_time;
-		    fps[pec.oid].stop_time = static_cast<cFPS*>(&pec)->stop_time;
-		    fps[pec.oid].start_frame = static_cast<cFPS*>(&pec)->start_frame;
-		    fps[pec.oid].stop_frame = static_cast<cFPS*>(&pec)->stop_frame;
-		    fps[pec.oid].frame_type = static_cast<cFPS*>(&pec)->frame_type;
+		    fps[pec.oid].counts.resize(static_cast<cFPS*>(&pec)->counts.size());
+		    for(i16 i=0;i<fps[pec.oid].counts.size();++i){
+			fps[pec.oid].counts[i].timespan = static_cast<cFPS*>(&pec)->counts[i].timespan;
+			fps[pec.oid].counts[i].start_time = static_cast<cFPS*>(&pec)->counts[i].start_time;
+			fps[pec.oid].counts[i].stop_time = static_cast<cFPS*>(&pec)->counts[i].stop_time;
+			fps[pec.oid].counts[i].start_frame = static_cast<cFPS*>(&pec)->counts[i].start_frame;
+			fps[pec.oid].counts[i].stop_frame = static_cast<cFPS*>(&pec)->counts[i].stop_frame;
+			fps[pec.oid].counts[i].frame_type = static_cast<cFPS*>(&pec)->counts[i].frame_type;
+			fps[pec.oid].counts[i].last_fps = static_cast<cFPS*>(&pec)->counts[i].last_fps;
+
+		    }
+
+		    // fps[pec.oid].timespan = static_cast<cFPS*>(&pec)->timespan;
+		    // fps[pec.oid].last_fps = static_cast<cFPS*>(&pec)->last_fps;
+		    // fps[pec.oid].start_time = static_cast<cFPS*>(&pec)->start_time;
+		    // fps[pec.oid].stop_time = static_cast<cFPS*>(&pec)->stop_time;
+		    // fps[pec.oid].start_frame = static_cast<cFPS*>(&pec)->start_frame;
+		    // fps[pec.oid].stop_frame = static_cast<cFPS*>(&pec)->stop_frame;
+		    // fps[pec.oid].frame_type = static_cast<cFPS*>(&pec)->frame_type;
 		}
 		else return ECS_LACKS_COMP;
 		break;

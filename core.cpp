@@ -1,7 +1,4 @@
 #include "core.h"
-#include <SDL_pixels.h>
-#include <SDL_timer.h>
-#include <string>
 
 rt Core::loop(){
     rt r = OKAY;
@@ -49,14 +46,14 @@ rt Core::loop(){
 	    if(r<0) return r;
 	    lrt = crt;
 	}
-	// ++GFRAMES;
+
+	r = ecs_fps.update(em);
     }
     return r;
 }
 
 rt Core::input(){
     rt r = kb.poll_events();
-    // ++IFRAMES;
     ++conf.iframes;
     return r;
 }
@@ -72,7 +69,6 @@ rt Core::update(float& accumulator){
 	if(kb.keystate[SDL_SCANCODE_Q]) return QUIT;
 	/**********************************************************************/
 	// UPDATE GAME LOGIC (FROM KEYSTATE)
-	// em.pkb = &kb;
 	r = ecs_kb.update(em, conf.logic_ts);
 	if(r<0) return r;
 
@@ -80,15 +76,12 @@ rt Core::update(float& accumulator){
 	r = ecs_pos.update(em, conf.logic_ts);
 	if(r<0) return r;
 
-	r = ecs_fps.update(em);
-	// r = ecs_fps.update(em,conf.rframes);
-	// r = ecs_fps.update(em,RFRAMES);
+	// r = ecs_fps.update(em);
 
 	SDL_ShowCursor(conf.show_cursor);
 
 	/**********************************************************************/
 	accumulator -= conf.logic_ts;
-	// ++LFRAMES;
 	++conf.lframes;
     }
 
@@ -104,26 +97,10 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
     /**************************************************************************/
     //	RENDER GAME STATE (WITH ALPHA)
     if(r>=0) r = ecs_rendpos.update(em, alpha);
-
-    // em.psdlw = &sdlw;
     if(r>=0) r = ecs_texture.update(em);
     /**************************************************************************/
 
     ////////////
-    SDL_Rect src, dst;
-    ui16 tw1=0, tw2=0, th1=0, th2=0;
-    // str tstr = " core 0.1 ";
-    str tstr = "RFPS: " +  std::to_string((em.fps[0].last_fps*1000.f));
-
-    ui16 sz = tstr.size();
-    // ui16 sz = strlen(tstr);
-    ////////////
-    tw1 = sdlw.surfaces[1]->w;
-    th1 = sdlw.surfaces[1]->h;
-    tw2 = tw1/conf.alphabet.size();//95;
-    src = {0,0,tw1,th1};
-    dst = {conf.win_w-tw2*sz,conf.win_h-th1,tw2*sz,th1};
-
     if(FADE_ALPHA<=0.f){
 	FADE_SPEED *= -1.f;
 	FADE_ALPHA = 0.f;
@@ -133,23 +110,84 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	FADE_ALPHA = 255.f;
     }
     FADE_ALPHA -= FADE_SPEED;
+    /////////////
+    SDL_Rect alpha_rct, rend_rct;
+    ui16 alpha_w=0, char_w=0, alpha_h=0, tstr_w=0, tstr_wl=0;//, th2=0;
+    str tstr = " core 0.1 ";
+    ui16 str_sz = tstr.size();
+    std::stringstream ss;
 
-    r = sdlw.render_fill_rect(conf.rend,&dst,19,144,0,FADE_ALPHA);
-    if(r>=0) r = sdlw.render_rect(conf.rend,&dst,255,136,0,255-FADE_ALPHA);
-    
-    sdlw.render_text(
-	    tstr,
-	    sdlw.textures[1],
-	    src,
-	    renderer,
-	    dst
-	    );
+    alpha_w = sdlw.surfaces[1]->w;
+    alpha_h = sdlw.surfaces[1]->h;
+    char_w = alpha_w/conf.alphabet.size();//95;
+    alpha_rct = {0,0,alpha_w,alpha_h};
+
+    // draw core 0.1 text
+    tstr_w = char_w*str_sz;
+    rend_rct = {conf.win_w-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    tstr_wl += tstr_w;
+    if(r>=0) r = sdlw.render_fill_rect(conf.rend,&rend_rct,0,0,0,FADE_ALPHA);
+    if(r>=0) r = sdlw.render_rect(conf.rend,&rend_rct,255,0,0,255-FADE_ALPHA);
+    rend_rct = {conf.win_w-tstr_w+2,conf.win_h-alpha_h+2,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[2],alpha_rct,renderer,rend_rct);
+    rend_rct = {conf.win_w-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[1],alpha_rct,renderer,rend_rct);
+
+    // draw ifps
+    ss.str("");
+    ss.clear();
+    ss << " IFPS: " << std::fixed << std::setprecision(2) << (em.fps[0].counts[0].last_fps*1000.f) << " ";
+    tstr = ss.str();
+    str_sz = tstr.size();
+    tstr_w = char_w*str_sz;
+    rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_fill_rect(conf.rend,&rend_rct,0,0,255,255-FADE_ALPHA);
+    if(r>=0) r = sdlw.render_rect(conf.rend,&rend_rct,0,255,0,FADE_ALPHA);
+    rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[2],alpha_rct,renderer,rend_rct);
+    rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[1],alpha_rct,renderer,rend_rct);
+    tstr_wl += tstr_w + 1;
+
+    // draw lfps
+    ss.str("");
+    ss.clear();
+    ss << " LFPS: " << std::fixed << std::setprecision(2) << (em.fps[0].counts[1].last_fps*1000.f) << " ";
+    tstr = ss.str();
+    str_sz = tstr.size();
+    tstr_w = char_w*str_sz;
+    rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_fill_rect(conf.rend,&rend_rct,0,255,0,FADE_ALPHA);
+    if(r>=0) r = sdlw.render_rect(conf.rend,&rend_rct,255,255,0,255-FADE_ALPHA);
+    rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[2],alpha_rct,renderer,rend_rct);
+    rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[1],alpha_rct,renderer,rend_rct);
+    tstr_wl += tstr_w + 1;
+
+    // draw rfps
+    ss.clear();
+    ss.str("");
+    ss << " RFPS: " << std::fixed << std::setprecision(2) << (em.fps[0].counts[2].last_fps*1000.f) << " ";
+    tstr = ss.str();
+    str_sz = tstr.size();
+    tstr_w = char_w*str_sz;
+    rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_fill_rect(conf.rend,&rend_rct,255,0,0,255-FADE_ALPHA);
+    if(r>=0) r = sdlw.render_rect(conf.rend,&rend_rct,0,0,0,FADE_ALPHA);
+    rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[2],alpha_rct,renderer,rend_rct);
+    rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
+    if(r>=0) r = sdlw.render_text(tstr,sdlw.textures[1],alpha_rct,renderer,rend_rct);
+
     ////////////
+
+    /**************************************************************************/
 
     SDL_RenderPresent(renderer);
     // ++RFRAMES;
     ++conf.rframes;
-   
+
     return r;
 }
 
