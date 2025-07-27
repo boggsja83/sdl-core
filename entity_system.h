@@ -236,4 +236,14 @@ typedef struct ECSfps : ECS{
     }
 } ECSframefps;
 
+typedef struct ECScolx : ECS{
+    rt update(EntityManager& em, float dft=0.f) override {
+	return OKAY;
+    }
+} ECScolx;
+
+
+
+
 #endif
+

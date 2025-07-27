@@ -19,6 +19,8 @@ typedef struct Config {
     i16		    rend_w;
     i16		    rend_h;
 
+    str		    debug_txt;
+
     ui8 	    red;
     ui8 	    green;
     ui8 	    blue;
@@ -62,6 +64,8 @@ typedef struct Config {
 	rend_w	    = win_w;
 	rend_h	    = win_h;
 
+	debug_txt   = "";
+
 	red	    = 0;
 	green	    = 0;
 	blue	    = 0;
@@ -70,7 +74,6 @@ typedef struct Config {
 	input_ts    = 1.0f / 500.f; // 1000 would be considered high-precision (1ms)
 	logic_ts    = 1.0f / 45.f;
 	rend_ts	    = 1.0f / 144.f;
-	// rend_ts	    = 1.0f/60.f;
 
 	iframes	    = 0;
 	lframes	    = 0;
@@ -84,10 +87,19 @@ typedef struct Config {
 	show_cursor = false;
 	show_stats  = false;
 
+	red_txt_i   = -1;
+	green_txt_i = -1;
+	blue_txt_i  = -1;
 	white_txt_i = -1;
 	black_txt_i = -1;
-    }
 
+	red_txt	    = nullptr;
+	green_txt   = nullptr;
+	blue_txt    = nullptr;
+	white_txt   = nullptr;
+	black_txt   = nullptr;
+
+    }
 } Config;
 
 #endif

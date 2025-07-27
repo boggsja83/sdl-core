@@ -20,6 +20,7 @@ class EntityManager{
 	    texture.clear();
 	    kb.clear();
 	    fps.clear();
+	    colx.clear();
 
 	    sdlw_ptr = nullptr;
 	    kb_ptr = nullptr;
@@ -46,6 +47,7 @@ class EntityManager{
 	std::vector<cTexture>	texture;
 	std::vector<cKB>	kb;
 	std::vector<cFPS>	fps;
+	std::vector<cColx> colx;
 
     public:
 	SDL_Wrap*   sdlw_ptr;

@@ -2,6 +2,7 @@
 #define CORE_H
 
 #include <random>
+#include <sstream>
 #include <iomanip>
 
 #include "config.h"
@@ -27,6 +28,7 @@ class Core{
 	ECStexture	    ecs_texture;
 	ECSkb		    ecs_kb;
 	ECSfps		    ecs_fps;
+	ECScolx		    ecs_colx;
     public:
 	// i64	    STATUS_INT64;
 	// str	    STATUS_STRING;

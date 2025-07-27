@@ -55,13 +55,13 @@ rt Core::loop(){
 
 rt Core::input(){
     rt r = kb.poll_events();
-    // if(r>=0) r = ecs_fps.update(em);
     ++conf.iframes;
     return r;
 }
 
 rt Core::update(float& accumulator){
     rt r = OKAY;
+    std::stringstream ss;
 
     while(accumulator >= conf.logic_ts){
 	/**********************************************************************/
@@ -71,20 +71,24 @@ rt Core::update(float& accumulator){
 	if(kb.keystate[SDL_SCANCODE_Q]) return QUIT;
 	/**********************************************************************/
 	// UPDATE GAME LOGIC (FROM KEYSTATE)
-	r = ecs_kb.update(em, conf.logic_ts);
+	r = ecs_kb.update(em);
 	if(r<0) return r;
 
 	// UPDATE GAME LOGIC (WITH FIXED_TS)
 	r = ecs_pos.update(em, conf.logic_ts);
 	if(r<0) return r;
 
-	// r = ecs_fps.update(em);
+	r = ecs_colx.update(em);	
+
+
+	ss.str("");
+	ss << " rend_w: " << conf.rend_w << " : rend_h: " << conf.rend_h << " ";
+	conf.debug_txt = ss.str();
 
 	SDL_ShowCursor(conf.show_cursor);
 
 	/**********************************************************************/
 	accumulator -= conf.logic_ts;
-	// if(r>=0) r = ecs_fps.update(em);
 	++conf.lframes;
     }
 
@@ -132,18 +136,19 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	alpha_rct = {0,0,alpha_w,alpha_h};
 
 	rend_rct = {0,conf.win_h-alpha_h,conf.win_w,alpha_h};
+	// if(r>=0) r = sdlw.render_fill_rect(conf.main_rend, &rend_rct, 255, 000, 000, 255);
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend, &rend_rct, 86, 86, 86, 255);
 
 	// draw core 0.1 text
 	tstr_w = char_w*str_sz;
 	rend_rct = {conf.win_w-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
-	tstr_wl += tstr_w;
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,0,0,0,FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,255,0,0,255-FADE_ALPHA);
 	rend_rct = {conf.win_w-tstr_w+2,conf.win_h-alpha_h+2,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
+	tstr_wl += tstr_w;
 
 	// draw ifps
 	ss.str("");
@@ -156,7 +161,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,0,0,255,255-FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,255,255,255,FADE_ALPHA);
-	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
+	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+2,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
@@ -165,6 +170,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	// draw lfps
 	ss.str("");
 	ss.clear();
+	// perf = em.fps[1].counts[0].last_fps*1000.f;
 	perf = em.fps[0].counts[1].last_fps*1000.f;
 	ss << " LFPS:" << std::fixed << std::setprecision(2) << std::setw(6) << perf << ":"<< std::setw(6) << perf*conf.logic_ts*100.f <<"% ";
 	tstr = ss.str();
@@ -173,7 +179,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,0,255,0,FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,255,255,0,255-FADE_ALPHA);
-	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
+	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+2,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
@@ -182,6 +188,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	// draw rfps
 	ss.clear();
 	ss.str("");
+	// perf = em.fps[2].counts[0].last_fps*1000.f;
 	perf = em.fps[0].counts[2].last_fps*1000.f;
 	ss << " RFPS:" << std::fixed << std::setprecision(2) << std::setw(6) << perf << ":"<< std::setw(6) << perf*conf.rend_ts*100.f <<"% ";
 	tstr = ss.str();
@@ -190,7 +197,7 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_fill_rect(conf.main_rend,&rend_rct,255,0,0,255-FADE_ALPHA);
 	if(r>=0) r = sdlw.render_rect(conf.main_rend,&rend_rct,0,0,255,FADE_ALPHA);
-	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+1,tstr_w,alpha_h};
+	rend_rct = {conf.win_w-tstr_wl-tstr_w+2,conf.win_h-alpha_h+2,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,renderer,rend_rct);
 	rend_rct = {conf.win_w-tstr_wl-tstr_w,conf.win_h-alpha_h,tstr_w,alpha_h};
 	if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,renderer,rend_rct);
@@ -208,6 +215,27 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	// west
 	sdlw.render_line(conf.main_rend,0, conf.win_h-alpha_h+1, 0, conf.win_h,SDL_Color({000,255,000,static_cast<ui8>(255-FADE_ALPHA)}));
 
+	// display conf.debug_txt
+	tstr = conf.debug_txt;
+	str_sz = tstr.size();
+	tstr_w = char_w*str_sz;
+	
+	if(tstr_w){
+	    // rend_rct = {1,conf.win_h-alpha_h+1,conf.win_w-tstr_wl-3,alpha_h-2};
+
+	    // Debug Area Dimensions:
+	    // x: 1, y: conf.win_h-alpha_h+1
+	    // w: conf.win_w=tstr_wl-3 , h: alpha_h-2
+	    
+	    if(tstr_w>conf.win_w-tstr_wl-3) tstr_w = conf.win_w-tstr_wl-3;
+
+	    rend_rct = {1+1,conf.win_h-alpha_h+1+1,tstr_w,alpha_h-2};
+	    if(r>=0) r = sdlw.render_text(tstr,conf.black_txt,alpha_rct,conf.main_rend,rend_rct);
+	    rend_rct = {1,conf.win_h-alpha_h+1,tstr_w,alpha_h-2};
+	    if(r>=0) r = sdlw.render_text(tstr,conf.white_txt,alpha_rct,conf.main_rend,rend_rct);
+	}
+
+	////////
 	conf.rend_h = conf.win_h - alpha_h;
     }
     else conf.rend_h = conf.win_h;

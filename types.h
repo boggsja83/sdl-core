@@ -1,6 +1,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#include <SDL_haptic.h>
 #include <cstdint>
 #include <string>
 
@@ -80,7 +81,9 @@ typedef enum {
     CM_RENDPOS		    = 0b0000'0100,
     CM_TEXTURE		    = 0b0000'1000,
     CM_FPS		    = 0b0001'0000,
-    CM_KB		    = 0b0010'0000
+    CM_KB		    = 0b0010'0000,
+    CM_COLX		    = 0b0100'0000,
+    CM_SHAPE		    = 0b1000'0000
 } CM_MASK;
 
 typedef enum {
@@ -89,6 +92,21 @@ typedef enum {
     FT_RENDER		    = 2,
     FT_NONE		    = 3
 } FRAME_TYPE;
+
+typedef enum {
+    COLLISION_AABB	    = 0,
+    COLLISION_CIRCLE	    = 1,
+    COLLISION_POLYGON	    = 2,
+    COLLISION_UNKNOWN
+} COLLISION_SHAPE;
+
+typedef enum {
+    SHAPE_CIRCLE	    = 0,
+    SHAPE_RECTANGLE	    = 1,
+    SHAPE_TRIANGLE	    = 2,
+    SHAPE_POLYGON	    = 3,
+    SHAPE_UNKNOWN
+} SHAPE_TYPE;
 
 #endif
 

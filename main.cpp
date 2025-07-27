@@ -51,22 +51,44 @@ int main(int argc, char** argv){
 
     r = core.conf.black_txt_i;
 
-    cKB tck;
-    cFPS tcf;
+    cKB cmp_kb;
+    cFPS cmp_fps;
+    cColx cmp_colx;
 
     if(r>=0){
-	r = core.em.add_entity(CM_KB|CM_FPS);
-	tcf = cFPS(r);
-	tcf.counts.push_back(FPSdata(333,FT_INPUT));
-	tcf.counts.push_back(FPSdata(333,FT_LOGIC));
-	tcf.counts.push_back(FPSdata(333,FT_RENDER));
-	tck = cKB(r);
-	tck.acts.push_back(TEST_ACTION);
-	tck.acts.push_back(TOGGLE_CURSOR);
-	tck.acts.push_back(TOGGLE_STATS);
-	if(r>=0) r = core.em.set(tck);
-	if(r>=0) r = core.em.set(tcf);
+	r = core.em.add_entity(CM_KB|CM_FPS|CM_COLX);
+	cmp_fps = cFPS(r);
+	cmp_fps.counts.push_back(FPSdata(333,FT_INPUT));
+	cmp_fps.counts.push_back(FPSdata(333,FT_LOGIC));
+	cmp_fps.counts.push_back(FPSdata(333,FT_RENDER));
+
+	cmp_kb = cKB(r);
+	cmp_kb.acts.push_back(TEST_ACTION);
+	cmp_kb.acts.push_back(TOGGLE_CURSOR);
+	cmp_kb.acts.push_back(TOGGLE_STATS);
+
+	cmp_colx = cColx(r,COLLISION_AABB);
+
+	if(r>=0) r = core.em.set(cmp_colx);
+	if(r>=0) r = core.em.set(cmp_kb);
+	if(r>=0) r = core.em.set(cmp_fps);
     }
+
+	//    if(r>=0){
+	// r = core.em.add_entity(CM_FPS);
+	// tcf = cFPS(r);
+	// tcf.counts.push_back(FPSdata(333,FT_LOGIC));
+	// if(r>=0) r = core.em.set(tcf);
+	//    }
+
+	//    if(r>=0){
+	// r = core.em.add_entity(CM_FPS);
+	// tcf = cFPS(r);
+	// tcf.counts.push_back(FPSdata(333,FT_RENDER));
+	// if(r>=0) r = core.em.set(tcf);
+	//    }
+
+
     /**************************************************************************/
     if(r>=0) r = core.loop();
     /**************************************************************************/

@@ -323,6 +323,7 @@ CMakeFiles/sdl_core.dir/main.cpp.o: \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h \
  /home/sl1m/programming/source/sdl_core/types.h \
+ /usr/include/SDL2/SDL_haptic.h \
  /home/sl1m/programming/source/sdl_core/sdl_w.h \
  /usr/include/SDL2/SDL_mixer.h /usr/include/SDL2/SDL_image.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_ttf.h \

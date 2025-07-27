@@ -251,8 +251,8 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h \
  /home/sl1m/programming/source/sdl_core/types.h \
- /usr/include/c++/13/cstdint /usr/include/c++/13/string \
- /usr/include/c++/13/bits/stringfwd.h \
+ /usr/include/SDL2/SDL_haptic.h /usr/include/c++/13/cstdint \
+ /usr/include/c++/13/string /usr/include/c++/13/bits/stringfwd.h \
  /usr/include/c++/13/bits/char_traits.h \
  /usr/include/c++/13/bits/postypes.h /usr/include/c++/13/cwchar \
  /usr/include/c++/13/bits/localefwd.h \
