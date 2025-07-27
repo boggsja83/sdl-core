@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/sl1m/programming/source/sdl_core -isystem /usr/include/SDL2
 
-CXX_FLAGS = -g -O0 -std=gnu++17
+CXX_FLAGS = -O2 -std=gnu++17
 

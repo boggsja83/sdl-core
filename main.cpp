@@ -79,9 +79,9 @@ int main(int argc, char** argv){
 
     if(r>=0) r = core.em.add_entity(CM_KB|CM_FPS);
     tcf = cFPS(r);//,500,FT_LOGIC);
-    tcf.counts.push_back(FPSdata(500,FT_INPUT));
-    tcf.counts.push_back(FPSdata(500,FT_LOGIC));
-    tcf.counts.push_back(FPSdata(500,FT_RENDER));
+    tcf.counts.push_back(FPSdata(250,FT_INPUT));
+    tcf.counts.push_back(FPSdata(250,FT_LOGIC));
+    tcf.counts.push_back(FPSdata(250,FT_RENDER));
     tck = cKB(r);
     tck.acts.push_back(TEST_ACTION);
     tck.acts.push_back(VOL_UP);
