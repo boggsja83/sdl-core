@@ -40,6 +40,7 @@ typedef enum {
     VOL_UP		    = 6,
     VOL_DN		    = 7,
     TOGGLE_CURSOR	    = 8,
+    TOGGLE_STATS	    = 9,
     KB_NUM_ACTIONS
 } KB_ACTION;
 

@@ -197,18 +197,14 @@ rt SDL_Wrap::render_fill_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr
     SDL_Color tc;
     rt r = OKAY;
 
-    r = SDL_GetRenderDrawColor(prend,&tc.r,&tc.g,&tc.b,&tc.a);
+    r = SDL_SetRenderDrawBlendMode(prend, SDL_BLENDMODE_BLEND);
+    if(r<0) { std::cerr<<"SetRenderDrawBlendMode failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
 
-    if(r>=0) r = SDL_SetRenderDrawColor(prend, pr, pg, pb, pa);
-    else { std::cerr << "GetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+    r = SDL_SetRenderDrawColor(prend, pr, pg, pb, pa);
+    if(r<0) { std::cerr << "GetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
 
-    if(r>=0) r = SDL_RenderFillRect(prend,prect);
-    else { std::cerr << "SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
-
-    if(r>=0) r = SDL_SetRenderDrawColor(prend, tc.r, tc.g, tc.b, tc.a);
-    else { std::cerr << "RenderFillRect failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
-
-    if(r<0) std::cerr << "SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl;
+    r = SDL_RenderFillRect(prend,prect);
+    if(r<0) { std::cerr << "SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
 
     return r; 
 }
@@ -220,13 +216,29 @@ rt SDL_Wrap::render_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8
     if(r<0) { std::cerr<<"SetRenderDrawBlendMode failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
 
     r = SDL_SetRenderDrawColor(prend,pr,pg,pb,pa);
-    if(r<0) { std::cerr<<"SDL_SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+    if(r<0) { std::cerr<<"SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
 
     r = SDL_RenderDrawRect(prend,prect);
-    if(r<0) { std::cerr<<"SDL_RenderDrawRect failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+    if(r<0) { std::cerr<<"RenderDrawRect failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
     
     return r;
 }
+
+rt SDL_Wrap::render_line(SDL_Renderer* prend, i16 px1, i16 py1, i16 px2, i16 py2, SDL_Color pcol){
+    rt r = OKAY;
+
+    r = SDL_SetRenderDrawBlendMode(prend, SDL_BLENDMODE_BLEND);
+    if(r<0) { std::cerr<<"SetRenderDrawBlendMode failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+
+    r = SDL_SetRenderDrawColor(prend,pcol.r,pcol.g,pcol.b,pcol.a);
+    if(r<0) { std::cerr<<"SetRenderDrawColor failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+
+    r = SDL_RenderDrawLine(prend,px1,py1,px2,py2);
+    if(r<0) { std::cerr<<"RenderDrawLine failed. SDL_Error: " << SDL_GetError() << std::endl; return r; }
+
+    return r;
+}
+
 
 
 

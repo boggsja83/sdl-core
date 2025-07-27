@@ -10,8 +10,8 @@
 #include "types.h"
 
 typedef struct Config {
-    SDL_Window*	    win;
-    SDL_Renderer*   rend;
+    SDL_Window*	    main_win;
+    SDL_Renderer*   main_rend;
 
     i16		    win_w;
     i16 	    win_h;
@@ -35,17 +35,24 @@ typedef struct Config {
     str		    alphabet;
 
     bool	    show_cursor;
+    bool	    show_stats;
+
+    i16		    white_txt_i;
+    i16		    black_txt_i;
+
+    SDL_Texture*    white_txt;
+    SDL_Texture*    black_txt;
 
     Config(){
-	win	    = nullptr;
-	rend	    = nullptr;
+	main_win	    = nullptr;
+	main_rend	    = nullptr;
 
 	win_w	    = 1920;
 	win_h	    = 1080;
 
-	red	    = 255;
-	green	    = 255;
-	blue	    = 154;
+	red	    = 0;
+	green	    = 0;
+	blue	    = 0;
 	alpha	    = SDL_ALPHA_OPAQUE;
 
 	input_ts    = 1.0f / 500.f; // 1000 would be considered high-precision (1ms)
@@ -53,7 +60,7 @@ typedef struct Config {
 	rend_ts	    = 1.0f / 144.f;
 	// rend_ts	    = 1.0f/60.f;
 
-        iframes	    = 0;
+	iframes	    = 0;
 	lframes	    = 0;
 	rframes	    = 0;
 
@@ -63,6 +70,10 @@ typedef struct Config {
 	alphabet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 
 	show_cursor = false;
+	show_stats  = false;
+
+	white_txt_i = -1;
+	black_txt_i = -1;
     }
 
 } Config;

@@ -100,6 +100,8 @@ class SDL_Wrap{
 
 	rt render_fill_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8 pg, ui8 pb, ui8 pa);
 	rt render_rect(SDL_Renderer* prend, const SDL_Rect* prect, ui8 pr, ui8 pg, ui8 pb, ui8 pa);
+	rt render_line(SDL_Renderer* prend, i16 px1, i16 py1, i16 px2, i16 py2, SDL_Color pcol);
+
 };
 
 #endif

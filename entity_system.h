@@ -137,7 +137,6 @@ typedef struct ECSkb : ECS {
 			switch(tka){
 			    case TEST_ACTION:
 				if(em.kb_ptr->first_press[tsc]){
-				    em.sdlw_ptr->play_channel(-1,0,0);
 				    em.kb_ptr->first_press[tsc]=false;
 				}
 				break;
@@ -155,6 +154,11 @@ typedef struct ECSkb : ECS {
 				    em.kb_ptr->first_press[tsc]=false;
 				}
 				break;
+			    case TOGGLE_STATS:
+				if(em.kb_ptr->first_press[tsc]){
+				    em.conf_ptr->show_stats = !em.conf_ptr->show_stats;
+				    em.kb_ptr->first_press[tsc]=false;
+				}
 			    default:;
 			}
 		    }

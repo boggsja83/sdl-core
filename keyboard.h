@@ -106,6 +106,9 @@ class Keyboard{
 		    case TOGGLE_CURSOR:
 			map[i] = SDL_SCANCODE_KP_ENTER;
 			break;
+		    case TOGGLE_STATS:
+			map[i] = SDL_SCANCODE_KP_MULTIPLY;
+			break;
 		    default:
 			map[i] = SDL_SCANCODE_UNKNOWN;
 			break;
