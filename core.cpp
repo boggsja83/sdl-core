@@ -117,14 +117,14 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 
     /////////////
 
-    if(conf.show_stats){
+    SDL_Rect alpha_rct, rend_rct;
+    ui16 alpha_w=0, char_w=0, alpha_h=0, tstr_w=0, tstr_wl=0;
+    str tstr = " core 0.2 ";
+    ui16 str_sz = tstr.size();
+    std::stringstream ss;
+    float perf = 0.f;
 
-	SDL_Rect alpha_rct, rend_rct;
-	ui16 alpha_w=0, char_w=0, alpha_h=0, tstr_w=0, tstr_wl=0;
-	str tstr = " core 0.2 ";
-	ui16 str_sz = tstr.size();
-	std::stringstream ss;
-	float perf = 0.f;
+    if(conf.show_stats){
 
 	alpha_w = sdlw.surfaces[conf.white_txt_i]->w;
 	alpha_h = sdlw.surfaces[conf.white_txt_i]->h;
@@ -207,8 +207,13 @@ rt Core::render(SDL_Renderer* renderer, float& alpha){
 	sdlw.render_line(conf.main_rend, conf.win_w-tstr_wl-2, conf.win_h-alpha_h+1, conf.win_w-tstr_wl-2, conf.win_h,SDL_Color({255,255,255,static_cast<ui8>(255-FADE_ALPHA)}));
 	// west
 	sdlw.render_line(conf.main_rend,0, conf.win_h-alpha_h+1, 0, conf.win_h,SDL_Color({000,255,000,static_cast<ui8>(255-FADE_ALPHA)}));
-	
+
+	conf.rend_h = conf.win_h - alpha_h;
     }
+    else conf.rend_h = conf.win_h;
+
+    rend_rct = {0,0,conf.rend_w,conf.rend_h};
+    sdlw.render_fill_rect(conf.main_rend,&rend_rct,100,050,255,FADE_ALPHA);
 
     ////////////
 

@@ -13,15 +13,13 @@ class EntityManager{
 
     public:
 	EntityManager(){
-	    i16 s = 5;
-
 	    ents.clear();
-	    pos.resize(s);
-	    vel.resize(s);
-	    rendpos.resize(s);
-	    texture.resize(s);
-	    kb.resize(s);
-	    fps.resize(s);
+	    pos.clear();
+	    vel.clear();
+	    rendpos.clear();
+	    texture.clear();
+	    kb.clear();
+	    fps.clear();
 
 	    sdlw_ptr = nullptr;
 	    kb_ptr = nullptr;

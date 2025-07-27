@@ -308,5 +308,4 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/cstring \
  /home/sl1m/programming/source/sdl_core/types.h \
- /usr/include/c++/13/cstdint /usr/include/c++/13/sstream \
- /usr/include/c++/13/bits/sstream.tcc
+ /usr/include/c++/13/cstdint

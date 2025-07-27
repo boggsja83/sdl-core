@@ -35,11 +35,18 @@ int main(int argc, char** argv){
 
     if(r>=0) r = core.sdlw.open_font("BigBlue437-Regular.ttf", 24);
 
-    if(r>=0) core.conf.white_txt_i = core.sdlw.create_texture_from_text(core.sdlw.fonts[r],core.conf.alphabet,SDL_Color({255,255,255,SDL_ALPHA_OPAQUE}),core.conf.main_rend);
+    if(r>=0) core.conf.red_txt_i = core.sdlw.create_texture_from_text(core.sdlw.fonts[r],core.conf.alphabet,SDL_Color({255,000,000,SDL_ALPHA_OPAQUE}),core.conf.main_rend);
+    if(core.conf.red_txt_i>=0) core.conf.green_txt_i = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],core.conf.alphabet,SDL_Color({000,255,0000,SDL_ALPHA_OPAQUE}),core.conf.main_rend);
+    if(core.conf.green_txt_i>=0) core.conf.blue_txt_i = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],core.conf.alphabet,SDL_Color({000,000,255,SDL_ALPHA_OPAQUE}),core.conf.main_rend);
+    if(core.conf.blue_txt_i>=0) core.conf.white_txt_i = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],core.conf.alphabet,SDL_Color({255,255,255,SDL_ALPHA_OPAQUE}),core.conf.main_rend);
     if(core.conf.white_txt_i>=0) core.conf.black_txt_i = core.sdlw.create_texture_from_text(core.sdlw.fonts[0],core.conf.alphabet,SDL_Color({0,0,0,SDL_ALPHA_OPAQUE}),core.conf.main_rend);
+
     if(core.conf.black_txt_i>=0) {
 	core.conf.white_txt=core.sdlw.textures[core.conf.white_txt_i];
 	core.conf.black_txt=core.sdlw.textures[core.conf.black_txt_i];
+	core.conf.red_txt=core.sdlw.textures[core.conf.red_txt_i];
+	core.conf.green_txt=core.sdlw.textures[core.conf.green_txt_i];
+	core.conf.blue_txt=core.sdlw.textures[core.conf.blue_txt_i];
     } 
 
     r = core.conf.black_txt_i;
@@ -60,9 +67,8 @@ int main(int argc, char** argv){
 	if(r>=0) r = core.em.set(tck);
 	if(r>=0) r = core.em.set(tcf);
     }
-
+    /**************************************************************************/
     if(r>=0) r = core.loop();
-
     /**************************************************************************/
 
     ui64 elapsed = SDL_GetTicks64() - core.START;

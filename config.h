@@ -16,6 +16,9 @@ typedef struct Config {
     i16		    win_w;
     i16 	    win_h;
 
+    i16		    rend_w;
+    i16		    rend_h;
+
     ui8 	    red;
     ui8 	    green;
     ui8 	    blue;
@@ -37,18 +40,27 @@ typedef struct Config {
     bool	    show_cursor;
     bool	    show_stats;
 
+    i16		    red_txt_i;
+    i16		    green_txt_i;
+    i16		    blue_txt_i;
     i16		    white_txt_i;
     i16		    black_txt_i;
 
+    SDL_Texture*    red_txt;
+    SDL_Texture*    green_txt;
+    SDL_Texture*    blue_txt;
     SDL_Texture*    white_txt;
     SDL_Texture*    black_txt;
 
     Config(){
-	main_win	    = nullptr;
-	main_rend	    = nullptr;
+	main_win    = nullptr;
+	main_rend   = nullptr;
 
 	win_w	    = 1920;
 	win_h	    = 1080;
+
+	rend_w	    = win_w;
+	rend_h	    = win_h;
 
 	red	    = 0;
 	green	    = 0;

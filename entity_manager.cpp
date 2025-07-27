@@ -3,36 +3,62 @@
 rt EntityManager::add_entity(ui64 comp_mask){
 
     i16 temp_id = ents.size();
+    ui8 sz = 5;
+
+
+
+    if(!temp_id){
+	// zero entities at this point
+	pos.resize(sz);
+	rendpos.resize(sz);
+	vel.resize(sz);
+	texture.resize(sz);
+	kb.resize(sz);
+	fps.resize(sz);
+    }
+    else
+	if(pos.size()<=temp_id || rendpos.size()<=temp_id || vel.size()<=temp_id || 
+		texture.size()<=temp_id || kb.size()<=temp_id || fps.size()<=temp_id) {
+	    pos.resize(temp_id*2);
+	    rendpos.resize(temp_id*2);
+	    vel.resize(temp_id*2);
+	    texture.resize(temp_id*2);
+	    kb.resize(temp_id*2);
+	    fps.resize(temp_id*2);
+	}
+
+
+
 
     ents.push_back(comp_mask);
 
     if(comp_mask & CM_POS){
-	if(pos.size() <= temp_id) { pos.resize(pos.size()*2+1); } // add 1 in case size is 0
+	// if(pos.size() <= temp_id) { pos.resize(pos.size()*2+1); } // add 1 in case size is 0
 	pos[temp_id] = cPos();
     }
 
     if(comp_mask & CM_RENDPOS){
-	if(rendpos.size() <= temp_id) { rendpos.resize(rendpos.size()*2+1); } // add 1 in case size is 0
+	// if(rendpos.size() <= temp_id) { rendpos.resize(rendpos.size()*2+1); } // add 1 in case size is 0
 	rendpos[temp_id] = cRendPos();
     }
 
     if(comp_mask & CM_VEL){
-	if(vel.size() <= temp_id) { vel.resize(vel.size()*2+1); } // add 1 in case size is 0
+	// if(vel.size() <= temp_id) { vel.resize(vel.size()*2+1); } // add 1 in case size is 0
 	vel[temp_id] = cVel();
     }
 
     if(comp_mask & CM_TEXTURE){
-	if(texture.size() <= temp_id) { texture.resize(texture.size()*2+1); } // add 1 in case size is 0
+	// if(texture.size() <= temp_id) { texture.resize(texture.size()*2+1); } // add 1 in case size is 0
 	texture[temp_id] = cTexture();
     }
 
     if(comp_mask & CM_KB){
-	if(kb.size() <= temp_id) { kb.resize(kb.size()*2+1); } // add 1 in case size is 0
+	// if(kb.size() <= temp_id) { kb.resize(kb.size()*2+1); } // add 1 in case size is 0
 	kb[temp_id] = cKB();
     }
 
     if(comp_mask & CM_FPS){
-	if(fps.size() <= temp_id) { fps.resize(fps.size()*2+1); } // add 1 in case size is 0
+	// if(fps.size() <= temp_id) { fps.resize(fps.size()*2+1); } // add 1 in case size is 0
 	fps[temp_id] = cFPS();
     }
 
