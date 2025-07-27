@@ -59,7 +59,6 @@ int main(int argc, char** argv){
 
     if(r>=0) r = core.sdlw.open_font("BigBlue437-Regular.ttf", 24);
 
-
     if(r>=0) white_txt = core.sdlw.create_texture_from_text(core.sdlw.fonts[r],core.conf.alphabet,SDL_Color({cr,cg,cb,ca}),core.conf.rend);
     if(white_txt>=0) { tw1 = core.sdlw.surfaces[white_txt]->w; th1 = core.sdlw.surfaces[white_txt]->h; }
 
@@ -79,9 +78,9 @@ int main(int argc, char** argv){
 
     if(r>=0) r = core.em.add_entity(CM_KB|CM_FPS);
     tcf = cFPS(r);//,500,FT_LOGIC);
-    tcf.counts.push_back(FPSdata(250,FT_INPUT));
-    tcf.counts.push_back(FPSdata(250,FT_LOGIC));
-    tcf.counts.push_back(FPSdata(250,FT_RENDER));
+    tcf.counts.push_back(FPSdata(333,FT_INPUT));
+    tcf.counts.push_back(FPSdata(333,FT_LOGIC));
+    tcf.counts.push_back(FPSdata(333,FT_RENDER));
     tck = cKB(r);
     tck.acts.push_back(TEST_ACTION);
     tck.acts.push_back(VOL_UP);

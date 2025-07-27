@@ -243,13 +243,22 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -287,6 +296,8 @@ CMakeFiles/sdl_core.dir/core.cpp.o: /home/sl1m/programming/source/sdl_core/core.
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
@@ -631,13 +642,22 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -675,6 +695,8 @@ CMakeFiles/sdl_core.dir/entity_manager.cpp.o: /home/sl1m/programming/source/sdl_
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
@@ -1035,13 +1057,22 @@ CMakeFiles/sdl_core.dir/main.cpp.o: /home/sl1m/programming/source/sdl_core/main.
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -1079,6 +1110,8 @@ CMakeFiles/sdl_core.dir/main.cpp.o: /home/sl1m/programming/source/sdl_core/main.
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
@@ -1419,13 +1452,22 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -1463,6 +1505,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
@@ -1678,8 +1722,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx5124vnniwintrin.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx2intrin.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/amxtileintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/amxint8intrin.h:
@@ -1732,6 +1774,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
+/usr/include/x86_64-linux-gnu/bits/wchar2-decl.h:
+
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
@@ -1752,10 +1796,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
@@ -1767,6 +1807,20 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512ifmavlintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/shaintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/clzerointrin.h:
 
@@ -1785,10 +1839,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/bits/refwrap.h:
 
 /usr/include/c++/13/system_error:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/clwbintrin.h:
-
-/usr/include/c++/13/bits/quoted_string.h:
 
 /usr/include/c++/13/bits/predefined_ops.h:
 
@@ -1886,10 +1936,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/bits/basic_ios.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/shaintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
 /usr/include/c++/13/bit:
 
 /usr/include/c++/13/bits/basic_string.tcc:
@@ -1919,8 +1965,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/iomanip:
 
 /usr/include/strings.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/ia32intrin.h:
 
@@ -1959,6 +2003,12 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxvnniint8intrin.h:
 
 /usr/include/SDL2/SDL_haptic.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/c++/13/bits/stl_algobase.h:
 
@@ -2022,6 +2072,10 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /home/sl1m/programming/source/sdl_core/entity_manager.h:
 
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/c++/13/bits/locale_classes.h:
+
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
 /usr/include/SDL2/SDL_image.h:
@@ -2036,10 +2090,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/c++/13/bits/cpp_type_traits.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512ifmavlintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h:
 
 /home/sl1m/programming/source/sdl_core/keyboard.h:
@@ -2049,8 +2099,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/math.h:
 
 /home/sl1m/programming/source/sdl_core/core.cpp:
-
-/usr/include/c++/13/bits/ptr_traits.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlbwintrin.h:
 
@@ -2067,6 +2115,10 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/stdlib.h:
 
 /usr/include/SDL2/SDL_loadso.h:
+
+/usr/include/c++/13/bits/ptr_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2-decl.h:
 
 /usr/include/c++/13/bits/sstream.tcc:
 
@@ -2095,8 +2147,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/bits/uses_allocator_args.h:
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
-
-/usr/include/SDL2/SDL_metal.h:
 
 /usr/include/c++/13/bits/cxxabi_forced.h:
 
@@ -2198,12 +2248,6 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/cetintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlintrin.h:
-
-/usr/include/c++/13/cmath:
-
 /usr/include/c++/13/cstddef:
 
 /usr/include/SDL2/SDL_mutex.h:
@@ -2221,6 +2265,8 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 /usr/include/c++/13/cwchar:
 
 /usr/include/c++/13/debug/assertions.h:
+
+/usr/include/x86_64-linux-gnu/bits/select-decl.h:
 
 /home/sl1m/programming/source/sdl_core/core.h:
 
@@ -2356,13 +2402,21 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/string.h:
 
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
 /usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/SDL2/SDL_metal.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
@@ -2376,6 +2430,18 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/cetintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlintrin.h:
+
+/usr/include/c++/13/cmath:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
 /usr/include/time.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
@@ -2386,16 +2452,16 @@ CMakeFiles/sdl_core.dir/sdl_w.cpp.o: /home/sl1m/programming/source/sdl_core/sdl_
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/13/include/clwbintrin.h:
+
+/usr/include/c++/13/bits/quoted_string.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx2intrin.h:
 
-/usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/time.h:
-
-/usr/include/c++/13/bits/locale_classes.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
